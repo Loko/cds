@@ -93,6 +93,36 @@ cds_result cds_dynamic_array_clear(cds_dynamic_array *array) {
 	}
 }
 
+// 
+cds_result cds_dynamic_array_count(cds_dynamic_array *array, unsigned int *count) {
+	if (count) {
+		if (array) {
+			*count = array->count;
+			return CDS_OK;
+		} else {
+			*count = 0;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
+//
+cds_result cds_dynamic_array_size(cds_dynamic_array *array, unsigned int *size) {
+	if (size) {
+		if (array) {
+			*count = array->count;
+			return CDS_OK;
+		} else {
+			*count = 0;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
 // safely gets a pointer from the array at the given index
 // the data pointer is valid if CDS_OK is returned
 cds_result cds_dynamic_array_get(cds_dynamic_array *array, unsigned int index, void **data) {
@@ -347,4 +377,16 @@ cds_result cds_dynamic_array_find_cmp(cds_dynamic_array *array, void *data, unsi
 		}
 	}
 	return CDS_NOT_FOUND;
+}
+
+cds_result cds_dynamic_array_iterate(cds_dynamic_array *array, cds_visit_func visit_func) {
+	if (array && visit_func) {
+		unsigned int i;
+		for (i = 0; i < array->count; ++i) {
+			(*visit_func)(array->buffer[i]);
+		}
+		return CDS_OK;
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
 }

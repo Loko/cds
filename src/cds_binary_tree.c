@@ -106,6 +106,34 @@ cds_result cds_binary_tree_delete_all(cds_binary_tree **tree) {
 	}
 }
 
+cds_result cds_binary_tree_root(cds_binary_tree *tree, cds_binary_node **root) {
+	if (root) {
+		if (tree) {
+			*root = tree->root;
+			return CDS_OK;
+		} else {
+			*root = NULL;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
+cds_result cds_binary_tree_count(cds_binary_tree *tree, unsigned int *count) {
+	if (count) {
+		if (tree) {
+			*count = tree->count;
+			return CDS_OK;
+		} else {
+			*count = 0;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
 
 // pre order
 void cds_binary_tree_preorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {

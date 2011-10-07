@@ -117,6 +117,20 @@ cds_result cds_queue_dequeue(cds_queue *queue) {
 	}
 }
 
+cds_result cds_queue_count(cds_queue *queue, unsigned int *count) {
+	if (count) {
+		if (queue) {
+			*count = queue->count;
+			return CDS_OK;
+		} else {
+			*count = 0;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
 // I think calling this function should return OK 
 // even for an empty queue, in which case data is just set to null
 cds_result cds_queue_front(cds_queue *queue, void **data) {
@@ -141,5 +155,18 @@ cds_result cds_queue_back(cds_queue *queue, void **data) {
 	} else {
 		*data = NULL;
 		return CDS_INVALID_OPERATION; // may very well be a different return, e.g. UNDERFLOW
+	}
+}
+
+//
+cds_result cds_queue_iterate(cds_queue *queue, cds_visit_func visit_func) {
+	if (queue && visit_func) {
+		cds_slnode *cur = queue->head;
+		while (cur) {
+			(*visit_func)(cur->data);
+			cur = cur->next;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
 	}
 }

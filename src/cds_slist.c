@@ -75,6 +75,51 @@ cds_result cds_slist_delete_all(cds_slist **list) {
 }
 
 //
+cds_result cds_slist_count(cds_slist *list, unsigned int *count) {
+	if (count) {
+		if (list) {
+			*count = list->count;
+			return CDS_OK;
+		} else {
+			*count = 0;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
+//
+cds_result cds_slist_head(cds_slist *list, cds_slnode **head) {
+	if (head) {
+		if (list) {
+			*head = list->head;
+			return CDS_OK;
+		} else {
+			*head = NULL;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
+// 
+cds_result cds_slist_tail(cds_slist *list, cds_slnode **tail) {
+	if (tail) {
+		if (list) {
+			*tail = list->tail;
+			return CDS_OK;
+		} else {
+			*tail = NULL;
+			return CDS_NULL_ARGUMENT;
+		}
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}
+
+//
 cds_result cds_slist_add_first(cds_slist *list, void *data) {
 	if (!list)
 		return CDS_NULL_ARGUMENT;
@@ -443,4 +488,17 @@ cds_result cds_slist_find_cmp(cds_slist *list, void *data, cds_slnode **node, cd
 		}
 	}
 	return CDS_NOT_FOUND;
+}
+
+cds_result cds_slist_iterate(cds_slist *list, cds_visit_func visit_func) {
+	if (list && visit_func) {
+		cds_slnode *cur = list->head;
+		while (cur) {
+			(*visit_func)(cur->data);
+			cur = cur->next;
+		}
+		return CDS_OK;
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
 }
