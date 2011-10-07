@@ -24,6 +24,9 @@ cds_result cds_binary_tree_delete(cds_binary_tree **tree);
 cds_result cds_binary_tree_clear(cds_binary_tree *tree);
 cds_result cds_binary_tree_delete_all(cds_binary_tree **tree);
 
+cds_result cds_binary_tree_root(cds_binary_tree *tree, cds_binary_node **root);
+cds_result cds_binary_tree_count(cds_binary_tree *tree, unsigned int *count);
+
 cds_result cds_binary_tree_insert(cds_binary_tree *tree, void *data);
 cds_result cds_binary_tree_insert_node(cds_binary_tree *tree, void *data, cds_binary_node **node, cds_binary_node **parent);
 

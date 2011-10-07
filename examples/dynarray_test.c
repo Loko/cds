@@ -11,6 +11,12 @@ int test_func(cds_dynamic_array *a) {
 	}
 }
 
+// assume it is an int for now
+void test_visit_func(void *ptr) {
+	char *pC = (char *) ptr;
+	printf("%c\n", *pC);
+}
+
 int main(void) {
 	printf("before assertion\n");
 	CDS_ASSERT_MSG(0 == 1, "Jeff Is: %s", "Tired");
@@ -98,9 +104,15 @@ int main(void) {
 		//printf("%c\n", (*(char *)t));
 		//cds_dynamic_array_pop_back_data(array, &t);
 		//printf("%c\n", (*(char *)t));
-		for (i = 0; i < array->count; ++i) {
-			printf("%u: %c\n", i, (*(char *)array->buffer[i]));
-		}
+		//for (i = 0; i < array->count; ++i) {
+		//	printf("%u: %c\n", i, (*(char *)array->buffer[i]));
+		//}
+		
+
+		printf("%s", "Trying this with the iterate function:\n");
+		cr = cds_dynamic_array_iterate(array, &test_visit_func);
+		if (cds_error_check(cr))
+			return 1;
 	}
 	return 0;
 }

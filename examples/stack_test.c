@@ -1,16 +1,15 @@
 #include "cds_stack.h"
 
+void printInt(void *ptr) {
+	int *ptrVal = (int *)ptr;
+	printf("%d\n", *ptrVal);
+}
+
 void printStack(cds_stack *stack) {
 	if (stack) {
 		printf("\n----------\n");
 		printf("Count: %d\n", stack->count);		
-		cds_slnode *cur = stack->head;
-		int *curData;
-		while(cur) {
-			curData = (int *) cur->data;
-			printf("%d\n", *curData);
-			cur = cur->next;
-		}
+		cds_stack_iterate(stack, &printInt);
 		printf("----------\n");
 	}
 }
@@ -35,7 +34,7 @@ int main(int argc, char *argv[]) {
 	printStack(stack);
 	
 	void *top;
-	while (stack->count >= 0) {
+	while (stack->count > 0) {
 		r = cds_stack_top(stack, &top);
 		if (r == CDS_OK) {
 			printf("Top: %d\n", *((int *) top));

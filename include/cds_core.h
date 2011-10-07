@@ -133,4 +133,5 @@ cds_free_func cds_freer;
 /* MISCELLANOUS */
 typedef int (*cds_cmp_func)(void *, void *);
 typedef void (*cds_visit_func)(void *);
+typedef unsigned int (*cds_hash_func)(void *);
 #endif

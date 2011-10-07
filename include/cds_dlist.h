@@ -19,6 +19,10 @@ cds_result cds_dlist_delete(cds_dlist **list);
 cds_result cds_dlist_clear(cds_dlist *list);
 cds_result cds_dlist_delete_all(cds_dlist **list);
 
+cds_result cds_dlist_count(cds_dlist *list, unsigned int *count);
+cds_result cds_dlist_head(cds_dlist *list, cds_dlnode **head);
+cds_result cds_dlist_tail(cds_dlist *list, cds_dlnode **tail);
+
 cds_result cds_dlist_add_first(cds_dlist *list, void *data);
 cds_result cds_dlist_add_last(cds_dlist *list, void *data);
 // have an add_first_node and add_last_node function that lets the higher level keep the node
@@ -37,5 +41,7 @@ cds_result cds_dlist_remove_cmp(cds_dlist *list, void *data, cds_cmp_func cmp_fu
 
 cds_result cds_dlist_find(cds_dlist *list, void *data, cds_dlnode **node);
 cds_result cds_dlist_find_cmp(cds_dlist *list, void *data, cds_dlnode **node, cds_cmp_func cmp_func);
+
+cds_result cds_dlist_iterate(cds_dlist *list, cds_visit_func visit_func);
 #endif
 

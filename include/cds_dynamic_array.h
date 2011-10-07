@@ -47,6 +47,8 @@ cds_result cds_dynamic_array_delete(cds_dynamic_array **array);
 cds_result cds_dynamic_array_delete_all(cds_dynamic_array **array);
 cds_result cds_dynamic_array_clear(cds_dynamic_array *array);
 
+cds_result cds_dynamic_array_count(cds_dynamic_array *array, unsigned int *count);
+cds_result cds_dynamic_array_size(cds_dynamic_array *array, unsigned int *size);
 cds_result cds_dynamic_array_get(cds_dynamic_array *array, unsigned int index, void **data);
 cds_result cds_dynamic_array_set(cds_dynamic_array *array, unsigned int index, void *data);
 
@@ -64,5 +66,7 @@ cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, unsigned int
 
 cds_result cds_dynamic_array_find(cds_dynamic_array *array, void *data, unsigned int *index);
 cds_result cds_dynamic_array_find_cmp(cds_dynamic_array *array, void *data, unsigned int *index, cds_cmp_func cmp_func);
+
+cds_result cds_dynamic_array_iterate(cds_dynamic_array *array, cds_visit_func visit_func);
 // sort methods...
 #endif
