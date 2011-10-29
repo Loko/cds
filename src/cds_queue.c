@@ -4,8 +4,8 @@
 cds_result cds_queue_create(cds_queue **queue) {
 	*queue = (cds_queue *) cds_alloc(sizeof(cds_queue));
 	if (*queue) {
-		(*queue)->head = NULL;
-		(*queue)->tail = NULL;
+		(*queue)->front = NULL;
+		(*queue)->back = NULL;
 		(*queue)->count = 0;
 		return CDS_OK;
 	} else {
@@ -18,7 +18,7 @@ cds_result cds_queue_delete(cds_queue **queue) {
 	if (queue && *queue) {
 		cds_result r;
 		cds_slnode *node, *tmp;
-		node = (*queue)->head;
+		node = (*queue)->front;
 		while (node) {
 			tmp = node->next;
 			r = cds_slnode_delete(&node);
@@ -39,7 +39,7 @@ cds_result cds_queue_delete_all(cds_queue **queue) {
 	if (queue && *queue) {
 		cds_result r;
 		cds_slnode *node, *tmp;
-		node = (*queue)->head;
+		node = (*queue)->front;
 		while (node) {
 			tmp = node->next;
 			r = cds_slnode_delete_all(&node);
@@ -60,7 +60,7 @@ cds_result cds_queue_clear(cds_queue *queue) {
 	if (queue) {
 		cds_result r;
 		cds_slnode *node, *tmp;
-		node = queue->head;
+		node = queue->front;
 		while (node) {
 			tmp = node->next;
 			r = cds_slnode_delete(&node);
@@ -68,8 +68,8 @@ cds_result cds_queue_clear(cds_queue *queue) {
 				return r;
 			node = tmp;
 		}
-		queue->head = NULL;
-		queue->tail = NULL;
+		queue->front = NULL;
+		queue->back = NULL;
 		queue->count = 0;
 		return CDS_OK;
 	} else {
@@ -84,12 +84,12 @@ cds_result cds_queue_enqueue(cds_queue *queue, void *data) {
 	cds_slnode *node;
 	cds_result r = cds_slnode_create(&node, data);
 	if (r == CDS_OK) {
-		if (queue->tail) {
-			queue->tail->next = node;
-			queue->tail = node;
+		if (queue->back) {
+			queue->back->next = node;
+			queue->back = node;
 		} else {
-			queue->head = node;
-			queue->tail = node;
+			queue->front = node;
+			queue->back = node;
 		}
 		queue->count++;
 	}
@@ -101,13 +101,13 @@ cds_result cds_queue_dequeue(cds_queue *queue) {
 	if (!queue)
 		return CDS_NULL_ARGUMENT;
 	if (queue->count) {
-		cds_slnode *tmp = queue->head;
-		queue->head = queue->head->next;
-		if (queue->head) {
-			if (!queue->head->next)
-				queue->tail = queue->head;
+		cds_slnode *tmp = queue->front;
+		queue->front = queue->front->next;
+		if (queue->front) {
+			if (!queue->front->next)
+				queue->back = queue->front;
 		} else {
-			queue->tail = NULL;
+			queue->back = NULL;
 		}
 		cds_slnode_delete(&tmp);
 		queue->count--;
@@ -117,7 +117,13 @@ cds_result cds_queue_dequeue(cds_queue *queue) {
 	}
 }
 
-cds_result cds_queue_count(cds_queue *queue, unsigned int *count) {
+unsigned int cds_queue_count(cds_queue *queue) {
+	unsigned int count = 0;
+	if (queue) {
+		count = queue->count;
+	}
+	return count;
+	/*
 	if (count) {
 		if (queue) {
 			*count = queue->count;
@@ -129,6 +135,7 @@ cds_result cds_queue_count(cds_queue *queue, unsigned int *count) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
 // I think calling this function should return OK 
@@ -137,7 +144,7 @@ cds_result cds_queue_front(cds_queue *queue, void **data) {
 	if (!queue || !data)
 		return CDS_NULL_ARGUMENT;
 	if (queue->count) {
-		*data = queue->head->data;
+		*data = queue->front->data;
 		return CDS_OK;
 	} else {
 		*data = NULL;
@@ -150,7 +157,7 @@ cds_result cds_queue_back(cds_queue *queue, void **data) {
 	if (!queue || !data)
 		return CDS_NULL_ARGUMENT;
 	if (queue->count) {
-		*data = queue->tail->data;
+		*data = queue->back->data;
 		return CDS_OK;
 	} else {
 		*data = NULL;
@@ -161,7 +168,7 @@ cds_result cds_queue_back(cds_queue *queue, void **data) {
 //
 cds_result cds_queue_iterate(cds_queue *queue, cds_visit_func visit_func) {
 	if (queue && visit_func) {
-		cds_slnode *cur = queue->head;
+		cds_slnode *cur = queue->front;
 		while (cur) {
 			(*visit_func)(cur->data);
 			cur = cur->next;

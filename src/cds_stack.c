@@ -115,7 +115,7 @@ cds_result cds_stack_top(cds_stack *stack, void **data) {
 		return CDS_OK;
 	} else {
 		*data = NULL;
-		return CDS_INVALID_OPERATION; // may very well be a different return
+		return CDS_UNDERFLOW; // may very well be a different return, e.g. CDS_INVALID_OPERATION
 	}
 }
 

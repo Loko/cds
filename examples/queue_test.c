@@ -4,7 +4,7 @@ void printQueue(cds_queue *queue) {
 	if (queue) {
 		printf("\n----------\n");
 		printf("Count: %d\n", queue->count);		
-		cds_slnode *cur = queue->head;
+		cds_slnode *cur = queue->front;
 		int *curData;
 		while(cur) {
 			curData = (int *) cur->data;

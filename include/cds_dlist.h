@@ -1,7 +1,7 @@
 #ifndef _CDS_DLIST_H_
 #define _CDS_DLIST_H_
 
-// if set to 1, the remove node will confirm the 
+// if set to 1, the remove node will confirm the node exists in the list (note this is expensive)
 #define CDS_DLIST_SEARCH_FOR_RNODE 0
 
 #include "cds_core.h"
@@ -11,15 +11,17 @@ struct cds_dlist {
 	cds_dlnode *head;
 	cds_dlnode *tail;
 	unsigned int count;
-	// alignment dammit
+	// could potentially put a pointer to the container itself here (added safety)
 };
+
+typedef struct cds_dlist cds_dlist;
 
 cds_result cds_dlist_create(cds_dlist **list);
 cds_result cds_dlist_delete(cds_dlist **list);
 cds_result cds_dlist_clear(cds_dlist *list);
 cds_result cds_dlist_delete_all(cds_dlist **list);
 
-cds_result cds_dlist_count(cds_dlist *list, unsigned int *count);
+unsigned int cds_dlist_count(cds_dlist *list);
 cds_result cds_dlist_head(cds_dlist *list, cds_dlnode **head);
 cds_result cds_dlist_tail(cds_dlist *list, cds_dlnode **tail);
 
