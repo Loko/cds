@@ -60,6 +60,7 @@ int cds_result_string(cds_result r, char *str) {
 			break;
 		case CDS_NULL_ARGUMENT:
 			n = sprintf(str, "CDS_NULL_ARGUMENT");
+			break;
 		case CDS_INDEX_OUT_OF_RANGE:
 			n = sprintf(str, "CDS_INDEX_OUT_OF_RANGE");
 			break;
@@ -77,6 +78,7 @@ int cds_result_string(cds_result r, char *str) {
 			break;
 		default:
 			n = sprintf(str, "cds_result with value: %d was not found!", r);
+			break;
 	}
 	return n;
 }
