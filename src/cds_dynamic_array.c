@@ -112,10 +112,10 @@ cds_result cds_dynamic_array_count(cds_dynamic_array *array, unsigned int *count
 cds_result cds_dynamic_array_size(cds_dynamic_array *array, unsigned int *size) {
 	if (size) {
 		if (array) {
-			*count = array->count;
+			*size = array->count;
 			return CDS_OK;
 		} else {
-			*count = 0;
+			*size = 0;
 			return CDS_NULL_ARGUMENT;
 		}
 	} else {
