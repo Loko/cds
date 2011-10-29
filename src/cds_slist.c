@@ -502,3 +502,22 @@ cds_result cds_slist_iterate(cds_slist *list, cds_visit_func visit_func) {
 		return CDS_NULL_ARGUMENT;
 	}
 }
+
+cds_result cds_slist_reverse(cds_slist *list) {
+	if (list) {
+		cds_slnode *newHead = NULL;
+		cds_slnode *head = list->head;
+		cds_slnode *newTail = list->head;
+		while (head) {
+			cds_slnode *next = head->next;
+			head->next = newHead;
+			newHead = head;
+			head = next;
+		}
+		list->head = newHead;
+		list->tail = newTail;
+		return CDS_OK;
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}

@@ -36,4 +36,5 @@ cds_result cds_slist_find(cds_slist *list, void *data, cds_slnode **node);
 cds_result cds_slist_find_cmp(cds_slist *list, void *data, cds_slnode **node, cds_cmp_func cmp_func);
 
 cds_result cds_slist_iterate(cds_slist *list, cds_visit_func visit_func);
+cds_result cds_slist_reverse(cds_slist *list);
 #endif

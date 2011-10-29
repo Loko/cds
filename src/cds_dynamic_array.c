@@ -94,7 +94,13 @@ cds_result cds_dynamic_array_clear(cds_dynamic_array *array) {
 }
 
 // 
-cds_result cds_dynamic_array_count(cds_dynamic_array *array, unsigned int *count) {
+unsigned int cds_dynamic_array_count(cds_dynamic_array *array) {
+	unsigned int count = 0;
+	if (array) {
+		count = array->count;
+	}
+	return count;
+	/*
 	if (count) {
 		if (array) {
 			*count = array->count;
@@ -106,10 +112,17 @@ cds_result cds_dynamic_array_count(cds_dynamic_array *array, unsigned int *count
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
 //
-cds_result cds_dynamic_array_size(cds_dynamic_array *array, unsigned int *size) {
+unsigned int cds_dynamic_array_size(cds_dynamic_array *array) {
+	unsigned int size = 0;
+	if (array) {
+		size = array->size;
+	}
+	return size;
+	/*
 	if (size) {
 		if (array) {
 			*size = array->size;
@@ -121,6 +134,7 @@ cds_result cds_dynamic_array_size(cds_dynamic_array *array, unsigned int *size) 
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
 // safely gets a pointer from the array at the given index

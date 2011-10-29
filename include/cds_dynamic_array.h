@@ -47,8 +47,8 @@ cds_result cds_dynamic_array_delete(cds_dynamic_array **array);
 cds_result cds_dynamic_array_delete_all(cds_dynamic_array **array);
 cds_result cds_dynamic_array_clear(cds_dynamic_array *array);
 
-cds_result cds_dynamic_array_count(cds_dynamic_array *array, unsigned int *count);
-cds_result cds_dynamic_array_size(cds_dynamic_array *array, unsigned int *size);
+unsigned int cds_dynamic_array_count(cds_dynamic_array *array);
+unsigned int cds_dynamic_array_size(cds_dynamic_array *array);
 cds_result cds_dynamic_array_get(cds_dynamic_array *array, unsigned int index, void **data);
 cds_result cds_dynamic_array_set(cds_dynamic_array *array, unsigned int index, void *data);
 
