@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 	printStack(stack);
 	
 	void *top;
-	while (stack->count > 0) {
+	while (cds_stack_count(stack)) {
 		r = cds_stack_top(stack, &top);
 		if (r == CDS_OK) {
 			printf("Top: %d\n", *((int *) top));

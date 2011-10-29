@@ -14,11 +14,12 @@ cds_result cds_stack_delete(cds_stack **stack);
 cds_result cds_stack_delete_all(cds_stack **stack);
 cds_result cds_stack_clear(cds_stack *stack);
 
-cds_result cds_stack_count(cds_stack *stack, unsigned int *count);
-cds_result cds_stack_top(cds_stack *stack, void **data);
+unsigned int cds_stack_count(cds_stack *stack);
+// cds_stack_is_empty(cds_stack *stack)
 
 cds_result cds_stack_push(cds_stack *stack, void *data);
 cds_result cds_stack_pop(cds_stack *stack);
+cds_result cds_stack_top(cds_stack *stack, void **data);
 
 cds_result cds_stack_iterate(cds_stack *stack, cds_visit_func visit_func);
 

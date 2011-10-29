@@ -90,19 +90,6 @@ cds_result cds_stack_push(cds_stack *stack, void *data) {
 	return r;
 }
 
-//
-cds_result cds_stack_top(cds_stack *stack, void **data) {
-	if (!stack || !data)
-		return CDS_NULL_ARGUMENT;
-	if (stack->count) {
-		*data = stack->top->data;
-		return CDS_OK;
-	} else {
-		*data = NULL;
-		return CDS_INVALID_OPERATION; // may very well be a different return
-	}
-}
-
 // mimics remove head functionality of a singly linked list
 cds_result cds_stack_pop(cds_stack *stack) {
 	if (stack) {
@@ -120,7 +107,27 @@ cds_result cds_stack_pop(cds_stack *stack) {
 }
 
 //
-cds_result cds_stack_count(cds_stack *stack, unsigned int *count) {
+cds_result cds_stack_top(cds_stack *stack, void **data) {
+	if (!stack || !data)
+		return CDS_NULL_ARGUMENT;
+	if (stack->count) {
+		*data = stack->top->data;
+		return CDS_OK;
+	} else {
+		*data = NULL;
+		return CDS_INVALID_OPERATION; // may very well be a different return
+	}
+}
+
+//
+unsigned int cds_stack_count(cds_stack *stack) {
+	unsigned int count = 0;
+	if (stack) {
+		count = stack->count;
+	}
+	return count;
+	
+	/*
 	if (count) {
 		if (stack) {
 			*count = stack->count;
@@ -132,6 +139,7 @@ cds_result cds_stack_count(cds_stack *stack, unsigned int *count) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
 //

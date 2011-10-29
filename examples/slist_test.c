@@ -111,6 +111,12 @@ int main(void) {
 	
 	printList(list);
 	
+	printf("Reversing the list...\n");
+	cds_slist_reverse(list);
+	printList(list);
+	//printf("Tail->Next: %u", list->tail->next);
+	
+	
 	cr = cds_slist_delete(&list);
 	if (cds_error_check(cr)) return 1;
 	

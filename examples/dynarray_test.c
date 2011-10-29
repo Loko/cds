@@ -94,7 +94,7 @@ int main(void) {
 		}
 		
 		unsigned int idx;
-		if (cds_dynamic_array_find(array, values + 3, &idx)) {
+		if (cds_dynamic_array_find(array, values + 3, &idx) == CDS_OK) {
 			printf("Index Of: %d\n", idx);
 		}
 		
