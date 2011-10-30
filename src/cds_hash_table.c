@@ -85,7 +85,13 @@ cds_result cds_hash_table_delete_all(cds_hash_table **table) {
 	}
 }
 
-cds_result cds_hash_table_count(cds_hash_table *table, unsigned int *count) {
+unsigned int cds_hash_table_count(cds_hash_table *table) {
+	unsigned int count = 0;
+	if (table) {
+		count = table->count;
+	}
+	return count;
+	/*
 	if (count) {
 		if (table) {
 			*count = table->count;
@@ -97,6 +103,16 @@ cds_result cds_hash_table_count(cds_hash_table *table, unsigned int *count) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
+}
+
+//
+unsigned int cds_hash_table_size(cds_hash_table *table) {
+	unsigned int size = 0;
+	if (table) {
+		size = table->size;
+	}
+	return size;
 }
 
 //
@@ -125,12 +141,12 @@ cds_result cds_hash_table_add(cds_hash_table *table, void *key, void *data) {
 			}
 			return cr;
 		}
+		
 		if (table->buckets[bucketIndex] == NULL) {
 			/* An empty bucket */
 			buckets[bucket] = hashnode_create(data);
 			added = 1;
-		}
-		else {
+		} else {
 			hashnode * current, * previous = NULL;
 			for (current = buckets[bucket]; 
 					current != NULL && !found && !added; current = current->next) {

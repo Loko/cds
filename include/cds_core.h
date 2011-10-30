@@ -74,7 +74,8 @@ void cds_on_assertion_failure(const char *condition, const char *file, int line,
 // Had an idea the other day that this enum is a bunch of bitfields and ORing them could reveal multiple errors
 // But this may be difficult to implement, and would conflict with the idea of early returns?
 enum cds_result {
-	CDS_UNIMPLEMENTED = -9,
+	CDS_UNIMPLEMENTED = -10,
+	CDS_DUPLICATE_VALUE = -9,
 	CDS_BAD_ALLOC = -8,
 	CDS_OVERFLOW = -7,
 	CDS_UNDERFLOW = -6,

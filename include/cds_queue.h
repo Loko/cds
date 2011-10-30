@@ -19,8 +19,8 @@ cds_result cds_queue_delete_all(cds_queue **queue);
 cds_result cds_queue_clear(cds_queue *queue);
 
 unsigned int cds_queue_count(cds_queue *queue);
-cds_result cds_queue_front(cds_queue *queue, void **data);
-cds_result cds_queue_back(cds_queue *queue, void **data);
+void * cds_queue_front(cds_queue *queue);
+void * cds_queue_back(cds_queue *queue);
 
 cds_result cds_queue_enqueue(cds_queue *queue, void *data);
 cds_result cds_queue_dequeue(cds_queue *queue);

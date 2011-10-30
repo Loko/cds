@@ -3,17 +3,15 @@
 
 #include "cds_core.h"
 
-//typedef struct cds_dlist cds_dlist;
+// would need a forwarded typedef if the 
+// nodes contain a reference to the pointer
+// typedef struct cds_dlist cds_dlist;
 
 struct cds_dlnode {
 	struct cds_dlnode *next;
 	struct cds_dlnode *prev;
-	void *data; // double ptr?
-	//cds_dlist *list;
-	// a pointer to the list it belongs to??
-	// it would solve the issue of removing nodes from other lists
-	// this is accomplished here with a forwarded typedef
-	// I feel this might also be a good idea for concurrency
+	void *data;
+	//cds_dlist *list; could add this in the future
 };
 typedef struct cds_dlnode cds_dlnode;
 

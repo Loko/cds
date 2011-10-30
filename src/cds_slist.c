@@ -75,7 +75,13 @@ cds_result cds_slist_delete_all(cds_slist **list) {
 }
 
 //
-cds_result cds_slist_count(cds_slist *list, unsigned int *count) {
+unsigned int cds_slist_count(cds_slist *list) {
+	unsigned int count = 0;
+	if (list) {
+		count = list->count;
+	}
+	return count;
+	/*
 	if (count) {
 		if (list) {
 			*count = list->count;
@@ -87,10 +93,17 @@ cds_result cds_slist_count(cds_slist *list, unsigned int *count) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
 //
-cds_result cds_slist_head(cds_slist *list, cds_slnode **head) {
+cds_slnode* cds_slist_head(cds_slist *list) {
+	cds_slnode *head = NULL;
+	if (list) {
+		head = list->head;
+	}
+	return head;
+	/*
 	if (head) {
 		if (list) {
 			*head = list->head;
@@ -102,10 +115,17 @@ cds_result cds_slist_head(cds_slist *list, cds_slnode **head) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
 // 
-cds_result cds_slist_tail(cds_slist *list, cds_slnode **tail) {
+cds_slnode* cds_slist_tail(cds_slist *list) {
+	cds_slnode *tail = NULL;
+	if (list) {
+		tail = list->tail;
+	}
+	return tail;
+	/*
 	if (tail) {
 		if (list) {
 			*tail = list->tail;
@@ -117,6 +137,7 @@ cds_result cds_slist_tail(cds_slist *list, cds_slnode **tail) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
 //

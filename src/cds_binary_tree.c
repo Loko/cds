@@ -106,7 +106,13 @@ cds_result cds_binary_tree_delete_all(cds_binary_tree **tree) {
 	}
 }
 
-cds_result cds_binary_tree_root(cds_binary_tree *tree, cds_binary_node **root) {
+cds_binary_node * cds_binary_tree_root(cds_binary_tree *tree) {
+	cds_binary_node *root = NULL;
+	if (tree) {
+		root = tree->root;
+	}
+	return root;
+	/*
 	if (root) {
 		if (tree) {
 			*root = tree->root;
@@ -118,9 +124,16 @@ cds_result cds_binary_tree_root(cds_binary_tree *tree, cds_binary_node **root) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
 }
 
-cds_result cds_binary_tree_count(cds_binary_tree *tree, unsigned int *count) {
+unsigned int cds_binary_tree_count(cds_binary_tree *tree) {
+	unsigned int count = 0;
+	if (tree) {
+		count = tree->count;
+	}
+	return count;
+	/*
 	if (count) {
 		if (tree) {
 			*count = tree->count;
@@ -132,6 +145,15 @@ cds_result cds_binary_tree_count(cds_binary_tree *tree, unsigned int *count) {
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+	*/
+}
+
+cds_cmp_func cds_binary_tree_cmp_func(cds_binary_tree *tree) {
+	cds_cmp_func cmpFunc = NULL;
+	if (tree) {
+		cmpFunc = tree->cmp_func;
+	}
+	return cmpFunc;
 }
 
 
@@ -258,7 +280,7 @@ cds_result cds_binary_tree_insert(cds_binary_tree *tree, void *data) {
 		while (cur) {
 			int cmpResult = (*(tree->cmp_func))(cur->data, data);
 			if (cmpResult == 0) {
-				// this is a repeat value
+				// this is a repeat value, WE SHOULD SUPPORT THIS HERE
 				return CDS_OK;
 			} else if (cmpResult > 0) {
 				par = cur;

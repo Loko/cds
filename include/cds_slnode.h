@@ -3,6 +3,7 @@
 
 #include "cds_core.h"
 
+// a singly linked list node with a general purpose void pointer
 struct cds_slnode {
 	struct cds_slnode *next;
 	void *data;

@@ -22,8 +22,8 @@ cds_result cds_dlist_clear(cds_dlist *list);
 cds_result cds_dlist_delete_all(cds_dlist **list);
 
 unsigned int cds_dlist_count(cds_dlist *list);
-cds_result cds_dlist_head(cds_dlist *list, cds_dlnode **head);
-cds_result cds_dlist_tail(cds_dlist *list, cds_dlnode **tail);
+cds_dlnode * cds_dlist_head(cds_dlist *list);
+cds_dlnode * cds_dlist_tail(cds_dlist *list);
 
 cds_result cds_dlist_add_first(cds_dlist *list, void *data);
 cds_result cds_dlist_add_last(cds_dlist *list, void *data);

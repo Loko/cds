@@ -3,7 +3,7 @@
 
 #include "cds_binary_node.h"
 
-// tree traversal types
+// tree traversal types supported by cds_binary_tree
 enum cds_binary_tree_traversal_type {
 	CDS_PRE_ORDER = 0,
 	CDS_IN_ORDER = 1,
@@ -12,6 +12,10 @@ enum cds_binary_tree_traversal_type {
 };
 typedef enum cds_binary_tree_traversal_type cds_binary_tree_traversal_type;
 
+// a typical tree structure, with a root and count
+// note how we keep the compare func pointer in the 
+// tree structure itself.  justified since a binary 
+// tree will rarely change contained types at runtime
 struct cds_binary_tree {
 	cds_binary_node *root;
 	unsigned int count;
@@ -24,8 +28,9 @@ cds_result cds_binary_tree_delete(cds_binary_tree **tree);
 cds_result cds_binary_tree_clear(cds_binary_tree *tree);
 cds_result cds_binary_tree_delete_all(cds_binary_tree **tree);
 
-cds_result cds_binary_tree_root(cds_binary_tree *tree, cds_binary_node **root);
-cds_result cds_binary_tree_count(cds_binary_tree *tree, unsigned int *count);
+cds_binary_node * cds_binary_tree_root(cds_binary_tree *tree);
+unsigned int cds_binary_tree_count(cds_binary_tree *tree);
+cds_cmp_func cds_binary_tree_cmp_func(cds_binary_tree *tree);
 
 cds_result cds_binary_tree_insert(cds_binary_tree *tree, void *data);
 cds_result cds_binary_tree_insert_node(cds_binary_tree *tree, void *data, cds_binary_node **node, cds_binary_node **parent);

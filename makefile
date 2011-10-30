@@ -20,6 +20,9 @@ queue:
 
 binary_tree:
 	$(CC) src/cds_core.c src/cds_binary_node.c src/cds_binary_tree.c examples/binary_tree_test.c -o bin/binary_tree_test -I include -Wpadded
+
+hash_table:
+	$(CC) src/cds_core.c src/cds_hash_node.c src/cds_hash_table.c examples/hash_table_test.c -o bin/hash_table_test -I include -Wpadded
 	
 clean:
 	del bin/test.exe

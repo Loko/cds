@@ -140,7 +140,13 @@ unsigned int cds_queue_count(cds_queue *queue) {
 
 // I think calling this function should return OK 
 // even for an empty queue, in which case data is just set to null
-cds_result cds_queue_front(cds_queue *queue, void **data) {
+void * cds_queue_front(cds_queue *queue) {
+	void *frontData = NULL;
+	if (queue && queue->front) {
+		frontData = queue->front->data;
+	}
+	return frontData;
+	/*
 	if (!queue || !data)
 		return CDS_NULL_ARGUMENT;
 	if (queue->count) {
@@ -150,10 +156,17 @@ cds_result cds_queue_front(cds_queue *queue, void **data) {
 		*data = NULL;
 		return CDS_INVALID_OPERATION; // may very well be a different return, e.g. UNDERFLOW
 	}
+	*/
 }
 
 //
-cds_result cds_queue_back(cds_queue *queue, void **data) {
+void * cds_queue_back(cds_queue *queue) {
+	void *backData = NULL;
+	if (queue && queue->back) {
+		backData = queue->back->data;
+	}
+	return backData;
+	/*
 	if (!queue || !data)
 		return CDS_NULL_ARGUMENT;
 	if (queue->count) {
@@ -163,6 +176,7 @@ cds_result cds_queue_back(cds_queue *queue, void **data) {
 		*data = NULL;
 		return CDS_INVALID_OPERATION; // may very well be a different return, e.g. UNDERFLOW
 	}
+	*/
 }
 
 //

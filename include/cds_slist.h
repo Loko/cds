@@ -3,20 +3,21 @@
 
 #include "cds_slnode.h"
 
-typedef struct {
+struct cds_slist {
 	cds_slnode *head;
 	cds_slnode *tail;
 	unsigned int count;
-} cds_slist;
+};
+typedef struct cds_slist cds_slist;
 
 cds_result cds_slist_create(cds_slist **list);
 cds_result cds_slist_delete(cds_slist **list);
 cds_result cds_slist_clear(cds_slist *list);
 cds_result cds_slist_delete_all(cds_slist **list);
 
-cds_result cds_slist_count(cds_slist *list, unsigned int *count);
-cds_result cds_slist_head(cds_slist *list, cds_slnode **head);
-cds_result cds_slist_tail(cds_slist *list, cds_slnode **tail);
+unsigned int cds_slist_count(cds_slist *list);
+cds_slnode * cds_slist_head(cds_slist *list);
+cds_slnode * cds_slist_tail(cds_slist *list);
 
 cds_result cds_slist_add_first(cds_slist *list, void *data);
 cds_result cds_slist_add_last(cds_slist *list, void *data);
@@ -37,4 +38,5 @@ cds_result cds_slist_find_cmp(cds_slist *list, void *data, cds_slnode **node, cd
 
 cds_result cds_slist_iterate(cds_slist *list, cds_visit_func visit_func);
 cds_result cds_slist_reverse(cds_slist *list);
+//cds_result 
 #endif
