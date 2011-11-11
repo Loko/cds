@@ -4,10 +4,12 @@
 #include "cds_slnode.h"
 
 // uses a singly linked list
-typedef struct {
+struct cds_stack {
 	cds_slnode *top;
 	unsigned int count;
-} cds_stack;
+};
+
+typedef struct cds_stack cds_stack;
 
 cds_result cds_stack_create(cds_stack **stack);
 cds_result cds_stack_delete(cds_stack **stack);

@@ -35,11 +35,12 @@ typedef enum cds_removal_behavoir cds_removal_behavoir;
 // uses void ** pointers to allow usage with any type, including other arrays (e.g. char *)
 // count is the amount of elements
 // size is the allocated size, in elements not bytes
-typedef struct {
+struct cds_dynamic_array {
 	void **buffer;
 	unsigned int count;
 	unsigned int size;
-} cds_dynamic_array;
+};
+typedef struct cds_dynamic_array cds_dynamic_array;
 
 cds_result cds_dynamic_array_create(cds_dynamic_array **array, unsigned int size);
 cds_result cds_dynamic_array_resize(cds_dynamic_array **array, unsigned int size);

@@ -13,7 +13,6 @@ struct cds_dlist {
 	unsigned int count;
 	// could potentially put a pointer to the container itself here (added safety)
 };
-
 typedef struct cds_dlist cds_dlist;
 
 cds_result cds_dlist_create(cds_dlist **list);

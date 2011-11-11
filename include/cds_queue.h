@@ -7,11 +7,13 @@
 
 // internally it's just a singly linked list
 // consider renaming to front and back
-typedef struct {
+struct cds_queue {
 	cds_slnode *front;
 	cds_slnode *back;
 	unsigned int count;
-} cds_queue;
+};
+
+typedef struct cds_queue cds_queue;
 
 cds_result cds_queue_create(cds_queue **queue);
 cds_result cds_queue_delete(cds_queue **queue);
