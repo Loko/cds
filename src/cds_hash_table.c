@@ -189,7 +189,7 @@ cds_result cds_hash_table_add(cds_hash_table *table, void *key, void *data) {
 //
 cds_result cds_hash_table_remove(cds_hash_table *table, void *key) {
 	if (table && data) {
-		unsigned int bucketIndex = table->hash_func(data) % table->count;
+		unsigned int bucketIndex = table->hash_func(key) % table->count;
 		cds_hash_node *cur = table->buckets[bucketIndex];
 		cds_hash_node *prev = NULL;
 		int cmpResult;
