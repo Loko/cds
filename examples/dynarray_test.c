@@ -12,9 +12,14 @@ int test_func(cds_dynamic_array *a) {
 }
 
 // assume it is an int for now
-void test_visit_func(void *ptr) {
+void test_visit_func(const void *ptr) {
 	char *pC = (char *) ptr;
 	printf("%c\n", *pC);
+}
+
+void test_visit_func2(const void *ptr) {
+    int *pI = (int *) ptr;
+    printf("%d\n", *pI);
 }
 
 int main(void) {
@@ -25,6 +30,7 @@ int main(void) {
 	cds_dynamic_array *array = NULL;
 	cds_result cr = cds_dynamic_array_create(&array, 8);
 	//cds_result cr = cds_dynamic_array_create(array, 8);
+    
 	printf("%d\n", cr);
 	if (!cds_is_error(cr)) {
 		printf("Size = %u\n", array->size);
@@ -36,6 +42,7 @@ int main(void) {
 		for (i = 0; i < 8; ++i) {
 			//tmpAlloc = malloc(sizeof(int));
 			//*tmpAlloc = i;
+            
 			cr = cds_dynamic_array_push_back(array, values + i);
 			printf("%c\n", *((char *)array->buffer[i]));
 		}
@@ -76,17 +83,21 @@ int main(void) {
 		
 		cr = cds_dynamic_array_create(&array, 20);
 		printf("cr: %d\n", cr);
-		cds_dynamic_array_push_back(array, values + 0);
-		cds_dynamic_array_push_back(array, values + 1);
-		cds_dynamic_array_push_back(array, values + 2);
-		cds_dynamic_array_push_back(array, values + 3);
+        const int ia = 1;
+        const int ib = 2;
+        const int ic = 3;
+        const int id = 4;
+		cds_dynamic_array_push_back(array, &ia);
+		cds_dynamic_array_push_back(array, &ib);
+		cds_dynamic_array_push_back(array, &ic);
+		cds_dynamic_array_push_back(array, &id);
 		for (i = 0; i < array->count; ++i) {
-			printf("%u: %c\n", i, (*(char *)array->buffer[i]));
+			printf("%u: %i\n", i, (*(int *)array->buffer[i]));
 		}
 		
 		void *t;
-
-		cr = cds_dynamic_array_remove_rb(array, values + 2, CDS_REPLACE_WITH_LAST);
+        
+		cr = cds_dynamic_array_remove_rb(array, &ic, CDS_REPLACE_WITH_LAST);
 		if (!cds_is_error(cr)) {
 			char error[CDS_MAX_ERR_STR_LEN];
 			cds_result_string(cr, error);
@@ -94,7 +105,7 @@ int main(void) {
 		}
 		
 		unsigned int idx;
-		if (cds_dynamic_array_find(array, values + 3, &idx) == CDS_OK) {
+		if (cds_dynamic_array_find(array, &id, &idx) == CDS_OK) {
 			printf("Index Of: %d\n", idx);
 		}
 		
@@ -110,7 +121,7 @@ int main(void) {
 		
 
 		printf("%s", "Trying this with the iterate function:\n");
-		cr = cds_dynamic_array_iterate(array, &test_visit_func);
+		cr = cds_dynamic_array_iterate(array, &test_visit_func2);
 		if (cds_error_check(cr))
 			return 1;
 	}

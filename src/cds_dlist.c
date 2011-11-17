@@ -80,73 +80,34 @@ cds_result cds_dlist_delete_all(cds_dlist **list) {
 }
 
 //
-unsigned int cds_dlist_count(cds_dlist *list) {
+unsigned int cds_dlist_count(const cds_dlist *list) {
 	unsigned int count = 0;
 	if (list) {
 		count = list->count;
 	}
 	return count;
-	/*
-	if (count) {
-		if (list) {
-			*count = list->count;
-			return CDS_OK;
-		} else {
-			*count = 0;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
 //
-cds_dlnode * cds_dlist_head(cds_dlist *list) {
+cds_dlnode * cds_dlist_head(const cds_dlist *list) {
 	cds_dlnode *head = NULL;
 	if (list) {
 		head = list->head;
 	}
 	return head;
-	/*
-	if (head) {
-		if (list) {
-			*head = list->head;
-			return CDS_OK;
-		} else {
-			*head = NULL;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
 // 
-cds_dlnode * cds_dlist_tail(cds_dlist *list) {
+cds_dlnode * cds_dlist_tail(const cds_dlist *list) {
 	cds_dlnode *tail = NULL;
 	if (list) {
 		tail = list->tail;
 	}
 	return tail;
-	/*
-	if (tail) {
-		if (list) {
-			*tail = list->tail;
-			return CDS_OK;
-		} else {
-			*tail = NULL;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
 // 
-cds_result cds_dlist_add_first(cds_dlist *list, void *data) {
+cds_result cds_dlist_add_first(cds_dlist *list, const void *data) {
 	if (!list)
 		return CDS_NULL_ARGUMENT;
 	cds_dlnode *node;
@@ -166,7 +127,7 @@ cds_result cds_dlist_add_first(cds_dlist *list, void *data) {
 }
 
 // 
-cds_result cds_dlist_add_last(cds_dlist *list, void *data) {
+cds_result cds_dlist_add_last(cds_dlist *list, const void *data) {
 	if (!list)
 		return CDS_NULL_ARGUMENT;
 	cds_dlnode *node;
@@ -186,7 +147,7 @@ cds_result cds_dlist_add_last(cds_dlist *list, void *data) {
 }
 
 // 
-cds_result cds_dlist_insert_before(cds_dlist *list, cds_dlnode *node, void *data) {
+cds_result cds_dlist_insert_before(cds_dlist *list, cds_dlnode *node, const void *data) {
 	if (!list || !node)
 		return CDS_NULL_ARGUMENT;
 	if (node == list->head) {
@@ -208,7 +169,7 @@ cds_result cds_dlist_insert_before(cds_dlist *list, cds_dlnode *node, void *data
 }
 
 // 
-cds_result cds_dlist_insert_after(cds_dlist *list, cds_dlnode *node, void *data) {
+cds_result cds_dlist_insert_after(cds_dlist *list, cds_dlnode *node, const void *data) {
 	if (!list || !node)
 		return CDS_NULL_ARGUMENT;
 	if (node == list->tail) {
@@ -330,7 +291,7 @@ cds_result cds_dlist_remove_tail_data(cds_dlist *list, void **data) {
 }
 
 // ptr address comparison
-cds_result cds_dlist_remove(cds_dlist *list, void *data) {
+cds_result cds_dlist_remove(cds_dlist *list, const void *data) {
 	if (!list) {
 		return CDS_NULL_ARGUMENT;
 	} else if (data == list->head->data) {
@@ -392,7 +353,7 @@ cds_result cds_dlist_remove_node(cds_dlist *list, cds_dlnode *node) {
 }
 
 // with custom compare function
-cds_result cds_dlist_remove_cmp(cds_dlist *list, void *data, cds_cmp_func cmp_func) {
+cds_result cds_dlist_remove_cmp(cds_dlist *list, const void *data, const cds_cmp_func cmp_func) {
 	if (!list || !cmp_func) {
 		return CDS_NULL_ARGUMENT;
 	} else if ((*cmp_func)(data, list->head->data) == 0) {
@@ -420,7 +381,7 @@ cds_result cds_dlist_remove_cmp(cds_dlist *list, void *data, cds_cmp_func cmp_fu
 }
 
 // 
-cds_result cds_dlist_find(cds_dlist *list, void *data, cds_dlnode **node) {
+cds_result cds_dlist_find(const cds_dlist *list, const void *data, cds_dlnode **node) {
 	if (!list || !node) {
 		return CDS_NULL_ARGUMENT;
 	} else if (data == list->head->data) {
@@ -446,7 +407,7 @@ cds_result cds_dlist_find(cds_dlist *list, void *data, cds_dlnode **node) {
 }
 
 // 
-cds_result cds_dlist_find_cmp(cds_dlist *list, void *data, cds_dlnode **node, cds_cmp_func cmp_func) {
+cds_result cds_dlist_find_cmp(const cds_dlist *list, const void *data, cds_dlnode **node, const cds_cmp_func cmp_func) {
 	if (!list || !node || !cmp_func) {
 		return CDS_NULL_ARGUMENT;
 	} else if ((*cmp_func)(data, list->head->data) == 0) {
@@ -471,7 +432,7 @@ cds_result cds_dlist_find_cmp(cds_dlist *list, void *data, cds_dlnode **node, cd
 	return CDS_NOT_FOUND;
 }
 
-cds_result cds_dlist_iterate(cds_dlist *list, cds_visit_func visit_func) {
+cds_result cds_dlist_iterate(const cds_dlist *list, const cds_visit_func visit_func) {
 	if (list && visit_func) {
 		cds_dlnode *cur = list->head;
 		while (cur) {

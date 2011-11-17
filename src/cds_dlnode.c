@@ -1,14 +1,15 @@
 #include "cds_dlnode.h"
 
 // allocates the node with the given data pointer
-cds_result cds_dlnode_create(cds_dlnode **node, void *data) {
+cds_result cds_dlnode_create(cds_dlnode **node, const void *data) {
 	//if (!node)
 	//	return CDS_INVALID_ARGUMENT;
 	*node = (cds_dlnode *) cds_alloc(sizeof(cds_dlnode));
 	if (*node) {
+        void *dataCopy = (void *) data;
 		(*node)->next = NULL;
 		(*node)->prev = NULL;
-		(*node)->data = data;
+		(*node)->data = dataCopy;
 		return CDS_OK;
 	} else {
 		return CDS_BAD_ALLOC;

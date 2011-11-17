@@ -1,12 +1,13 @@
 #include "cds_slnode.h"
 
-cds_result cds_slnode_create(cds_slnode **node, void *data) {
+cds_result cds_slnode_create(cds_slnode **node, const void *data) {
 	//if (node)
 	//	return CDS_INVALID_ARGUMENT;
 	*node = (cds_slnode *) cds_alloc(sizeof(cds_slnode));
 	if (*node) {
+        void *dataCopy = (void *) data;
 		(*node)->next = NULL;
-		(*node)->data = data;
+		(*node)->data = dataCopy;
 		return CDS_OK;
 	} else {
 		return CDS_BAD_ALLOC;

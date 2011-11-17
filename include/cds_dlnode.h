@@ -15,7 +15,7 @@ struct cds_dlnode {
 };
 typedef struct cds_dlnode cds_dlnode;
 
-cds_result cds_dlnode_create(cds_dlnode **node, void *data);
+cds_result cds_dlnode_create(cds_dlnode **node, const void *data);
 cds_result cds_dlnode_delete(cds_dlnode **node);
 cds_result cds_dlnode_delete_all(cds_dlnode **node);
 #endif

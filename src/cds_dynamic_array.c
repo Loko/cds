@@ -2,7 +2,7 @@
 
 // allocates the dynamic array to the given size
 // a size of zero is valid, but the buffer will not be allocated
-cds_result cds_dynamic_array_create(cds_dynamic_array **array, unsigned int size) {
+cds_result cds_dynamic_array_create(cds_dynamic_array **array, const unsigned int size) {
 	*array = (cds_dynamic_array *) cds_alloc(sizeof(cds_dynamic_array));
 	if (*array) {
 		if (size > 0) {
@@ -63,7 +63,7 @@ cds_result cds_dynamic_array_delete_all(cds_dynamic_array **array) {
 }
 
 // resizes the dynamic array to the given size
-cds_result cds_dynamic_array_resize(cds_dynamic_array **array, unsigned int size) {
+cds_result cds_dynamic_array_resize(cds_dynamic_array **array, const unsigned int size) {
 	if (*array) {
 		(*array)->buffer = (void *) cds_realloc((*array)->buffer, size);
 		if ((*array)->buffer) {
@@ -94,52 +94,26 @@ cds_result cds_dynamic_array_clear(cds_dynamic_array *array) {
 }
 
 // 
-unsigned int cds_dynamic_array_count(cds_dynamic_array *array) {
+unsigned int cds_dynamic_array_count(const cds_dynamic_array *array) {
 	unsigned int count = 0;
 	if (array) {
 		count = array->count;
 	}
 	return count;
-	/*
-	if (count) {
-		if (array) {
-			*count = array->count;
-			return CDS_OK;
-		} else {
-			*count = 0;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
 //
-unsigned int cds_dynamic_array_size(cds_dynamic_array *array) {
+unsigned int cds_dynamic_array_size(const cds_dynamic_array *array) {
 	unsigned int size = 0;
 	if (array) {
 		size = array->size;
 	}
 	return size;
-	/*
-	if (size) {
-		if (array) {
-			*size = array->size;
-			return CDS_OK;
-		} else {
-			*size = 0;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
 // safely gets a pointer from the array at the given index
 // the data pointer is valid if CDS_OK is returned
-cds_result cds_dynamic_array_get(cds_dynamic_array *array, unsigned int index, void **data) {
+cds_result cds_dynamic_array_get(const cds_dynamic_array *array, const unsigned int index, void **data) {
 	if (array) {
 		if (index < array->count) {
 			*data = array->buffer[index];
@@ -154,10 +128,11 @@ cds_result cds_dynamic_array_get(cds_dynamic_array *array, unsigned int index, v
 
 // sets the address at the given index to data
 // the data pointer has been successfully set if CDS_OK is returned
-cds_result cds_dynamic_array_set(cds_dynamic_array *array, unsigned int index, void *data) {
+cds_result cds_dynamic_array_set(cds_dynamic_array *array, const unsigned int index, const void *data) {
 	if (array) {
 		if (index < array->count) {
-			array->buffer[index] = data;
+            void *dataCopy = (void *) data;
+			array->buffer[index] = dataCopy;
 			return CDS_OK;
 		} else {
 			return CDS_INDEX_OUT_OF_RANGE;
@@ -168,7 +143,7 @@ cds_result cds_dynamic_array_set(cds_dynamic_array *array, unsigned int index, v
 }
 
 // adds the pointer to the end of the array
-cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, void *data) {
+cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, const void *data) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
 	
@@ -195,8 +170,9 @@ cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, void *data) {
 	}
 	
 	// if nothing went wrong with resizing, place at the end of the buffer
+    void *dataCopy = (void *) data;
 	if (array->buffer) {
-		array->buffer[array->count] = data;
+		array->buffer[array->count] = dataCopy;
 		array->count++;
 		return CDS_OK;
 	}
@@ -205,10 +181,9 @@ cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, void *data) {
 // adds the pointer to the end of the array
 // custom growth function can determine the new size of the array
 // if it is null, the default type of reallocation is used
-cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, void *data, cds_growth_func growth_func) {
+cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, const void *data, const cds_growth_func growth_func) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
-	
 	// handle allocation if necessary
 	if (array->count == array->size) {
 		// first determine the new size, using either the default or the growth func
@@ -237,7 +212,8 @@ cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, void *data, 
 	
 	// if nothing went wrong with resizing, place at the end of the buffer
 	if (array->buffer) {
-		array->buffer[array->count] = data;
+        void *dataCopy = (void *) data;
+		array->buffer[array->count] = dataCopy;
 		array->count++;
 		return CDS_OK;
 	}
@@ -272,12 +248,12 @@ cds_result cds_dynamic_array_pop_back_data(cds_dynamic_array *array, void **data
 
 // removes the element from the array using the default removal behavoir
 // returns CDS_OK if it is removed, CDS_NOT_FOUND if it isn't, and CDS_NULL_ARGUMENT if the array hasn't been allocated
-cds_result cds_dynamic_array_remove(cds_dynamic_array *array, void *data) {
+cds_result cds_dynamic_array_remove(cds_dynamic_array *array, const void *data) {
 	return cds_dynamic_array_remove_rb(array, data, CDS_DEFAULT_REMOVAL_BEHAVOIR);
 }
 
 // removes an element from the array using the given behavoir
-cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, void *data, cds_removal_behavoir rb) {
+cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, const void *data, const cds_removal_behavoir rb) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
 	if (rb != CDS_SHIFT_DOWN && rb != CDS_REPLACE_WITH_LAST)
@@ -304,12 +280,12 @@ cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, void *data, cds
 }
 
 //
-cds_result cds_dynamic_array_remove_cmp(cds_dynamic_array *array, void *data, cds_cmp_func cmp_func) {
+cds_result cds_dynamic_array_remove_cmp(cds_dynamic_array *array, const void *data, cds_cmp_func cmp_func) {
 	return cds_dynamic_array_remove_cmp_rb(array, data, cmp_func, CDS_DEFAULT_REMOVAL_BEHAVOIR);
 }
 
 //
-cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, void *data, cds_cmp_func cmp_func, cds_removal_behavoir rb) {
+cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, const void *data, const cds_cmp_func cmp_func, const cds_removal_behavoir rb) {
 	if (!array || !cmp_func)
 		return CDS_NULL_ARGUMENT;
 	if (rb != CDS_SHIFT_DOWN && rb != CDS_REPLACE_WITH_LAST)
@@ -336,20 +312,21 @@ cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, void *data,
 }
 
 // removes the pointer at the given index in the array
-cds_result cds_dynamic_array_remove_at(cds_dynamic_array *array, unsigned int index) {
+cds_result cds_dynamic_array_remove_at(cds_dynamic_array *array, const unsigned int index) {
 	return cds_dynamic_array_remove_at_rb(array, index, CDS_DEFAULT_REMOVAL_BEHAVOIR);
 }
 
 // removes the pointer at the given index in the array
 // if the index is valid, the given removal behavoir is used
-cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, unsigned int index, cds_removal_behavoir rb) {
+cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, const unsigned int index, const cds_removal_behavoir rb) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
 	if (index < array->count) {
 		if (rb == CDS_SHIFT_DOWN) {
+            unsigned int idx = index;
 			while (index < array->count - 1) {
-				array->buffer[index] = array->buffer[index + 1];
-				++index;
+				array->buffer[idx] = array->buffer[idx + 1];
+				++idx;
 			}
 		} else if (rb == CDS_REPLACE_WITH_LAST) {
 			array->buffer[index] = array->buffer[array->count - 1];
@@ -365,7 +342,7 @@ cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, unsigned int
 
 // finds the index of the passed in data pointer and sets its value to index
 // returns CDS_OK if it is found, CDS_NOT_FOUND if it isn't, and CDS_NULL_ARGUMENT if array or index are null pointers
-cds_result cds_dynamic_array_find(cds_dynamic_array *array, void *data, unsigned int *index) {
+cds_result cds_dynamic_array_find(const cds_dynamic_array *array, const void *data, unsigned int *index) {
 	if (!array || !index)
 		return CDS_NULL_ARGUMENT;
 
@@ -379,7 +356,7 @@ cds_result cds_dynamic_array_find(cds_dynamic_array *array, void *data, unsigned
 	return CDS_NOT_FOUND;
 }
 
-cds_result cds_dynamic_array_find_cmp(cds_dynamic_array *array, void *data, unsigned int *index, cds_cmp_func cmp_func) {
+cds_result cds_dynamic_array_find_cmp(const cds_dynamic_array *array, const void *data, unsigned int *index, const cds_cmp_func cmp_func) {
 	if (!array || !index || !cmp_func)
 		return CDS_NULL_ARGUMENT;
 
@@ -393,7 +370,7 @@ cds_result cds_dynamic_array_find_cmp(cds_dynamic_array *array, void *data, unsi
 	return CDS_NOT_FOUND;
 }
 
-cds_result cds_dynamic_array_iterate(cds_dynamic_array *array, cds_visit_func visit_func) {
+cds_result cds_dynamic_array_iterate(const cds_dynamic_array *array, const cds_visit_func visit_func) {
 	if (array && visit_func) {
 		unsigned int i;
 		for (i = 0; i < array->count; ++i) {

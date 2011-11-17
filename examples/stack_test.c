@@ -1,11 +1,11 @@
 #include "cds_stack.h"
 
-void printInt(void *ptr) {
+void printInt(const void *ptr) {
 	int *ptrVal = (int *)ptr;
 	printf("%d\n", *ptrVal);
 }
 
-void printStack(cds_stack *stack) {
+void printStack(const cds_stack *stack) {
 	if (stack) {
 		printf("\n----------\n");
 		printf("Count: %d\n", stack->count);		

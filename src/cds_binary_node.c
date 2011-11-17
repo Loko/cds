@@ -1,7 +1,7 @@
 #include "cds_binary_node.h"
 
 //
-cds_result cds_binary_node_create(cds_binary_node **node, void *data) {
+cds_result cds_binary_node_create(cds_binary_node **node, const void *data) {
 	*node = (cds_binary_node *) cds_alloc(sizeof(cds_binary_node));
 	if (*node) {
 		(*node)->left = NULL;

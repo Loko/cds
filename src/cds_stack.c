@@ -72,50 +72,25 @@ cds_result cds_stack_clear(cds_stack *stack) {
 }
 
 //
-void * cds_stack_top(cds_stack *stack) {
+void * cds_stack_top(const cds_stack *stack) {
 	void *topData = NULL;
 	if (stack && stack->top) {
 		topData = stack->top->data;
 	}
 	return topData;
-	/*
-	if (!stack || !data)
-		return CDS_NULL_ARGUMENT;
-	if (stack->count) {
-		*data = stack->top->data;
-		return CDS_OK;
-	} else {
-		*data = NULL;
-		return CDS_UNDERFLOW; // may very well be a different return, e.g. CDS_INVALID_OPERATION
-	}
-	*/
 }
 
 //
-unsigned int cds_stack_count(cds_stack *stack) {
+unsigned int cds_stack_count(const cds_stack *stack) {
 	unsigned int count = 0;
 	if (stack) {
 		count = stack->count;
 	}
 	return count;
-	
-	/*
-	if (count) {
-		if (stack) {
-			*count = stack->count;
-			return CDS_OK;
-		} else {
-			*count = 0;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
 // pushes the given data to the top of the stack
-cds_result cds_stack_push(cds_stack *stack, void *data) {
+cds_result cds_stack_push(cds_stack *stack, const void *data) {
 	if (!stack)
 		return CDS_NULL_ARGUMENT;
 	cds_slnode *node;
@@ -150,7 +125,7 @@ cds_result cds_stack_pop(cds_stack *stack) {
 }
 
 //
-cds_result cds_stack_iterate(cds_stack *stack, cds_visit_func visit_func) {
+cds_result cds_stack_iterate(const cds_stack *stack, const cds_visit_func visit_func) {
 	if (stack && visit_func) {
 		cds_slnode *cur = stack->top;
 		while (cur) {

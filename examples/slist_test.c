@@ -1,6 +1,6 @@
 #include "cds_slist.h"
 
-int intComparison(void *a, void *b) {
+int intComparison(const void *a, const void *b) {
 	if (a) {
 		if (b) {
 			int *pA = (int *)a;

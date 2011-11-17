@@ -1,6 +1,6 @@
 #include "cds_dlist.h"
 
-int intComparison(void *a, void *b) {
+int intComparison(const void *a, const void *b) {
 	if (a) {
 		if (b) {
 			int *pA = (int *)a;
@@ -24,8 +24,20 @@ int intComparison(void *a, void *b) {
 	}
 }
 
-void printList(cds_dlist *list) {
+void printInt(const void *ptr) {
+    int *pI = (int *) ptr;
+    printf("%d\n", *pI);
+}
+
+void printList(const cds_dlist *list) {
 	if (list) {
+        printf("\n----------\n");
+        printf("Count: %d\n", cds_dlist_count(list));
+        cds_dlist_iterate(list, &printInt);
+        printf("\n----------\n");
+    }
+    /*
+    if (list) {
 		printf("\n----------\n");
 		printf("Count: %d\n", list->count);		
 		cds_dlnode *cur = list->head;
@@ -37,6 +49,7 @@ void printList(cds_dlist *list) {
 		}
 		printf("----------\n");
 	}
+    */
 }
 
 void pickNode(cds_dlist *list, unsigned int index, cds_dlnode **node) {

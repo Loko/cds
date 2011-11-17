@@ -42,32 +42,32 @@ struct cds_dynamic_array {
 };
 typedef struct cds_dynamic_array cds_dynamic_array;
 
-cds_result cds_dynamic_array_create(cds_dynamic_array **array, unsigned int size);
-cds_result cds_dynamic_array_resize(cds_dynamic_array **array, unsigned int size);
+cds_result cds_dynamic_array_create(cds_dynamic_array **array, const unsigned int size);
+cds_result cds_dynamic_array_resize(cds_dynamic_array **array, const unsigned int size);
 cds_result cds_dynamic_array_delete(cds_dynamic_array **array);
 cds_result cds_dynamic_array_delete_all(cds_dynamic_array **array);
 cds_result cds_dynamic_array_clear(cds_dynamic_array *array);
 
-unsigned int cds_dynamic_array_count(cds_dynamic_array *array);
-unsigned int cds_dynamic_array_size(cds_dynamic_array *array);
-cds_result cds_dynamic_array_get(cds_dynamic_array *array, unsigned int index, void **data);
-cds_result cds_dynamic_array_set(cds_dynamic_array *array, unsigned int index, void *data);
+unsigned int cds_dynamic_array_count(const cds_dynamic_array *array);
+unsigned int cds_dynamic_array_size(const cds_dynamic_array *array);
+cds_result cds_dynamic_array_get(const cds_dynamic_array *array, const unsigned int index, void **data);
+cds_result cds_dynamic_array_set(cds_dynamic_array *array, const unsigned int index, const void *data);
 
-cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, void *data);
-cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, void *data, cds_growth_func growth_func);
+cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, const void *data);
+cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, const void *data, const cds_growth_func growth_func);
 cds_result cds_dynamic_array_pop_back(cds_dynamic_array *array);
 cds_result cds_dynamic_array_pop_back_data(cds_dynamic_array *array, void **data);
 
-cds_result cds_dynamic_array_remove(cds_dynamic_array *array, void *data);
-cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, void *data, cds_removal_behavoir rb);
-cds_result cds_dynamic_array_remove_cmp(cds_dynamic_array *array, void *data, cds_cmp_func cmp_func);
-cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, void *data, cds_cmp_func cmp_func, cds_removal_behavoir rb);
-cds_result cds_dynamic_array_remove_at(cds_dynamic_array *array, unsigned int index);
-cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, unsigned int index, cds_removal_behavoir rb);
+cds_result cds_dynamic_array_remove(cds_dynamic_array *array, const void *data);
+cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, const void *data, const cds_removal_behavoir rb);
+cds_result cds_dynamic_array_remove_cmp(cds_dynamic_array *array, const void *data, const cds_cmp_func cmp_func);
+cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, const void *data, const cds_cmp_func cmp_func, const cds_removal_behavoir rb);
+cds_result cds_dynamic_array_remove_at(cds_dynamic_array *array, const unsigned int index);
+cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, const unsigned int index, const cds_removal_behavoir rb);
 
-cds_result cds_dynamic_array_find(cds_dynamic_array *array, void *data, unsigned int *index);
-cds_result cds_dynamic_array_find_cmp(cds_dynamic_array *array, void *data, unsigned int *index, cds_cmp_func cmp_func);
+cds_result cds_dynamic_array_find(const cds_dynamic_array *array, const void *data, unsigned int *index);
+cds_result cds_dynamic_array_find_cmp(const cds_dynamic_array *array, const void *data, unsigned int *index, const cds_cmp_func cmp_func);
 
-cds_result cds_dynamic_array_iterate(cds_dynamic_array *array, cds_visit_func visit_func);
+cds_result cds_dynamic_array_iterate(const cds_dynamic_array *array, const cds_visit_func visit_func);
 // sort methods...
 #endif
