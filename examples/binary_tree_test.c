@@ -1,11 +1,14 @@
 #include "cds_binary_tree.h"
 
-int intComparison(void *a, void *b) {
+int dummyCmp(const void *a, const void *b) {
+    return 0;
+}
+
+int intComparison(const void *a, const void *b) {
 	if (a) {
 		if (b) {
 			int *pA = (int *)a;
 			int *pB = (int *)b;
-			//printf("Comparing: %d with %d\n", *pA, *pB);
 			if (*pA < *pB) {
 				return -1;
 			} else if (*pA > *pB) {
@@ -24,19 +27,19 @@ int intComparison(void *a, void *b) {
 	}
 }
 
-int tabCounter = 1;
-int countSoFar = 0;
-int height = 3;
-int count = 9;
-int mod = 3;
+//int tabCounter = 1;
+//int countSoFar = 0;
+//int height = 3;
+//int count = 9;
+//int mod = 3;
 
-void printInt(void *v) {
-	int t = 0;
+void printInt(const void *v) {
+	//int t = 0;
 	//if (countSoFar) {
-		while (t < tabCounter) {
-			printf("\t");
-			++t;
-		}
+		//while (t < tabCounter) {
+		//	printf("\t");
+		//	++t;
+		//}
 	//}
 	int *pi = (int *)v;
 	printf("%d\n", *pi);
@@ -45,9 +48,9 @@ void printInt(void *v) {
 	//	++tabCounter;
 }
 
-void printTree(cds_binary_tree *tree) {
-	tabCounter = 0;
-	cds_binary_tree_iterate(tree, CDS_LEVEL_ORDER, printInt);
+void printTree(const cds_binary_tree *tree) {
+	//tabCounter = 0;
+	cds_binary_tree_iterate(tree, CDS_IN_ORDER, &printInt);
 }
 
 int main(int argc, char *argv[]) {
@@ -78,6 +81,7 @@ int main(int argc, char *argv[]) {
 		if (cds_error_check(r)) return 1;
 	}
 	*/
+    //cds_visit_func vf = &printInt;
 	printTree(tree);
 	
 	/*
@@ -97,9 +101,16 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	*/
-	
+    
+    unsigned int treeHeight = cds_binary_tree_height(tree);
+    printf("Tree Count: %u\n", tree->count);
+	printf("Tree Height: %u\n", treeHeight);
+    
 	r = cds_binary_tree_delete(&tree);
+    //r = CDS_BAD_ALLOC;
 	if (cds_error_check(r)) return 1;
+    
+
 	
 	return 0;
 }

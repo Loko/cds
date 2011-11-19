@@ -1,8 +1,9 @@
 #include "cds_binary_tree.h"
 
 // NOTE: WHEN DELETING/CLEARING, DO IT WITH POST ORDER TRAVERSAL
-// TODO: HANDLE MULTIPLE VALUES
+// TODO: HANDLE MULTIPLE VALUES, FOR NOW DON'T ALLOW THEM
 
+// 
 cds_result cds_binary_tree_create(cds_binary_tree **tree, cds_cmp_func cmp_func) {
 	if (tree && cmp_func) {
 		*tree = (cds_binary_tree *) cds_alloc(sizeof(cds_binary_tree));
@@ -19,13 +20,13 @@ cds_result cds_binary_tree_create(cds_binary_tree **tree, cds_cmp_func cmp_func)
 	}
 }
 
+//
 cds_result cds_binary_tree_clear_recursive(cds_binary_node *root) {
 	if (root) {
 		cds_result r;
 		cds_binary_node *left = root->left;
 		cds_binary_node *right = root->right;
 		r = cds_binary_node_delete(&root);
-		// if deletetion failed, return that error code
 		if (r != CDS_OK)
 			return r;
 		
@@ -43,13 +44,13 @@ cds_result cds_binary_tree_clear_recursive(cds_binary_node *root) {
 	}
 }
 
+//
 cds_result cds_binary_tree_clear_all_recursive(cds_binary_node *root) {
 	if (root) {
 		cds_result r;
 		cds_binary_node *left = root->left;
 		cds_binary_node *right = root->right;
 		r = cds_binary_node_delete_all(&root);
-		// if deletetion failed, return that error code
 		if (r != CDS_OK)
 			return r;
 		
@@ -63,13 +64,11 @@ cds_result cds_binary_tree_clear_all_recursive(cds_binary_node *root) {
 					return r;
 			}
 		}
-		//return CDS_OK;
 	}
 	return CDS_OK;
 }
 
-// don't really wanna delete the cmp function here...
-// this proposes a potential problem, since users should assume delete functions truly clear everything??
+// 
 cds_result cds_binary_tree_delete(cds_binary_tree **tree) {
 	if (tree && *tree) {
 		cds_result r = cds_binary_tree_clear_recursive((*tree)->root);
@@ -82,7 +81,6 @@ cds_result cds_binary_tree_delete(cds_binary_tree **tree) {
 		return CDS_NULL_ARGUMENT;
 	}
 }
-
 
 cds_result cds_binary_tree_clear(cds_binary_tree *tree) {
 	// restore the count if the operation fails?
@@ -106,49 +104,23 @@ cds_result cds_binary_tree_delete_all(cds_binary_tree **tree) {
 	}
 }
 
-cds_binary_node * cds_binary_tree_root(cds_binary_tree *tree) {
+cds_binary_node * cds_binary_tree_root(const cds_binary_tree *tree) {
 	cds_binary_node *root = NULL;
 	if (tree) {
 		root = tree->root;
 	}
 	return root;
-	/*
-	if (root) {
-		if (tree) {
-			*root = tree->root;
-			return CDS_OK;
-		} else {
-			*root = NULL;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
-unsigned int cds_binary_tree_count(cds_binary_tree *tree) {
+unsigned int cds_binary_tree_count(const cds_binary_tree *tree) {
 	unsigned int count = 0;
 	if (tree) {
 		count = tree->count;
 	}
 	return count;
-	/*
-	if (count) {
-		if (tree) {
-			*count = tree->count;
-			return CDS_OK;
-		} else {
-			*count = 0;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-	*/
 }
 
-cds_cmp_func cds_binary_tree_cmp_func(cds_binary_tree *tree) {
+cds_cmp_func cds_binary_tree_cmp_func(const cds_binary_tree *tree) {
 	cds_cmp_func cmpFunc = NULL;
 	if (tree) {
 		cmpFunc = tree->cmp_func;
@@ -156,6 +128,54 @@ cds_cmp_func cds_binary_tree_cmp_func(cds_binary_tree *tree) {
 	return cmpFunc;
 }
 
+void * cds_binary_tree_max(const cds_binary_tree *tree) {
+	void *maxData = NULL;
+    if (tree) {
+		cds_binary_node *cur = tree->root;
+		if (cur) {
+			while (cur->right) {
+				cur = cur->right;
+			}
+		}
+		maxData = cur->data;
+    }
+    return maxData;
+}
+
+// if the tree is null, but data pointer isn't, it would be good to set it to null
+void * cds_binary_tree_min(const cds_binary_tree *tree) {
+	void *minData = NULL;
+    if (tree) {
+		cds_binary_node *cur = tree->root;
+		if (cur) {
+			while (cur->left) {
+				cur = cur->left;
+			}
+		}
+		minData = cur->data;
+	}
+    return minData;
+}
+
+unsigned int cds_binary_tree_depth_recursive(cds_binary_node *root) {
+	if (root) {
+		unsigned int leftTreeHeight = cds_binary_tree_depth_recursive(root->left);
+		unsigned int rightTreeHeight = cds_binary_tree_depth_recursive(root->right);
+		return (leftTreeHeight > leftTreeHeight) ? leftTreeHeight + 1 : leftTreeHeight + 1;
+	} else {
+		return 0;
+	}
+}
+
+unsigned int cds_binary_tree_height(const cds_binary_tree *tree) {
+	unsigned int height = 0;
+    if (tree && tree->count) {
+        unsigned int leftHeight = cds_binary_tree_depth_recursive(tree->root->left);
+		unsigned int rightHeight = cds_binary_tree_depth_recursive(tree->root->right);
+        height = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+    }
+    return height;
+}
 
 // pre order
 void cds_binary_tree_preorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {
@@ -222,7 +242,7 @@ void cds_binary_tree_postorder_recursive(cds_binary_node *root, cds_visit_func v
 	}
 }
 
-cds_result cds_binary_tree_breadthorder_traversal(cds_binary_tree *tree, cds_visit_func visit_func) {
+cds_result cds_binary_tree_breadthorder_traversal(const cds_binary_tree *tree, cds_visit_func visit_func) {
 	// not illegal to try to traverse an empty binary tree
 	// but need to check this case
 	//if (!tree->count)
@@ -273,15 +293,14 @@ cds_result cds_binary_tree_breadthorder_traversal(cds_binary_tree *tree, cds_vis
 }
 
 
-cds_result cds_binary_tree_insert(cds_binary_tree *tree, void *data) {
+cds_result cds_binary_tree_insert(cds_binary_tree *tree, const void *data) {
 	if (tree && data) {
 		cds_binary_node *cur = tree->root;
 		cds_binary_node *par = cur;
 		while (cur) {
 			int cmpResult = (*(tree->cmp_func))(cur->data, data);
 			if (cmpResult == 0) {
-				// this is a repeat value, WE SHOULD SUPPORT THIS HERE
-				return CDS_OK;
+				return CDS_DUPLICATE_VALUE;
 			} else if (cmpResult > 0) {
 				par = cur;
 				cur = par->left;
@@ -303,6 +322,7 @@ cds_result cds_binary_tree_insert(cds_binary_tree *tree, void *data) {
 				else
 					par->right = nnode;
 			}
+            tree->count++;
 		}
 		return cr;
 	} else {
@@ -310,7 +330,8 @@ cds_result cds_binary_tree_insert(cds_binary_tree *tree, void *data) {
 	}
 }
 
-cds_result cds_binary_tree_insert_node(cds_binary_tree *tree, void *data, cds_binary_node **node, cds_binary_node **parent) {
+/*
+cds_result cds_binary_tree_insert_node(cds_binary_tree *tree, const void *data, cds_binary_node **node, cds_binary_node **parent) {
 	if (tree && data) {
 		cds_binary_node *cur = tree->root;
 		cds_binary_node *par = cur;
@@ -353,8 +374,9 @@ cds_result cds_binary_tree_insert_node(cds_binary_tree *tree, void *data, cds_bi
 		return CDS_NULL_ARGUMENT;
 	}
 }
+*/
 
-cds_result cds_binary_tree_remove(cds_binary_tree *tree, void *data) {
+cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data) {
 	if (tree && data) {
 		if (tree->root) {
 			cds_binary_node *cur = tree->root;
@@ -431,6 +453,7 @@ cds_result cds_binary_tree_remove(cds_binary_tree *tree, void *data) {
 }
 
 
+/*
 cds_result cds_binary_tree_remove_node(cds_binary_tree *tree, cds_binary_node *node, cds_binary_node *parent) {
 	if (tree) {
 		// tricky because the parent node could be null
@@ -441,8 +464,9 @@ cds_result cds_binary_tree_remove_node(cds_binary_tree *tree, cds_binary_node *n
 	}
 
 }
+*/
 
-cds_result cds_binary_tree_find(cds_binary_tree *tree, void *data, cds_binary_node **node) {
+cds_result cds_binary_tree_find(const cds_binary_tree *tree, const void *data, cds_binary_node **node) {
 	if (tree && data && node) {
 		cds_binary_node *cur = tree->root;
 		int cmpResult;
@@ -464,7 +488,7 @@ cds_result cds_binary_tree_find(cds_binary_tree *tree, void *data, cds_binary_no
 // ptr to the min and max values functions
 
 //
-cds_result cds_binary_tree_iterate(cds_binary_tree *tree, cds_binary_tree_traversal_type traversal_type, cds_visit_func visit_func) {
+cds_result cds_binary_tree_iterate(const cds_binary_tree *tree, cds_binary_tree_traversal_type traversal_type, cds_visit_func visit_func) {
 	CDS_ASSERT_MSG(traversal_type == CDS_PRE_ORDER || traversal_type == CDS_IN_ORDER || traversal_type == CDS_POST_ORDER, "CDS Binary Tree Traversal Type Not Found!");
 	if (tree && visit_func) {
 			if (traversal_type == CDS_PRE_ORDER)
@@ -476,65 +500,6 @@ cds_result cds_binary_tree_iterate(cds_binary_tree *tree, cds_binary_tree_traver
 			else
 				cds_binary_tree_breadthorder_traversal(tree, visit_func);
 	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-}
-
-cds_result cds_binary_tree_max(cds_binary_tree *tree, void **data) {
-	if (tree && data) {
-		cds_binary_node *cur = tree->root;
-		if (cur) {
-			while (cur->right) {
-				cur = cur->right;
-			}
-		}
-		*data = cur->data;
-		return CDS_OK;
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-}
-
-// if the tree is null, but data pointer isn't, it would be good to set it to null
-cds_result cds_binary_tree_min(cds_binary_tree *tree, void **data) {
-	if (tree && data) {
-		cds_binary_node *cur = tree->root;
-		if (cur) {
-			while (cur->left) {
-				cur = cur->left;
-			}
-		}
-		*data = cur->data;
-		return CDS_OK;
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-}
-
-unsigned int cds_binary_tree_depth_recursive(cds_binary_node *root) {
-	if (root) {
-		unsigned int leftTreeHeight = cds_binary_tree_depth_recursive(root->left);
-		unsigned int rightTreeHeight = cds_binary_tree_depth_recursive(root->right);
-		return (leftTreeHeight > leftTreeHeight) ? leftTreeHeight + 1 : leftTreeHeight + 1;
-	} else {
-		return 0;
-	}
-}
-
-cds_result cds_binary_tree_height(cds_binary_tree *tree, unsigned int *depth) {
-	if (tree && depth) {
-		if (tree->count <= 1) {
-			*depth = 0;
-		} else {
-			// a tree with a root node still has a height of zero (sccording to a number of sources)
-			// so we need to pass the children to the recursive function
-			unsigned int leftHeight = cds_binary_tree_depth_recursive(tree->root->left);
-			unsigned int rightHeight = cds_binary_tree_depth_recursive(tree->root->right);
-			*depth = (leftHeight > rightHeight) ? leftHeight : rightHeight;
-		}
-		return CDS_OK;
-	} else {
-		*depth = 0;
 		return CDS_NULL_ARGUMENT;
 	}
 }

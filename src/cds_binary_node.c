@@ -6,7 +6,8 @@ cds_result cds_binary_node_create(cds_binary_node **node, const void *data) {
 	if (*node) {
 		(*node)->left = NULL;
 		(*node)->right = NULL;
-		(*node)->data = data;
+        void *dataCopy = (void *)data;
+		(*node)->data = dataCopy;
 		return CDS_OK;
 	} else {
 		return CDS_BAD_ALLOC;

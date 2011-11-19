@@ -63,9 +63,6 @@ cds_result cds_slist_delete_all(cds_slist **list) {
 			cds_slnode_delete_all(&node);
 			node = tmp;
 		}
-		//(*list)->head = NULL;
-		//(*list)->tail = NULL;
-		//(*list)->count = 0;
 		cds_free(*list);
 		*list = NULL;
 		return CDS_OK;
@@ -489,7 +486,7 @@ cds_result cds_slist_reverse(cds_slist *list) {
 	if (list) {
 		cds_slnode *newHead = NULL;
 		cds_slnode *head = list->head;
-		cds_slnode *newTail = list->head;
+		//cds_slnode *newTail = list->head;
 		while (head) {
 			cds_slnode *next = head->next;
 			head->next = newHead;
@@ -497,7 +494,7 @@ cds_result cds_slist_reverse(cds_slist *list) {
 			head = next;
 		}
 		list->head = newHead;
-		list->tail = newTail;
+		//list->tail = newTail;
 		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;

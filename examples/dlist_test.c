@@ -52,6 +52,19 @@ void printList(const cds_dlist *list) {
     */
 }
 
+void printLinkedList(cds_dlist *list) {
+    if (list && list->count) {
+        printf("NULL->");
+        cds_dlnode *cur = cds_dlist_head(list);
+        while(cur) {
+            int *pv = (int *) cur->data;
+            printf("<-{a: %d p:%d d: %d n: %d}->", cur, cur->prev, *pv, cur->next);
+            cur = cur->next;
+        }
+    }
+    printf("NULL\n");
+}
+
 void pickNode(cds_dlist *list, unsigned int index, cds_dlnode **node) {
 	if (list) {
 		*node = list->head;
@@ -93,11 +106,13 @@ int main(void) {
 	
 	printList(list);
 	
+    /*
 	//cds_dlnode *node;
 	//pickNode(list, 3, &node);
 	//cr = cds_dlist_insert_before(list, node, values + 9);
 	//cds_error_check(cr);
-	
+	*/
+    
 	void *headData;
 	cr = cds_dlist_remove_head_data(list, &headData);
 	cds_error_check(cr);
@@ -117,8 +132,14 @@ int main(void) {
 	
 	printList(list);
 	
+	cds_dlnode *rnode;
+    pickNode(list, 4, &rnode);
+    cr = cds_dlist_remove_node(list, rnode);
 	
-	
+    printLinkedList(list);
+    printf("Reversing the linked list...\n");
+    cds_dlist_reverse(list);
+    printLinkedList(list);
 	
 	cr = cds_dlist_delete(&list);
 	if (cds_error_check(cr)) return 1;

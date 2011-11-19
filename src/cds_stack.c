@@ -125,7 +125,7 @@ cds_result cds_stack_pop(cds_stack *stack) {
 }
 
 //
-cds_result cds_stack_iterate(const cds_stack *stack, const cds_visit_func visit_func) {
+cds_result cds_stack_iterate(const cds_stack *stack, cds_visit_func visit_func) {
 	if (stack && visit_func) {
 		cds_slnode *cur = stack->top;
 		while (cur) {

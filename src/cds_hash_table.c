@@ -261,3 +261,20 @@ cds_result cds_hash_table_iterate(cds_hash_table *table, cds_visit_func visit_fu
 		return CDS_NULL_ARGUMENT;
 	}
 }
+
+cds_result cds_hash_table_iterate_nodes(cds_hash_table *table, cds_visit_func visit_func) {
+	if (table && visit_func) {
+		unsigned int i;
+		for (i = 0; i < table->size; ++i) {
+			cds_hash_node *cur = table->buckets[i];
+			cds_result r;
+			while (cur) {
+				(*visit_func)(cur);
+				cur = cur->next;
+			}
+		}
+		return CDS_OK;
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
+}

@@ -122,8 +122,14 @@ int main(void) {
 
 		printf("%s", "Trying this with the iterate function:\n");
 		cr = cds_dynamic_array_iterate(array, &test_visit_func2);
-		if (cds_error_check(cr))
-			return 1;
+		if (cds_error_check(cr)) return 1;
+        cr = cds_dynamic_array_reverse(array);
+        if (cds_error_check(cr)) return 1;
+        cr = cds_dynamic_array_iterate(array, &test_visit_func2);
+        if (cds_error_check(cr)) return 1;
 	}
+    cr = cds_dynamic_array_delete(&array);
+    if (cds_error_check(cr))
+		return 1;
 	return 0;
 }

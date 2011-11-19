@@ -155,7 +155,8 @@ cds_result cds_dlist_insert_before(cds_dlist *list, cds_dlnode *node, const void
 	} else {
 		cds_dlnode *newnode;
 		cds_result r = cds_dlnode_create(&newnode, data);
-		if (r == CDS_OK) {
+		/** @todo Force node search defines need to be here */
+        if (r == CDS_OK) {
 			newnode->prev = node->prev;
 			node->prev->next = newnode;
 			newnode->next = node;
@@ -177,6 +178,7 @@ cds_result cds_dlist_insert_after(cds_dlist *list, cds_dlnode *node, const void 
 	} else {
 		cds_dlnode *newnode;
 		cds_result r = cds_dlnode_create(&newnode, data);
+        /** @todo Force node search defines need to be here */
 		if (r == CDS_OK) {
 			newnode->prev = node;
 			node->next->prev = newnode;
@@ -321,7 +323,8 @@ cds_result cds_dlist_remove(cds_dlist *list, const void *data) {
 // some implementations hold a pointer to the list inside the nodes but I don't 
 // think that is necessary
 cds_result cds_dlist_remove_node(cds_dlist *list, cds_dlnode *node) {
-	if (!list || !node) {
+	printf("CDS_DLIST_FORCE_NODE_SEARCH = %d\n", CDS_DLIST_FORCE_NODE_SEARCH);
+    if (!list || !node) {
 		return CDS_NULL_ARGUMENT;
 	} else if (node == list->head) {
 		return cds_dlist_remove_head(list);
@@ -330,8 +333,12 @@ cds_result cds_dlist_remove_node(cds_dlist *list, cds_dlnode *node) {
 	} else if (list->count > 2) {
 		// already checked the head and tail
 		// start with the second entry
-		//#if (CDS_DLIST_SEARCH_FOR_RNODE)
-		cds_dlnode *tmp = list->head->next;
+#if (!CDS_DLIST_FORCE_NODE_SEARCH)
+        node->prev->next = node->next;
+		node->next->prev = node->prev;
+		return cds_dlnode_delete(&node);
+#else
+        cds_dlnode *tmp = list->head->next;
 		while (tmp) {
 			if (node == tmp) {
 				// do the unlinking here
@@ -341,13 +348,7 @@ cds_result cds_dlist_remove_node(cds_dlist *list, cds_dlnode *node) {
 			}
 			tmp = tmp->next;
 		}
-		//#else
-		/*
-		node->prev->next = node->next;
-		node->next->prev = node->prev;
-		return cds_dlnode_delete(&node);
-		*/
-		//#endif
+#endif
 	}
 	return CDS_NOT_FOUND;
 }
@@ -407,7 +408,7 @@ cds_result cds_dlist_find(const cds_dlist *list, const void *data, cds_dlnode **
 }
 
 // 
-cds_result cds_dlist_find_cmp(const cds_dlist *list, const void *data, cds_dlnode **node, const cds_cmp_func cmp_func) {
+cds_result cds_dlist_find_cmp(const cds_dlist *list, const void *data, cds_dlnode **node, cds_cmp_func cmp_func) {
 	if (!list || !node || !cmp_func) {
 		return CDS_NULL_ARGUMENT;
 	} else if ((*cmp_func)(data, list->head->data) == 0) {
@@ -432,7 +433,18 @@ cds_result cds_dlist_find_cmp(const cds_dlist *list, const void *data, cds_dlnod
 	return CDS_NOT_FOUND;
 }
 
-cds_result cds_dlist_iterate(const cds_dlist *list, const cds_visit_func visit_func) {
+//
+/*
+cds_result cds_dlist_find_node(const cds_dlist *list, const cds_dlnode *node, void **data) {
+    if (!list || !node || !data) {
+        return CDS_NULL_ARGUMENT;
+    } else {
+        
+    }
+}
+*/
+
+cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func) {
 	if (list && visit_func) {
 		cds_dlnode *cur = list->head;
 		while (cur) {
@@ -443,4 +455,22 @@ cds_result cds_dlist_iterate(const cds_dlist *list, const cds_visit_func visit_f
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
+}
+
+//
+cds_result cds_dlist_reverse(cds_dlist *list) {
+    if (list) {
+        cds_dlnode *cur = list->head;
+        cds_dlnode *tmp;
+        while (cur) {
+            tmp = cur->next;
+            cur->next = cur->prev;
+            cur->prev = tmp;
+            list->head = cur;
+            cur = tmp;
+        }
+        return CDS_OK;
+    } else {
+        return CDS_NULL_ARGUMENT;
+    }
 }
