@@ -130,7 +130,7 @@ cds_cmp_func cds_binary_tree_cmp_func(const cds_binary_tree *tree) {
 
 void * cds_binary_tree_max(const cds_binary_tree *tree) {
 	void *maxData = NULL;
-    if (tree) {
+	if (tree) {
 		cds_binary_node *cur = tree->root;
 		if (cur) {
 			while (cur->right) {
@@ -138,14 +138,14 @@ void * cds_binary_tree_max(const cds_binary_tree *tree) {
 			}
 		}
 		maxData = cur->data;
-    }
-    return maxData;
+	}
+	return maxData;
 }
 
 // if the tree is null, but data pointer isn't, it would be good to set it to null
 void * cds_binary_tree_min(const cds_binary_tree *tree) {
 	void *minData = NULL;
-    if (tree) {
+	if (tree) {
 		cds_binary_node *cur = tree->root;
 		if (cur) {
 			while (cur->left) {
@@ -154,7 +154,7 @@ void * cds_binary_tree_min(const cds_binary_tree *tree) {
 		}
 		minData = cur->data;
 	}
-    return minData;
+	return minData;
 }
 
 unsigned int cds_binary_tree_depth_recursive(cds_binary_node *root) {
@@ -169,12 +169,12 @@ unsigned int cds_binary_tree_depth_recursive(cds_binary_node *root) {
 
 unsigned int cds_binary_tree_height(const cds_binary_tree *tree) {
 	unsigned int height = 0;
-    if (tree && tree->count) {
-        unsigned int leftHeight = cds_binary_tree_depth_recursive(tree->root->left);
+	if (tree && tree->count) {
+		unsigned int leftHeight = cds_binary_tree_depth_recursive(tree->root->left);
 		unsigned int rightHeight = cds_binary_tree_depth_recursive(tree->root->right);
-        height = (leftHeight > rightHeight) ? leftHeight : rightHeight;
-    }
-    return height;
+		height = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+	}
+	return height;
 }
 
 // pre order
@@ -262,7 +262,7 @@ cds_result cds_binary_tree_breadthorder_traversal(const cds_binary_tree *tree, c
 			printf("Address of pointer: %d\n", nodeQueue[i]);
 			nodeQueue[i] = NULL;
 		}
-	
+		
 		// enqueue the root first
 		nodeQueue[queueBack] = tree->root;
 		++queueBack;
@@ -309,7 +309,7 @@ cds_result cds_binary_tree_insert(cds_binary_tree *tree, const void *data) {
 				cur = par->right;
 			}
 		}
-		
+		/* Create the new node, and insert left or right */
 		cds_binary_node *nnode;
 		cds_result cr = cds_binary_node_create(&nnode, data);
 		if (cr == CDS_OK) {
@@ -322,7 +322,7 @@ cds_result cds_binary_tree_insert(cds_binary_tree *tree, const void *data) {
 				else
 					par->right = nnode;
 			}
-            tree->count++;
+			tree->count++;
 		}
 		return cr;
 	} else {
@@ -462,7 +462,6 @@ cds_result cds_binary_tree_remove_node(cds_binary_tree *tree, cds_binary_node *n
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
-
 }
 */
 

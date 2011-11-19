@@ -16,11 +16,13 @@ all types (with void pointers) for the following data structures:
 - stack (cds_stack)
 - queue (cds_queue)
 - binary search tree (cds_binary_tree)
+- hashtable (cds_hash_table)
 
 In the future I plan to implement the following structures:
 
-- hash table
-- set ()
+- skip list
+- set
+- possibly others
 
 CDS tries to use consistent practices amongst the entire code base
 - Every custom type, function, and macro starts with the cds_ or CDS_ prefix

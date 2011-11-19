@@ -30,7 +30,7 @@ int cds_log(const char *format, ...);
 */
 
 /* ASSERTIONS */
-/*										   		   // condition   // file	 // line // message // va args*/
+/*												   // condition   // file	 // line // message // va args*/
 typedef void (*cds_assertion_failure_reporter_func)(const char*, const char*, int, const char*, va_list); 
 
 /** the default assertion reporting handler */

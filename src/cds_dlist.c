@@ -178,7 +178,7 @@ cds_result cds_dlist_insert_after(cds_dlist *list, cds_dlnode *node, const void 
 	} else {
 		cds_dlnode *newnode;
 		cds_result r = cds_dlnode_create(&newnode, data);
-        /** @todo Force node search defines need to be here */
+		/** @todo Force node search defines need to be here */
 		if (r == CDS_OK) {
 			newnode->prev = node;
 			node->next->prev = newnode;
@@ -334,11 +334,11 @@ cds_result cds_dlist_remove_node(cds_dlist *list, cds_dlnode *node) {
 		// already checked the head and tail
 		// start with the second entry
 #if (!CDS_DLIST_FORCE_NODE_SEARCH)
-        node->prev->next = node->next;
+		node->prev->next = node->next;
 		node->next->prev = node->prev;
 		return cds_dlnode_delete(&node);
 #else
-        cds_dlnode *tmp = list->head->next;
+		cds_dlnode *tmp = list->head->next;
 		while (tmp) {
 			if (node == tmp) {
 				// do the unlinking here
@@ -459,18 +459,18 @@ cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func) {
 
 //
 cds_result cds_dlist_reverse(cds_dlist *list) {
-    if (list) {
-        cds_dlnode *cur = list->head;
-        cds_dlnode *tmp;
-        while (cur) {
-            tmp = cur->next;
-            cur->next = cur->prev;
-            cur->prev = tmp;
-            list->head = cur;
-            cur = tmp;
-        }
-        return CDS_OK;
-    } else {
-        return CDS_NULL_ARGUMENT;
-    }
+	if (list) {
+		cds_dlnode *cur = list->head;
+		cds_dlnode *tmp;
+		while (cur) {
+			tmp = cur->next;
+			cur->next = cur->prev;
+			cur->prev = tmp;
+			list->head = cur;
+			cur = tmp;
+		}
+		return CDS_OK;
+	} else {
+		return CDS_NULL_ARGUMENT;
+	}
 }

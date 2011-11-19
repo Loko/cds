@@ -4,11 +4,14 @@ CC = gcc
 all: dynarray
 
 dynarray:
-	$(CC) src/cds_core.c src/cds_dynamic_array.c examples/dynarray_test.c -o bin/dynarray_test -I include
+	$(CC) src/cds_core.c src/cds_dynamic_array.c examples/dynarray_test.c -o bin/dynarray_test -I include -Wpadded -Wall
 
 dlist:
 	$(CC) src/cds_core.c src/cds_dlnode.c src/cds_dlist.c examples/dlist_test.c -o bin/dlist_test -I include -Wpadded
 
+dlist2:
+	$(CC) src/cds_core.c src/cds_dlnode.c src/cds_dlist.c examples/dlist_test.c -o bin/dlist_test -I include -Wpadded -D CDS_DLIST_SEARCH_FOR_RNODE=0
+    
 slist:
 	$(CC) src/cds_core.c src/cds_slnode.c src/cds_slist.c examples/slist_test.c -o bin/slist_test -I include -Wpadded
 	
