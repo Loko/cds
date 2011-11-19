@@ -50,7 +50,7 @@ cds_result cds_dynamic_array_delete(cds_dynamic_array **array) {
 cds_result cds_dynamic_array_delete_all(cds_dynamic_array **array) {
 	if (*array) {
 		/* free all the pointers first */
-        /** @todo Iterate until size or until count? */
+		/** @todo Iterate until size or until count? */
 		unsigned int i;
 		for (i = 0; i < (*array)->count; ++i) {
 			cds_free((*array)->buffer[i]);
@@ -136,7 +136,7 @@ cds_result cds_dynamic_array_get(const cds_dynamic_array *array, unsigned int in
 cds_result cds_dynamic_array_set(cds_dynamic_array *array, unsigned int index, const void *data) {
 	if (array) {
 		if (index < array->count) {
-            void *dataCopy = (void *) data;
+			void *dataCopy = (void *) data;
 			array->buffer[index] = dataCopy;
 			return CDS_OK;
 		} else {
@@ -151,21 +151,21 @@ cds_result cds_dynamic_array_set(cds_dynamic_array *array, unsigned int index, c
 cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, const void *data) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
-    /* handle resizing and allocations if full */
-    cds_result cr = CDS_OK;
-    if (array->count == array->size) {
-        unsigned int nsize = (array->buffer) ? array->size * CDS_DEFAULT_DYNAMIC_ARRAY_GROWTH_MULTIPLIER : CDS_DEFAULT_DYNAMIC_ARRAY_SIZE;
-        void *tmp = (void *) cds_realloc(array->buffer, nsize * sizeof(void *));
-        if (tmp) {
-            array->buffer = tmp;
-            array->size = nsize;
-        } else {
-            cr = CDS_BAD_ALLOC;
-        }
-    }
-    /* if nothing went wrong with resizing, place at the end of the buffer */
+	/* handle resizing and allocations if full */
+	cds_result cr = CDS_OK;
+	if (array->count == array->size) {
+		unsigned int nsize = (array->buffer) ? array->size * CDS_DEFAULT_DYNAMIC_ARRAY_GROWTH_MULTIPLIER : CDS_DEFAULT_DYNAMIC_ARRAY_SIZE;
+		void *tmp = (void *) cds_realloc(array->buffer, nsize * sizeof(void *));
+		if (tmp) {
+			array->buffer = tmp;
+			array->size = nsize;
+		} else {
+		cr = CDS_BAD_ALLOC;
+		}
+	}
+	/* if nothing went wrong with resizing, place at the end of the buffer */
 	/* we carry the cds_result to avoid annoying warning saying there is no return */
-    if (cr == CDS_OK) {
+	if (cr == CDS_OK) {
 		void *dataCopy = (void *) data;
 		array->buffer[array->count] = dataCopy;
 		array->count++;
@@ -181,7 +181,7 @@ cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, const void *dat
 cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, const void *data, cds_growth_func growth_func) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
-    /* handle resizing and allocations if necessary */
+	/* handle resizing and allocations if necessary */
 	cds_result cr = CDS_OK;
 	if (array->count == array->size) {
 		/* find the new size */
@@ -193,7 +193,7 @@ cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, const void *
 		} else {
 			nsize = (array->buffer) ? array->size * CDS_DEFAULT_DYNAMIC_ARRAY_GROWTH_MULTIPLIER : CDS_DEFAULT_DYNAMIC_ARRAY_SIZE;
 		}
-        /* reallocate */
+		/* reallocate */
 		void *tmp = (void *) cds_realloc(array->buffer, nsize * sizeof(void *));
 		if (tmp) {
 			array->buffer = tmp;
@@ -202,7 +202,7 @@ cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, const void *
 			cr = CDS_BAD_ALLOC;
 		}
 	}
-    /* add to the end of the buffer */
+	/* add to the end of the buffer */
 	if (cr == CDS_OK) {
 		void *dataCopy = (void *) data;
 		array->buffer[array->count] = dataCopy;
@@ -398,7 +398,7 @@ cds_result cds_dynamic_array_reverse(cds_dynamic_array *array) {
 	if (array) {
 		/* count should be zero in this case anyways, meaning the loop will terminate instantly
 		 * if (!array->buffer)
-         * return CDS_OK;
+		 * return CDS_OK;
 		 */
 		void *tmp;
 		unsigned int left = 0;
