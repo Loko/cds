@@ -1,8 +1,8 @@
 /**
  * @file cds_core.h
  * @author Jeff Lansing
- * @brief A Collection of Base Functions
- * Allocations, Assertions, Error Handling, etc. etc.
+ * @brief A Collection of Base Functions for dynamic memory
+ * allocations, assertions, error handling, logging, etc.
  */
 
 #ifndef _CDS_CORE_H_
@@ -13,31 +13,36 @@
  * @{
  */
 
+/** @todo preprocessor macro not to use the standard library?? */
 #include "stdlib.h"
 #include "stdio.h"
 #include "stdarg.h"
 
 /* LOGGING */
 
-/* logging support is not provided, but easy to plug into cds 
- * with a simple function pointer with a printf format
- */
-/*
-typedef int (*cds_log_func)(const char*, ...);
+/** Function prototype for printf-like logging functions using va_lists */
+typedef int (*cds_log_func)(const char*, va_list);
 
-// functions to get/set cds_log
+/** Gets the custom log function used by @see cds_log */
+cds_log_func cds_get_log();
+
+/** Sets the custom log function which will be used by cds_log */
+void cds_set_log(cds_log_func lf);
+
+/** The main logging function used by cds */
 int cds_log(const char *format, ...);
-*/
+
 
 /* ASSERTIONS */
-/*												   // condition   // file	 // line // message // va args*/
+
+/** @typedef cds_assertion_failure_reporter_func */
 typedef void (*cds_assertion_failure_reporter_func)(const char*, const char*, int, const char*, va_list); 
 
-/** the default assertion reporting handler */
-void cds_default_assertion_failure_reporter(const char *condition, const char *file, int line, const char *message, va_list argp);
+/** Gets the assertion reporting function */
+cds_assertion_failure_reporter_func cds_get_assertion_reporter();
 
-/** mutable assertion reporter function used in the assertion macro */
-cds_assertion_failure_reporter_func cds_assertion_reporter;
+/** Sets the assertion reporting function */
+void cds_set_assertion_reporter(cds_assertion_failure_reporter_func reporter_func);
 
 /** 
  * Called by the macro if the assertion fails.
@@ -46,7 +51,7 @@ cds_assertion_failure_reporter_func cds_assertion_reporter;
  */
 void cds_on_assertion_failure(const char *condition, const char *file, int line, const char *message, ...);
 
-/*#define CDS_ASSERTIONS_ENABLED */
+#define CDS_ASSERTIONS_ENABLED
 
 #define CDS_HALT() asm { int 3 }
 #define CDS_UNUSED(expr) do { (void)sizeof(expr); } while(0)
@@ -89,7 +94,8 @@ void cds_on_assertion_failure(const char *condition, const char *file, int line,
  * Enum for return values describing the success/failure of a function.
  * @todo Had an idea the other day that this enum is a bunch of bitfields 
  * and ORing them could reveal multiple errors.  But this may be difficult 
- * to implement, and would conflict with the idea of early returns?
+ * to implement, and would conflict with the idea of early returns?  Also, 
+ * consider using the FMOD standards, where ERR is put in the name
  */
 enum cds_result {
 	CDS_UNIMPLEMENTED = -10,    /**< A feature that's not yet supported */
@@ -105,15 +111,16 @@ enum cds_result {
 	CDS_OK = 1                  /**< Function completed successfully */
 };
 
-/**  */
+/** @typedef Custom yype for the enum of the same name */
 typedef enum cds_result cds_result;
 
 /**
  * Determines if the result indicates a failed routine.
- * Everything except CDS_OK and CDS_NOT_FOUND is an illegal 
- * operation/error that will likely require code changes.
+ * Everything except CDS_OK, CDS_NOT_FOUND, and CDS_DUPLICATE_VALUE 
+ * is an illegal operation/runtime error that will likely require 
+ * bug fixes through code changes.
  */
-int cds_is_error(cds_result r);
+int cds_is_error(cds_result cr);
 
 /** Maximum size of a cds_result string */
 #define CDS_MAX_ERR_STR_LEN 50
@@ -122,11 +129,13 @@ int cds_is_error(cds_result r);
  * Puts a human readable string for the result into str
  * @return The size of the string, or -1 if the operation fails
  */
-int cds_result_string(cds_result r, char *str);
+int cds_result_string(cds_result cr, char *str);
 
-/** Will print the result and returns 1 if it is an error */
-int cds_error_check(cds_result r);
+/** Will print the result and return 1 if it is an error */
+int cds_error_check(cds_result cr);
 
+/** Will print the result and return 1 if cr != CDS_OK */
+int cds_not_ok_check(cds_result cr);
 
 /* MEMORY MANAGEMENT */
 
@@ -164,6 +173,8 @@ void cds_free(void *ptr);
 typedef int (*cds_cmp_func)(const void *, const void *);
 /** Prototype for a visiting function (used by iterators) */
 typedef void (*cds_visit_func)(const void *);
+/** Prototype for a visiting pair function (use by iterators) */
+typedef void (*cds_visit_pair_func)(const void *, const void *);
 /** Prototype for a hash function of any type */
 typedef unsigned int (*cds_hash_func)(const void *);
 

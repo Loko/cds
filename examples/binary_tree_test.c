@@ -27,29 +27,35 @@ int intComparison(const void *a, const void *b) {
 	}
 }
 
-//int tabCounter = 1;
-//int countSoFar = 0;
-//int height = 3;
-//int count = 9;
-//int mod = 3;
+/*
+int tabCounter = 1;
+int countSoFar = 0;
+int height = 3;
+int count = 9;
+int mod = 3;
+*/
 
 void printInt(const void *v) {
-	//int t = 0;
-	//if (countSoFar) {
-		//while (t < tabCounter) {
-		//	printf("\t");
-		//	++t;
-		//}
-	//}
+	/*
+	int t = 0;
+	if (countSoFar) {
+		while (t < tabCounter) {
+			printf("\t");
+			++t;
+		}
+	}
+	*/
 	int *pi = (int *)v;
 	printf("%d\n", *pi);
-	//++countSoFar;
-	//if ((countSoFar % mod) == 0)
-	//	++tabCounter;
+	/*
+	++countSoFar;
+	if ((countSoFar % mod) == 0)
+		++tabCounter;
+	*/
 }
 
 void printTree(const cds_binary_tree *tree) {
-	//tabCounter = 0;
+	/* tabCounter = 0; */
 	cds_binary_tree_iterate(tree, CDS_IN_ORDER, &printInt);
 }
 
@@ -61,9 +67,10 @@ int main(int argc, char *argv[]) {
 	}
 	
 	int values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	/*
 	unsigned int n = 10;
 	unsigned int i;
-	unsigned int half = n / 2;
+	unsigned int half = n / 2;*/
 	r = cds_binary_tree_insert(tree, values + 5);
 	r = cds_binary_tree_insert(tree, values + 3);
 	r = cds_binary_tree_insert(tree, values + 4);
@@ -81,7 +88,6 @@ int main(int argc, char *argv[]) {
 		if (cds_error_check(r)) return 1;
 	}
 	*/
-    //cds_visit_func vf = &printInt;
 	printTree(tree);
 	
 	/*
@@ -107,7 +113,7 @@ int main(int argc, char *argv[]) {
 	printf("Tree Height: %u\n", treeHeight);
     
 	r = cds_binary_tree_delete(&tree);
-    //r = CDS_BAD_ALLOC;
+    /* r = CDS_BAD_ALLOC; */
 	if (cds_error_check(r)) return 1;
     
 

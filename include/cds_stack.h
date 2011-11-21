@@ -15,7 +15,8 @@
 #include "cds_slnode.h"
 
 /**
- * Abstract queue data type.  Holds the top and count.
+ * Abstract queue data type.  Holds the top stack node and the count.
+ * @todo add a find method?
  */
 struct cds_stack {
 	cds_slnode *top;
@@ -34,24 +35,23 @@ cds_result cds_stack_delete(cds_stack **stack);
 /** Deletes the stack and its elements */
 cds_result cds_stack_delete_all(cds_stack **stack);
 
-/** Clears the stack, but doesn't delete it, or its elements */
+/** Clears the stack, but doesn't delete it, or its referenced elements */
 cds_result cds_stack_clear(cds_stack *stack);
 
 /** Gets the top of the stack */
 void * cds_stack_top(const cds_stack *stack);
 
-/** Gets the count of elements in the stack */
+/** Gets the number of elements in the stack */
 unsigned int cds_stack_count(const cds_stack *stack);
 
 /** Pushes data onto the top of the stack */
 cds_result cds_stack_push(cds_stack *stack, const void *data);
 
-/** Pops the top element off the top of the stack */
+/** Pops the top element off of the stack */
 cds_result cds_stack_pop(cds_stack *stack);
 
 /** Iterates through every element in the stack */
 cds_result cds_stack_iterate(const cds_stack *stack, cds_visit_func visit_func);
-// contains method?
 
 /** @} */
 

@@ -82,27 +82,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcds__hash__node.html">cds_hash_node</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Struture for a key/value pair based hash node usable in a.  <a href="structcds__hash__node.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcds__hash__table.html">cds_hash_table</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct container for hash table using linear probing.  <a href="structcds__hash__table.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcds__hash__node.html">cds_hash_node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga3c064d72923fa4429e31576aa0eea283">cds_hash_node</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcds__hash__table.html">cds_hash_table</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gab55e3643ff533b1f9cf99c854e9fc482">cds_hash_table</a></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga20396f4206b697b4476889b041e9e892">cds_hash_node_create</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode, const void *key, const void *data)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a hashnode with the key/value pair.  <a href="#ga20396f4206b697b4476889b041e9e892"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga9d9af1befb7cf9cf3a25850ae19d066f">cds_hash_node_delete</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode.  <a href="#ga9d9af1befb7cf9cf3a25850ae19d066f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1485cdd8bdeb32963d42e4ba773f7d34">cds_hash_node_create</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode, const void *key, const void *value)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a hashnode with the key/value pair.  <a href="#ga1485cdd8bdeb32963d42e4ba773f7d34"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga40beb360272cd141efc676cee8edaed9">cds_hash_node_delete</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode and key, value, neither, or both depending on given deletion behavoir.  <a href="#ga40beb360272cd141efc676cee8edaed9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga2b8fdf84e7b304761f9171ac56312593">cds_hash_node_delete_all</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode.  <a href="#ga2b8fdf84e7b304761f9171ac56312593"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode, its key, and its value.  <a href="#ga2b8fdf84e7b304761f9171ac56312593"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gae87e816542d61f78e7dda9915bbe1537">cds_hash_table_create</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table, unsigned int size, <a class="el" href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb">cds_cmp_func</a> key_cmp, <a class="el" href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb">cds_cmp_func</a> val_cmp, <a class="el" href="group___c_d_s.html#ga1a7efa0cd579ea2883460f0a104d8176">cds_hash_func</a> hash_func)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the table.  <a href="#gae87e816542d61f78e7dda9915bbe1537"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga50bbaab5a78f8b96c28be042d411a726">cds_hash_table_delete</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the table.  <a href="#ga50bbaab5a78f8b96c28be042d411a726"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gadd3dca7851c900dd6cbab4d6a5817179">cds_hash_table_clear</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the table.  <a href="#gadd3dca7851c900dd6cbab4d6a5817179"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1d08ec64ea59d89a74634511bd0b77f9">cds_hash_table_delete_all</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the table, the keys, and the values.  <a href="#ga1d08ec64ea59d89a74634511bd0b77f9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga204cc4d82173b55c9778fb1f992e2b49">cds_hash_table_clear</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the table.  <a href="#ga204cc4d82173b55c9778fb1f992e2b49"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gaf9a2418f39639a56a2f4292a54279aa0">cds_hash_table_delete_all</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the table, the keys, and the values.  <a href="#gaf9a2418f39639a56a2f4292a54279aa0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gadff9705713a870051fd69b9ea6f9f56c">cds_hash_table_count</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of elements in the table.  <a href="#gadff9705713a870051fd69b9ea6f9f56c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gaf6d0b678af8a4a449e68d2ecc1363ac4">cds_hash_table_size</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table)</td></tr>
@@ -111,15 +113,22 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the key comparison function used by the table.  <a href="#ga47825a6f55931dc485e627baef365804"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb">cds_cmp_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga7640788f153ec3a899fbe276a5cb6168">cds_hash_table_value_cmp_func</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the value comparison function used by the table.  <a href="#ga7640788f153ec3a899fbe276a5cb6168"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1cbf7ff5fb67549498c1c6e5274b6e00">cds_hash_table_load_factor</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the load factor of the table (num total elements / table array size)  <a href="#ga1cbf7ff5fb67549498c1c6e5274b6e00"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga6e03c01cc6919764a96e301226060966">cds_hash_table_get</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, const void *key, void **value)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the data given the key and puts it into value.  <a href="#ga6e03c01cc6919764a96e301226060966"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga600682f1245971cfbd525ff60d453a86">cds_hash_table_set</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, const void *key, const void *value)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the value of the hash table at the given key.  <a href="#ga600682f1245971cfbd525ff60d453a86"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gacf58b81cecb7b84d128b0766b4fae97e">cds_hash_table_add</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, const void *key, const void *data)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gab30189b97743244b6afd29cd8dec532b">cds_hash_table_remove</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, const void *key)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga070a005bb8a69e4dd294643a60b30c61">cds_hash_table_find</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="structcds__hash__node.html">cds_hash_node</a> **node)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1444e0dff2e9a8ed4abd4868e5838a1c">cds_hash_table_iterate</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga4422d2333debc5a9f666df89bf3e7f0b">cds_hash_table_iterate_nodes</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gac170e09c9007b1f73f782394bb122fba">cds_hash_table_add</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, const void *key, const void *value)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given key/value pair to the table.  <a href="#gac170e09c9007b1f73f782394bb122fba"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gadab8546aafc62283a3b3857f5708819f">cds_hash_table_remove</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, const void *key, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the entry with the given key.  <a href="#gadab8546aafc62283a3b3857f5708819f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gac33b30e9ce3f390e51beda18229469d8">cds_hash_table_iterate_keys</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates through every key in the collection.  <a href="#gac33b30e9ce3f390e51beda18229469d8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga93870160a4215f623807d303f4cd152f">cds_hash_table_iterate_values</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates through every value in the collection.  <a href="#ga93870160a4215f623807d303f4cd152f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga8a9f402a3002351f51ab6094286f3e1d">cds_hash_table_iterate</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="group___c_d_s.html#ga1b434a208f93c6427a74d07afe7684c1">cds_visit_pair_func</a> visit_pair_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates through every key/value pair in the collection.  <a href="#ga8a9f402a3002351f51ab6094286f3e1d"></a><br/></td></tr>
 </table>
 <hr/><h2>Typedef Documentation</h2>
 <a class="anchor" id="ga3c064d72923fa4429e31576aa0eea283"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node" ref="ga3c064d72923fa4429e31576aa0eea283" args="" -->
@@ -149,7 +158,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ga20396f4206b697b4476889b041e9e892"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node_create" ref="ga20396f4206b697b4476889b041e9e892" args="(cds_hash_node **hashnode, const void *key, const void *data)" -->
+<a class="anchor" id="ga1485cdd8bdeb32963d42e4ba773f7d34"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node_create" ref="ga1485cdd8bdeb32963d42e4ba773f7d34" args="(cds_hash_node **hashnode, const void *key, const void *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -169,7 +178,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -184,7 +193,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga9d9af1befb7cf9cf3a25850ae19d066f"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node_delete" ref="ga9d9af1befb7cf9cf3a25850ae19d066f" args="(cds_hash_node **hashnode)" -->
+<a class="anchor" id="ga40beb360272cd141efc676cee8edaed9"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node_delete" ref="ga40beb360272cd141efc676cee8edaed9" args="(cds_hash_node **hashnode, cds_hash_node_deletion_behavoir db)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -192,14 +201,24 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_node_delete </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcds__hash__node.html">cds_hash_node</a> **&#160;</td>
-          <td class="paramname"><em>hashnode</em></td><td>)</td>
+          <td class="paramname"><em>hashnode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a>&#160;</td>
+          <td class="paramname"><em>db</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Deletes the hashnode. </p>
+<p>Deletes the hashnode and key, value, neither, or both depending on given deletion behavoir. </p>
 
 </div>
 </div>
@@ -218,11 +237,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Deletes the hashnode. </p>
+<p>Deletes the hashnode, its key, and its value. </p>
 
 </div>
 </div>
-<a class="anchor" id="gacf58b81cecb7b84d128b0766b4fae97e"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_add" ref="gacf58b81cecb7b84d128b0766b4fae97e" args="(cds_hash_table *table, const void *key, const void *data)" -->
+<a class="anchor" id="gac170e09c9007b1f73f782394bb122fba"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_add" ref="gac170e09c9007b1f73f782394bb122fba" args="(cds_hash_table *table, const void *key, const void *value)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -242,7 +261,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -253,9 +272,11 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Adds the given key/value pair to the table. </p>
+
 </div>
 </div>
-<a class="anchor" id="gadd3dca7851c900dd6cbab4d6a5817179"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_clear" ref="gadd3dca7851c900dd6cbab4d6a5817179" args="(cds_hash_table *table)" -->
+<a class="anchor" id="ga204cc4d82173b55c9778fb1f992e2b49"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_clear" ref="ga204cc4d82173b55c9778fb1f992e2b49" args="(cds_hash_table *table, cds_hash_node_deletion_behavoir db)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -263,8 +284,18 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_clear </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
-          <td class="paramname"><em>table</em></td><td>)</td>
+          <td class="paramname"><em>table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a>&#160;</td>
+          <td class="paramname"><em>db</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -359,7 +390,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga1d08ec64ea59d89a74634511bd0b77f9"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_delete_all" ref="ga1d08ec64ea59d89a74634511bd0b77f9" args="(cds_hash_table **table)" -->
+<a class="anchor" id="gaf9a2418f39639a56a2f4292a54279aa0"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_delete_all" ref="gaf9a2418f39639a56a2f4292a54279aa0" args="(cds_hash_table **table, cds_hash_node_deletion_behavoir db)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -367,32 +398,13 @@ Functions</h2></td></tr>
           <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_delete_all </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcds__hash__table.html">cds_hash_table</a> **&#160;</td>
-          <td class="paramname"><em>table</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Deletes the table, the keys, and the values. </p>
-
-</div>
-</div>
-<a class="anchor" id="ga070a005bb8a69e4dd294643a60b30c61"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_find" ref="ga070a005bb8a69e4dd294643a60b30c61" args="(const cds_hash_table *table, cds_hash_node **node)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_find </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
           <td class="paramname"><em>table</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structcds__hash__node.html">cds_hash_node</a> **&#160;</td>
-          <td class="paramname"><em>node</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a>&#160;</td>
+          <td class="paramname"><em>db</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -402,6 +414,8 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Deletes the table, the keys, and the values. </p>
 
 </div>
 </div>
@@ -437,15 +451,45 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Gets the data given the key and puts it into value. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>pass in size to the hash function? </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ga1444e0dff2e9a8ed4abd4868e5838a1c"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_iterate" ref="ga1444e0dff2e9a8ed4abd4868e5838a1c" args="(const cds_hash_table *table, cds_visit_func visit_func)" -->
+<a class="anchor" id="ga8a9f402a3002351f51ab6094286f3e1d"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_iterate" ref="ga8a9f402a3002351f51ab6094286f3e1d" args="(const cds_hash_table *table, cds_visit_pair_func visit_pair_func)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_iterate </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
+          <td class="paramname"><em>table</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___c_d_s.html#ga1b434a208f93c6427a74d07afe7684c1">cds_visit_pair_func</a>&#160;</td>
+          <td class="paramname"><em>visit_pair_func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Iterates through every key/value pair in the collection. </p>
+
+</div>
+</div>
+<a class="anchor" id="gac33b30e9ce3f390e51beda18229469d8"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_iterate_keys" ref="gac33b30e9ce3f390e51beda18229469d8" args="(const cds_hash_table *table, cds_visit_func visit_func)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_iterate_keys </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
           <td class="paramname"><em>table</em>, </td>
@@ -465,16 +509,18 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Iterates through every key in the collection. </p>
+
 </div>
 </div>
-<a class="anchor" id="ga4422d2333debc5a9f666df89bf3e7f0b"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_iterate_nodes" ref="ga4422d2333debc5a9f666df89bf3e7f0b" args="(cds_hash_table *table, cds_visit_func visit_func)" -->
+<a class="anchor" id="ga93870160a4215f623807d303f4cd152f"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_iterate_values" ref="ga93870160a4215f623807d303f4cd152f" args="(const cds_hash_table *table, cds_visit_func visit_func)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_iterate_nodes </td>
+          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_iterate_values </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
           <td class="paramname"><em>table</em>, </td>
         </tr>
         <tr>
@@ -491,6 +537,8 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Iterates through every value in the collection. </p>
 
 </div>
 </div>
@@ -513,7 +561,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gab30189b97743244b6afd29cd8dec532b"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_remove" ref="gab30189b97743244b6afd29cd8dec532b" args="(cds_hash_table *table, const void *key)" -->
+<a class="anchor" id="ga1cbf7ff5fb67549498c1c6e5274b6e00"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_load_factor" ref="ga1cbf7ff5fb67549498c1c6e5274b6e00" args="(const cds_hash_table *table)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float cds_hash_table_load_factor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
+          <td class="paramname"><em>table</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the load factor of the table (num total elements / table array size) </p>
+
+</div>
+</div>
+<a class="anchor" id="gadab8546aafc62283a3b3857f5708819f"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_remove" ref="gadab8546aafc62283a3b3857f5708819f" args="(cds_hash_table *table, const void *key, cds_hash_node_deletion_behavoir db)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -527,7 +594,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a>&#160;</td>
+          <td class="paramname"><em>db</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -537,6 +610,8 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Removes the entry with the given key. </p>
 
 </div>
 </div>
@@ -631,7 +706,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:16:25 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 21 2011 07:08:57 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

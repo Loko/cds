@@ -1,6 +1,6 @@
 #include "cds_slist.h"
 
-// 
+/* */
 cds_result cds_slist_create(cds_slist **list) {
 	*list = (cds_slist *) cds_alloc(sizeof(cds_slist));
 	if (*list) {
@@ -13,15 +13,17 @@ cds_result cds_slist_create(cds_slist **list) {
 	}
 }
 
-// 
+/* */
 cds_result cds_slist_delete(cds_slist **list) {
 	if (list && *list) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = (*list)->head;
 		while (node) {
 			tmp = node->next;
-			cds_slnode_delete(&node);
+			cr = cds_slnode_delete(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		cds_free(*list);
@@ -32,15 +34,17 @@ cds_result cds_slist_delete(cds_slist **list) {
 	}
 }
 
-// deletes the nodes but not the list or the data pointers referenced by the nodes
+/* deletes the nodes but not the list or the data pointers referenced by the nodes */
 cds_result cds_slist_clear(cds_slist *list) {
 	if (list) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = list->head;
 		while (node) {
 			tmp = node->next;
-			cds_slnode_delete(&node);
+			cr = cds_slnode_delete(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		list->head = NULL;
@@ -52,15 +56,17 @@ cds_result cds_slist_clear(cds_slist *list) {
 	}
 }
 
-// deletes everything, the nodes, the data pointers in the nodes, and the list itself
+/* deletes everything, the nodes, the data pointers in the nodes, and the list itself */
 cds_result cds_slist_delete_all(cds_slist **list) {
 	if (list && *list) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = (*list)->head;
 		while (node) {
 			tmp = node->next;
-			cds_slnode_delete_all(&node);
+			cr = cds_slnode_delete_all(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		cds_free(*list);
@@ -71,7 +77,7 @@ cds_result cds_slist_delete_all(cds_slist **list) {
 	}
 }
 
-//
+/* */
 unsigned int cds_slist_count(const cds_slist *list) {
 	unsigned int count = 0;
 	if (list) {
@@ -80,7 +86,7 @@ unsigned int cds_slist_count(const cds_slist *list) {
 	return count;
 }
 
-//
+/* */
 cds_slnode* cds_slist_head(const cds_slist *list) {
 	cds_slnode *head = NULL;
 	if (list) {
@@ -89,7 +95,7 @@ cds_slnode* cds_slist_head(const cds_slist *list) {
 	return head;
 }
 
-// 
+/* */ 
 cds_slnode* cds_slist_tail(const cds_slist *list) {
 	cds_slnode *tail = NULL;
 	if (list) {
@@ -98,7 +104,7 @@ cds_slnode* cds_slist_tail(const cds_slist *list) {
 	return tail;
 }
 
-//
+/* */
 cds_result cds_slist_add_first(cds_slist *list, const void *data) {
 	if (!list)
 		return CDS_NULL_ARGUMENT;
@@ -117,7 +123,7 @@ cds_result cds_slist_add_first(cds_slist *list, const void *data) {
 	return r;
 }
 
-//
+/* */
 cds_result cds_slist_add_last(cds_slist *list, const void *data) {
 	if (!list)
 		return CDS_NULL_ARGUMENT;
@@ -136,7 +142,7 @@ cds_result cds_slist_add_last(cds_slist *list, const void *data) {
 	return r;
 }
 
-// 
+/* */ 
 cds_result cds_slist_insert_before(cds_slist *list, cds_slnode *node, const void *data) {
 	if (!list || !node)
 		return CDS_NULL_ARGUMENT;
@@ -163,7 +169,7 @@ cds_result cds_slist_insert_before(cds_slist *list, cds_slnode *node, const void
 	return CDS_OK;
 }
 
-// 
+/* */ 
 cds_result cds_slist_insert_before_node(cds_slist *list, cds_slnode *node, void *data, cds_slnode **cnode) {
 	if (!list || !node)
 		return CDS_NULL_ARGUMENT;
@@ -190,10 +196,12 @@ cds_result cds_slist_insert_before_node(cds_slist *list, cds_slnode *node, void 
 		} else {
 			return r;
 		}
+	} else {
+		return CDS_NOT_FOUND;
 	}
 }
 
-// 
+/* */ 
 cds_result cds_slist_insert_after(cds_slist *list, cds_slnode *node, const void *data) {
 	if (!list || !node)
 		return CDS_NULL_ARGUMENT;
@@ -213,7 +221,7 @@ cds_result cds_slist_insert_after(cds_slist *list, cds_slnode *node, const void 
 	return CDS_OK;
 }
 
-//
+/* */
 cds_result cds_slist_insert_after_node(cds_slist *list, cds_slnode *node, const void *data, cds_slnode **cnode) {
 	if (!list || !node) {
 		return CDS_NULL_ARGUMENT;
@@ -236,7 +244,7 @@ cds_result cds_slist_insert_after_node(cds_slist *list, cds_slnode *node, const 
 	return CDS_OK;
 }
 
-// 
+/* */ 
 cds_result cds_slist_remove_head(cds_slist *list) {
 	if (!list)
 		return CDS_NULL_ARGUMENT;
@@ -257,7 +265,7 @@ cds_result cds_slist_remove_head(cds_slist *list) {
 	}
 }
 
-// 
+/* */ 
 cds_result cds_slist_remove_tail(cds_slist *list) {
 	if (!list)
 		return CDS_NULL_ARGUMENT;
@@ -287,7 +295,7 @@ cds_result cds_slist_remove_tail(cds_slist *list) {
 	}
 }
 
-//
+/* */
 cds_result cds_slist_remove_head_data(cds_slist *list, void **data) {
 	if (!list || !data)
 		return CDS_NULL_ARGUMENT;
@@ -309,7 +317,7 @@ cds_result cds_slist_remove_head_data(cds_slist *list, void **data) {
 	}
 }
 
-//
+/* */
 cds_result cds_slist_remove_tail_data(cds_slist *list, void **data) {
 	if (!list || !data)
 		return CDS_NULL_ARGUMENT;
@@ -340,7 +348,7 @@ cds_result cds_slist_remove_tail_data(cds_slist *list, void **data) {
 	}
 }
 
-//
+/* */
 cds_result cds_slist_remove(cds_slist *list, const void *data) {
 	if (!list) {
 		return CDS_NULL_ARGUMENT;
@@ -349,13 +357,13 @@ cds_result cds_slist_remove(cds_slist *list, const void *data) {
 	} else if (data == list->tail->data) {
 		return cds_slist_remove_tail(list);
 	} else if (list->count > 2) {
-		// already checked the head and tail
-		// start with the second entry
+		/* already checked the head and tail
+		 * start with the second entry */
 		cds_slnode *node = list->head;
 		CDS_ASSERT(node != NULL);
 		while (node->next) {
 			if (node->next->data == data) {
-				// do the unlinking here
+				/* do the unlinking here */
 				cds_slnode *rnode = node->next;
 				node->next = node->next->next;
 				return cds_slnode_delete(&rnode);
@@ -366,7 +374,7 @@ cds_result cds_slist_remove(cds_slist *list, const void *data) {
 	return CDS_NOT_FOUND;
 }
 
-//
+/* */
 cds_result cds_slist_remove_node(cds_slist *list, cds_slnode *node) {
 	if (!list || !node) {
 		return CDS_NULL_ARGUMENT;
@@ -375,13 +383,13 @@ cds_result cds_slist_remove_node(cds_slist *list, cds_slnode *node) {
 	} else if (node == list->tail) {
 		return cds_slist_remove_tail(list);
 	} else if (list->count > 2) {
-		// already checked the head and tail
-		// start with the second entry
+		/* already checked the head and tail
+		   start with the second entry */
 		cds_slnode *node = list->head;
 		CDS_ASSERT(node != NULL);
 		while (node->next) {
 			if (node->next == node) {
-				// do the unlinking here
+				/* do the unlinking here */
 				cds_slnode *rnode = node->next;
 				node->next = node->next->next;
 				list->count--;
@@ -393,7 +401,7 @@ cds_result cds_slist_remove_node(cds_slist *list, cds_slnode *node) {
 	return CDS_NOT_FOUND;
 }
 
-// 
+/* */ 
 cds_result cds_slist_remove_cmp(cds_slist *list, const void *data, const cds_cmp_func cmp_func) {
 	if (!list || !cmp_func) {
 		return CDS_NULL_ARGUMENT;
@@ -402,12 +410,12 @@ cds_result cds_slist_remove_cmp(cds_slist *list, const void *data, const cds_cmp
 	} else if ((*cmp_func)(data, list->tail->data) == 0) {
 		return cds_slist_remove_tail(list);
 	} else if (list->count > 2) {
-		// already checked the head and tail
-		// start with the second entry
+		/* already checked the head and tail
+		   start with the second entry */
 		cds_slnode *node = list->head;
 		while (node) {
 			if ((*cmp_func)(node->next->data, data) == 0) {
-				// do the unlinking here
+				/* do the unlinking here */
 				cds_slnode *rnode = node->next;
 				node->next = node->next->next;
 				list->count--;
@@ -419,7 +427,7 @@ cds_result cds_slist_remove_cmp(cds_slist *list, const void *data, const cds_cmp
 	return CDS_NOT_FOUND;
 }
 
-//
+/* */
 cds_result cds_slist_find(const cds_slist *list, const void *data, cds_slnode **node) {
 	if (!list || !node) {
 		return CDS_NULL_ARGUMENT;
@@ -430,8 +438,8 @@ cds_result cds_slist_find(const cds_slist *list, const void *data, cds_slnode **
 		*node = list->tail;
 		return CDS_OK;
 	} else if (list->count > 2) {
-		// already checked the head and tail
-		// start with the second entry
+		/* already checked the head and tail
+		   start with the second entry */
 		cds_slnode *tmp = list->head->next;
 		while (tmp) {
 			if (tmp->data == data) {
@@ -444,7 +452,7 @@ cds_result cds_slist_find(const cds_slist *list, const void *data, cds_slnode **
 	return CDS_NOT_FOUND;
 }
 
-//
+/* */
 cds_result cds_slist_find_cmp(const cds_slist *list, const void *data, cds_slnode **node, const cds_cmp_func cmp_func) {
 	if (!list || !node || !cmp_func) {
 		return CDS_NULL_ARGUMENT;
@@ -455,8 +463,8 @@ cds_result cds_slist_find_cmp(const cds_slist *list, const void *data, cds_slnod
 		*node = list->tail;
 		return CDS_OK;
 	} else if (list->count > 2) {
-		// already checked the head and tail
-		// start with the second entry
+		/* already checked the head and tail
+		   start with the second entry */
 		cds_slnode *tmp = list->head->next;
 		while (tmp) {
 			if ((*cmp_func)(tmp->data, data) == 0) {
@@ -486,7 +494,7 @@ cds_result cds_slist_reverse(cds_slist *list) {
 	if (list) {
 		cds_slnode *newHead = NULL;
 		cds_slnode *head = list->head;
-		//cds_slnode *newTail = list->head;
+		/* cds_slnode *newTail = list->head; */
 		while (head) {
 			cds_slnode *next = head->next;
 			head->next = newHead;
@@ -494,7 +502,7 @@ cds_result cds_slist_reverse(cds_slist *list) {
 			head = next;
 		}
 		list->head = newHead;
-		//list->tail = newTail;
+		/* list->tail = newTail; */
 		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;

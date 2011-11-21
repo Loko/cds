@@ -1,9 +1,6 @@
 #include "cds_binary_tree.h"
 
-// NOTE: WHEN DELETING/CLEARING, DO IT WITH POST ORDER TRAVERSAL
-// TODO: HANDLE MULTIPLE VALUES, FOR NOW DON'T ALLOW THEM
-
-// 
+/* */ 
 cds_result cds_binary_tree_create(cds_binary_tree **tree, cds_cmp_func cmp_func) {
 	if (tree && cmp_func) {
 		*tree = (cds_binary_tree *) cds_alloc(sizeof(cds_binary_tree));
@@ -20,31 +17,32 @@ cds_result cds_binary_tree_create(cds_binary_tree **tree, cds_cmp_func cmp_func)
 	}
 }
 
-//
+/* */
 cds_result cds_binary_tree_clear_recursive(cds_binary_node *root) {
 	if (root) {
-		cds_result r;
+		cds_result cr;
 		cds_binary_node *left = root->left;
 		cds_binary_node *right = root->right;
-		r = cds_binary_node_delete(&root);
-		if (r != CDS_OK)
-			return r;
+		cr = cds_binary_node_delete(&root);
+		if (cr != CDS_OK)
+			return cr;
 		
 		if (left) {
-			r = cds_binary_tree_clear_recursive(left);
-			if (r != CDS_OK)
-				return r;
+			cr = cds_binary_tree_clear_recursive(left);
+			if (cr != CDS_OK)
+				return cr;
 			if (right) {
-				r = cds_binary_tree_clear_recursive(right);
-				if (r != CDS_OK)
-					return r;
+				cr = cds_binary_tree_clear_recursive(right);
+				if (cr != CDS_OK)
+					return cr;
 			}
 		}
-		return CDS_OK;
+		/*return CDS_OK;*/
 	}
+	return CDS_OK;
 }
 
-//
+/* */
 cds_result cds_binary_tree_clear_all_recursive(cds_binary_node *root) {
 	if (root) {
 		cds_result r;
@@ -68,7 +66,7 @@ cds_result cds_binary_tree_clear_all_recursive(cds_binary_node *root) {
 	return CDS_OK;
 }
 
-// 
+/* */
 cds_result cds_binary_tree_delete(cds_binary_tree **tree) {
 	if (tree && *tree) {
 		cds_result r = cds_binary_tree_clear_recursive((*tree)->root);
@@ -82,8 +80,8 @@ cds_result cds_binary_tree_delete(cds_binary_tree **tree) {
 	}
 }
 
+/* */
 cds_result cds_binary_tree_clear(cds_binary_tree *tree) {
-	// restore the count if the operation fails?
 	if (tree) {
 		return cds_binary_tree_clear_recursive(tree->root);
 	} else {
@@ -104,6 +102,7 @@ cds_result cds_binary_tree_delete_all(cds_binary_tree **tree) {
 	}
 }
 
+/* */
 cds_binary_node * cds_binary_tree_root(const cds_binary_tree *tree) {
 	cds_binary_node *root = NULL;
 	if (tree) {
@@ -112,6 +111,7 @@ cds_binary_node * cds_binary_tree_root(const cds_binary_tree *tree) {
 	return root;
 }
 
+/* */
 unsigned int cds_binary_tree_count(const cds_binary_tree *tree) {
 	unsigned int count = 0;
 	if (tree) {
@@ -120,6 +120,7 @@ unsigned int cds_binary_tree_count(const cds_binary_tree *tree) {
 	return count;
 }
 
+/* */
 cds_cmp_func cds_binary_tree_cmp_func(const cds_binary_tree *tree) {
 	cds_cmp_func cmpFunc = NULL;
 	if (tree) {
@@ -128,6 +129,7 @@ cds_cmp_func cds_binary_tree_cmp_func(const cds_binary_tree *tree) {
 	return cmpFunc;
 }
 
+/* pointer of max element */
 void * cds_binary_tree_max(const cds_binary_tree *tree) {
 	void *maxData = NULL;
 	if (tree) {
@@ -142,7 +144,7 @@ void * cds_binary_tree_max(const cds_binary_tree *tree) {
 	return maxData;
 }
 
-// if the tree is null, but data pointer isn't, it would be good to set it to null
+/* pointer of min element */
 void * cds_binary_tree_min(const cds_binary_tree *tree) {
 	void *minData = NULL;
 	if (tree) {
@@ -157,16 +159,17 @@ void * cds_binary_tree_min(const cds_binary_tree *tree) {
 	return minData;
 }
 
-unsigned int cds_binary_tree_depth_recursive(cds_binary_node *root) {
+static unsigned int cds_binary_tree_depth_recursive(cds_binary_node *root) {
 	if (root) {
 		unsigned int leftTreeHeight = cds_binary_tree_depth_recursive(root->left);
 		unsigned int rightTreeHeight = cds_binary_tree_depth_recursive(root->right);
-		return (leftTreeHeight > leftTreeHeight) ? leftTreeHeight + 1 : leftTreeHeight + 1;
+		return (leftTreeHeight > rightTreeHeight) ? leftTreeHeight + 1 : rightTreeHeight + 1;
 	} else {
 		return 0;
 	}
 }
 
+/* height */
 unsigned int cds_binary_tree_height(const cds_binary_tree *tree) {
 	unsigned int height = 0;
 	if (tree && tree->count) {
@@ -177,8 +180,8 @@ unsigned int cds_binary_tree_height(const cds_binary_tree *tree) {
 	return height;
 }
 
-// pre order
-void cds_binary_tree_preorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {
+/* pre order */
+static void cds_binary_tree_preorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {
 	if (root) {
 		(*visit_func)(root->data);
 		cds_binary_tree_preorder_recursive(root->left, visit_func);
@@ -188,7 +191,7 @@ void cds_binary_tree_preorder_recursive(cds_binary_node *root, cds_visit_func vi
 
 cds_result cds_binary_tree_preorder_iterative(cds_binary_node *root, unsigned int count, cds_visit_func visit_func) {
 	if (!root)
-		return;
+		return CDS_NULL_ARGUMENT;
 	cds_binary_node **nodeStack = (cds_binary_node **) cds_alloc(count * sizeof(cds_binary_node *));
 	if (nodeStack) {
 		unsigned int stackTop = 0;
@@ -204,7 +207,7 @@ cds_result cds_binary_tree_preorder_iterative(cds_binary_node *root, unsigned in
 			}
 			
 			if (!stackTop)
-				return;
+				return CDS_OK;
 			
 			cur = nodeStack[stackTop];
 			--stackTop;
@@ -213,7 +216,7 @@ cds_result cds_binary_tree_preorder_iterative(cds_binary_node *root, unsigned in
 				--stackTop;
 				nodeStack[stackTop] = cur->right;
 			} else {
-				// visit
+				/* visit */
 				cur = NULL;
 			}
 		}
@@ -224,8 +227,8 @@ cds_result cds_binary_tree_preorder_iterative(cds_binary_node *root, unsigned in
 	}
 }
 
-// in order
-void cds_binary_tree_inorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {
+/* in order */
+static void cds_binary_tree_inorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {
 	if (root) {
 		cds_binary_tree_inorder_recursive(root->left, visit_func);
 		(*visit_func)(root->data);
@@ -233,8 +236,8 @@ void cds_binary_tree_inorder_recursive(cds_binary_node *root, cds_visit_func vis
 	}
 }
 
-// post order
-void cds_binary_tree_postorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {
+/* post order */
+static void cds_binary_tree_postorder_recursive(cds_binary_node *root, cds_visit_func visit_func) {
 	if (root) {
 		cds_binary_tree_postorder_recursive(root->left, visit_func);
 		cds_binary_tree_postorder_recursive(root->right, visit_func);
@@ -242,43 +245,45 @@ void cds_binary_tree_postorder_recursive(cds_binary_node *root, cds_visit_func v
 	}
 }
 
+/* */
 cds_result cds_binary_tree_breadthorder_traversal(const cds_binary_tree *tree, cds_visit_func visit_func) {
-	// not illegal to try to traverse an empty binary tree
-	// but need to check this case
-	//if (!tree->count)
-	//	return CDS_OK;
-	
-	// should be maxQueueSize / 2
-	// but since we are moving up the front I think this is correct
+	/*
+	 * not illegal to try to traverse an empty binary tree
+	 * but need to check this case
+	 * if (!tree->count)
+	 * return CDS_OK;
+	 * should be maxQueueSize / 2
+	 * but since we are moving up the front I think this is correct
+	 */
 	unsigned int maxQueueSize = tree->count;
 	cds_binary_node **nodeQueue = (cds_binary_node **) cds_alloc(sizeof(cds_binary_node *) * maxQueueSize);
 	unsigned int queueBack = 0;
 	unsigned int queueFront = 0;
 
 	if (*nodeQueue) {
-		// probably need to nullify all those pointers??
+		/* probably need to nullify all those pointers?? */
 		unsigned int i;
 		for (i = 0; i < maxQueueSize; ++i) {
 			printf("Address of pointer: %d\n", nodeQueue[i]);
 			nodeQueue[i] = NULL;
 		}
 		
-		// enqueue the root first
+		/* enqueue the root first */
 		nodeQueue[queueBack] = tree->root;
 		++queueBack;
 		
 		while (queueBack != queueFront) {
-			// dequeue and visit the front
+			/* dequeue and visit the front */
 			cds_binary_node *frontNode = nodeQueue[queueFront]; 
 			(*visit_func)(frontNode->data);
 			++queueFront;
 			
-			// queue left
+			/* queue left */
 			if (frontNode->left) {
 				nodeQueue[queueBack] = frontNode->left;
 				++queueBack;
 			}
-			// queue right
+			/* queue right */
 			if (frontNode->right) {
 				nodeQueue[queueBack] = frontNode->right;
 				++queueBack;
@@ -292,7 +297,7 @@ cds_result cds_binary_tree_breadthorder_traversal(const cds_binary_tree *tree, c
 	}
 }
 
-
+/* */
 cds_result cds_binary_tree_insert(cds_binary_tree *tree, const void *data) {
 	if (tree && data) {
 		cds_binary_node *cur = tree->root;
@@ -330,52 +335,7 @@ cds_result cds_binary_tree_insert(cds_binary_tree *tree, const void *data) {
 	}
 }
 
-/*
-cds_result cds_binary_tree_insert_node(cds_binary_tree *tree, const void *data, cds_binary_node **node, cds_binary_node **parent) {
-	if (tree && data) {
-		cds_binary_node *cur = tree->root;
-		cds_binary_node *par = cur;
-		while (cur) {
-			int cmpResult = (*(tree->cmp_func))(cur->data, data);
-			if (cmpResult == 0) {
-				// this is a repeat value, right now I think I'll put off handling this
-				*node = cur;
-				*parent = par;
-				return CDS_OK;
-			} else if (cmpResult > 0) {
-				par = cur;
-				cur = par->left;
-			} else {
-				par = cur;
-				cur = par->right;
-			}
-		}
-		
-		cds_binary_node *nnode;
-		cds_result cr = cds_binary_node_create(&nnode, data);
-		if (cr == CDS_OK) {
-			if (par == NULL) {
-				tree->root = nnode;
-			} else {
-				int parCmpResult = (*(tree->cmp_func))(par->data, data);
-				if (parCmpResult > 0 )
-					par->left = nnode;
-				else
-					par->right = nnode;
-			}
-			*node = nnode;
-			*parent = par;
-		} else {
-			*node = NULL;
-			*parent = NULL;
-		}
-		return cr;
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-}
-*/
-
+/* */
 cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data) {
 	if (tree && data) {
 		if (tree->root) {
@@ -396,9 +356,9 @@ cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data) {
 				else
 					return CDS_NOT_FOUND;
 			}
-			// handle cases here
+			/* handle cases here */
 			if (cur->right == NULL) {
-				// case 1
+				/* case 1 */
 				if (par == NULL) {
 					tree->root = cur->left;
 				} else {
@@ -409,7 +369,7 @@ cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data) {
 						par->right = cur->left;
 				}
 			} else if (cur->right->left == NULL) {
-				// case 2
+				/* case 2 */
 				cur->right->left = cur->left;
 				if (par == NULL) {
 					tree->root = cur->right;
@@ -421,7 +381,7 @@ cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data) {
 						par->right = cur->right;
 				}
 			} else {
-				// case 3
+				/* case 3 */
 				cds_binary_node *leftMost = cur->right->left;
 				cds_binary_node *leftMostPar = cur->right;
 				while (leftMost->left) {
@@ -452,19 +412,7 @@ cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data) {
 	}
 }
 
-
-/*
-cds_result cds_binary_tree_remove_node(cds_binary_tree *tree, cds_binary_node *node, cds_binary_node *parent) {
-	if (tree) {
-		// tricky because the parent node could be null
-		// be careful to handle every case here
-		return CDS_OK;
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-}
-*/
-
+/* */
 cds_result cds_binary_tree_find(const cds_binary_tree *tree, const void *data, cds_binary_node **node) {
 	if (tree && data && node) {
 		cds_binary_node *cur = tree->root;
@@ -483,21 +431,21 @@ cds_result cds_binary_tree_find(const cds_binary_tree *tree, const void *data, c
 	}
 }
 
-// functions to get the depth of the tree
-// ptr to the min and max values functions
+/* functions that calculate path height and not just depth of a subtree? */
 
-//
+/* */
 cds_result cds_binary_tree_iterate(const cds_binary_tree *tree, cds_binary_tree_traversal_type traversal_type, cds_visit_func visit_func) {
-	CDS_ASSERT_MSG(traversal_type == CDS_PRE_ORDER || traversal_type == CDS_IN_ORDER || traversal_type == CDS_POST_ORDER, "CDS Binary Tree Traversal Type Not Found!");
+	/*CDS_ASSERT_MSG(traversal_type == CDS_PRE_ORDER || traversal_type == CDS_IN_ORDER || traversal_type == CDS_POST_ORDER, "CDS Binary Tree Traversal Type Not Found!"); */
 	if (tree && visit_func) {
-			if (traversal_type == CDS_PRE_ORDER)
-				cds_binary_tree_preorder_recursive(tree->root, visit_func);
-			else if (traversal_type == CDS_IN_ORDER)
-				cds_binary_tree_inorder_recursive(tree->root, visit_func);
-			else if (traversal_type == CDS_POST_ORDER)
-				cds_binary_tree_postorder_recursive(tree->root, visit_func);
-			else
-				cds_binary_tree_breadthorder_traversal(tree, visit_func);
+		if (traversal_type == CDS_PRE_ORDER)
+			cds_binary_tree_preorder_recursive(tree->root, visit_func);
+		else if (traversal_type == CDS_IN_ORDER)
+			cds_binary_tree_inorder_recursive(tree->root, visit_func);
+		else if (traversal_type == CDS_POST_ORDER)
+			cds_binary_tree_postorder_recursive(tree->root, visit_func);
+		else
+			cds_binary_tree_breadthorder_traversal(tree, visit_func);
+		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}

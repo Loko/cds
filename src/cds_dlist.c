@@ -1,7 +1,5 @@
 #include "cds_dlist.h"
 
-// creates the list with init values
-// returns CDS_BAD_ALLOC if allocation failed
 cds_result cds_dlist_create(cds_dlist **list) {
 	*list = (cds_dlist *) cds_alloc(sizeof(cds_dlist));
 	if (*list) {
@@ -14,9 +12,6 @@ cds_result cds_dlist_create(cds_dlist **list) {
 	}
 }
 
-// deletes the nodes and the list itself
-// DOES NOT delete the data contained in the list itself
-// returns CDS_NULL_ARGUMENT if the list was NULL
 cds_result cds_dlist_delete(cds_dlist **list) {
 	if (list && *list) {
 		cds_result r;

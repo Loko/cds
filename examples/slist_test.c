@@ -88,10 +88,12 @@ int main(void) {
 	
 	printList(list);
 	
-	//cds_dlnode *node;
-	//pickNode(list, 3, &node);
-	//cr = cds_dlist_insert_before(list, node, values + 9);
-	//cds_error_check(cr);
+	/*
+	cds_dlnode *node;
+	pickNode(list, 3, &node);
+	cr = cds_dlist_insert_before(list, node, values + 9);
+	cds_error_check(cr);
+	*/
 	
 	void *headData;
 	cr = cds_slist_remove_head_data(list, &headData);
@@ -127,18 +129,12 @@ int main(void) {
 	printf("Reversing the list...\n");
 	cds_slist_reverse(list);
 	printLinkedList(list);
-    //printList(list);
-	//printf("Tail->Next: %u", list->tail->next);
-	
-	
-    //printLinkedList();
     
 	cr = cds_slist_delete(&list);
 	if (cds_error_check(cr)) return 1;
 	
 	/*
 	printf("\nAttempt to print values:\n");
-	//int *pi;
 	for (i = 0; i < n; ++i) {
 		printf("%d\n", values[i]);
 	}

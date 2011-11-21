@@ -79,6 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">include/cds_hash_node.h File Reference</div>  </div>
@@ -87,28 +88,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>A Collection of Functions for Hash Nodes.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &quot;<a class="el" href="cds__core_8h_source.html">cds_core.h</a>&quot;</code><br/>
+</div>
 <p><a href="cds__hash__node_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcds__hash__node.html">cds_hash_node</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Struture for a key/value pair based hash node usable in a.  <a href="structcds__hash__node.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef enum <br class="typebreak"/>
+<a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__hash__node_8h.html#a5c058fd4f1c479da9f16a46e837db2ca">cds_hash_node_deletion_behavoir</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcds__hash__node.html">cds_hash_node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga3c064d72923fa4429e31576aa0eea283">cds_hash_node</a></td></tr>
+<tr><td colspan="2"><h2><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> { <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a7bfe327774bbe4d4dabb5c13351f859b">CDS_DELETE_NODE_ONLY</a> =  0, 
+<a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a26910bb265e0228f9cd129b69c52a66a">CDS_DELETE_KEY</a> =  1, 
+<a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09ad1bb27398f59570708d05e8ca2191753">CDS_DELETE_VALUE</a> =  2, 
+<a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a934420cde2c3d70ca5ec2802f3901a89">CDS_DELETE_ALL</a> =  3
+ }</td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga20396f4206b697b4476889b041e9e892">cds_hash_node_create</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode, const void *key, const void *data)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a hashnode with the key/value pair.  <a href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga20396f4206b697b4476889b041e9e892"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga9d9af1befb7cf9cf3a25850ae19d066f">cds_hash_node_delete</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode.  <a href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga9d9af1befb7cf9cf3a25850ae19d066f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1485cdd8bdeb32963d42e4ba773f7d34">cds_hash_node_create</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode, const void *key, const void *value)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a hashnode with the key/value pair.  <a href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1485cdd8bdeb32963d42e4ba773f7d34"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga40beb360272cd141efc676cee8edaed9">cds_hash_node_delete</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode and key, value, neither, or both depending on given deletion behavoir.  <a href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga40beb360272cd141efc676cee8edaed9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga2b8fdf84e7b304761f9171ac56312593">cds_hash_node_delete_all</a> (<a class="el" href="structcds__hash__node.html">cds_hash_node</a> **hashnode)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode.  <a href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga2b8fdf84e7b304761f9171ac56312593"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode, its key, and its value.  <a href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga2b8fdf84e7b304761f9171ac56312593"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A Collection of Functions for Hash Nodes. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Jeff Lansing </dd></dl>
-</div></div>
+</div><hr/><h2>Typedef Documentation</h2>
+<a class="anchor" id="a5c058fd4f1c479da9f16a46e837db2ca"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node_deletion_behavoir" ref="a5c058fd4f1c479da9f16a46e837db2ca" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef enum <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<hr/><h2>Enumeration Type Documentation</h2>
+<a class="anchor" id="aff56c712ca0d593c71c21564b7873c09"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node_deletion_behavoir" ref="aff56c712ca0d593c71c21564b7873c09" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="aff56c712ca0d593c71c21564b7873c09a7bfe327774bbe4d4dabb5c13351f859b"></a><!-- doxytag: member="CDS_DELETE_NODE_ONLY" ref="aff56c712ca0d593c71c21564b7873c09a7bfe327774bbe4d4dabb5c13351f859b" args="" -->CDS_DELETE_NODE_ONLY</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aff56c712ca0d593c71c21564b7873c09a26910bb265e0228f9cd129b69c52a66a"></a><!-- doxytag: member="CDS_DELETE_KEY" ref="aff56c712ca0d593c71c21564b7873c09a26910bb265e0228f9cd129b69c52a66a" args="" -->CDS_DELETE_KEY</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aff56c712ca0d593c71c21564b7873c09ad1bb27398f59570708d05e8ca2191753"></a><!-- doxytag: member="CDS_DELETE_VALUE" ref="aff56c712ca0d593c71c21564b7873c09ad1bb27398f59570708d05e8ca2191753" args="" -->CDS_DELETE_VALUE</em>&nbsp;</td><td>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="aff56c712ca0d593c71c21564b7873c09a934420cde2c3d70ca5ec2802f3901a89"></a><!-- doxytag: member="CDS_DELETE_ALL" ref="aff56c712ca0d593c71c21564b7873c09a934420cde2c3d70ca5ec2802f3901a89" args="" -->CDS_DELETE_ALL</em>&nbsp;</td><td>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+</div>
+</div>
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -126,7 +178,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:16:22 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

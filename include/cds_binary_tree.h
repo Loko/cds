@@ -13,7 +13,9 @@
  * @addtogroup CDS_BINARY_TREE
  * @{
  */
+ 
 #include "cds_binary_node.h"
+#include "cds_stack.h" /* used for breadth first search */
 
 /**
  * @enum cds_binary_tree_traversal_type
@@ -38,6 +40,7 @@ typedef enum cds_binary_tree_traversal_type cds_binary_tree_traversal_type;
  * the compare func pointer in the tree structure itself.  
  * Justified since a binary tree really shouldn't change 
  * contained types at runtime.
+ * @todo Handle multiple values in the binary search tree
  */
 struct cds_binary_tree {
 	cds_binary_node *root;
@@ -55,9 +58,7 @@ typedef struct cds_binary_tree cds_binary_tree;
  */
 cds_result cds_binary_tree_create(cds_binary_tree **tree, cds_cmp_func cmp_func);
 
-/** 
- * Deletes the binary tree
- */
+/** Deletes the binary tree */
 cds_result cds_binary_tree_delete(cds_binary_tree **tree);
 
 /** Clears the binary tree, deleting the nodes, without deleting the data pointers themselves */
@@ -95,11 +96,9 @@ unsigned int cds_binary_tree_height(const cds_binary_tree *tree);
 
 /** Inserts the data pointer into a new node of the tree */
 cds_result cds_binary_tree_insert(cds_binary_tree *tree, const void *data);
-//cds_result cds_binary_tree_insert_node(cds_binary_tree *tree, const void *data, cds_binary_node **node, cds_binary_node **parent);
 
 /** Removes the node with the given data pointer value */
 cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data);
-//cds_result cds_binary_tree_remove_node(cds_binary_tree *tree, cds_binary_node *node, cds_binary_node *parent);
 
 /** Finds the node with the given pointer */
 cds_result cds_binary_tree_find(const cds_binary_tree *tree, const void *data, cds_binary_node **node);
@@ -107,7 +106,6 @@ cds_result cds_binary_tree_find(const cds_binary_tree *tree, const void *data, c
 /** Safely iterates over every element in the tree using the given @see cds_binary_tree_traversal_type */
 cds_result cds_binary_tree_iterate(const cds_binary_tree *tree, cds_binary_tree_traversal_type traversal_type, const cds_visit_func visit_func);
 
-/** 
- * @} 
- */
+/** @} */
+
 #endif

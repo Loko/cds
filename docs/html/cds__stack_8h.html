@@ -104,15 +104,15 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_t_a_c_k.html#ga1c09ebc314b5b6b58c0728894c84a04c">cds_stack_delete_all</a> (<a class="el" href="structcds__stack.html">cds_stack</a> **stack)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the stack and its elements.  <a href="group___c_d_s___s_t_a_c_k.html#ga1c09ebc314b5b6b58c0728894c84a04c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_t_a_c_k.html#gafc67869f56475b7c4238edd0e80d1812">cds_stack_clear</a> (<a class="el" href="structcds__stack.html">cds_stack</a> *stack)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the stack, but doesn't delete it, or its elements.  <a href="group___c_d_s___s_t_a_c_k.html#gafc67869f56475b7c4238edd0e80d1812"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the stack, but doesn't delete it, or its referenced elements.  <a href="group___c_d_s___s_t_a_c_k.html#gafc67869f56475b7c4238edd0e80d1812"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_t_a_c_k.html#gaab58e5481cc0eddeced5fc77add86396">cds_stack_top</a> (const <a class="el" href="structcds__stack.html">cds_stack</a> *stack)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the top of the stack.  <a href="group___c_d_s___s_t_a_c_k.html#gaab58e5481cc0eddeced5fc77add86396"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_t_a_c_k.html#ga1ff37e34c6296d6c3022314944f59ba5">cds_stack_count</a> (const <a class="el" href="structcds__stack.html">cds_stack</a> *stack)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the count of elements in the stack.  <a href="group___c_d_s___s_t_a_c_k.html#ga1ff37e34c6296d6c3022314944f59ba5"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of elements in the stack.  <a href="group___c_d_s___s_t_a_c_k.html#ga1ff37e34c6296d6c3022314944f59ba5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_t_a_c_k.html#ga616149492371dff9f1ccef2d8c439edb">cds_stack_push</a> (<a class="el" href="structcds__stack.html">cds_stack</a> *stack, const void *data)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes data onto the top of the stack.  <a href="group___c_d_s___s_t_a_c_k.html#ga616149492371dff9f1ccef2d8c439edb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_t_a_c_k.html#ga5208fb528ff68be9e5673ec73ca37baa">cds_stack_pop</a> (<a class="el" href="structcds__stack.html">cds_stack</a> *stack)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops the top element off the top of the stack.  <a href="group___c_d_s___s_t_a_c_k.html#ga5208fb528ff68be9e5673ec73ca37baa"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops the top element off of the stack.  <a href="group___c_d_s___s_t_a_c_k.html#ga5208fb528ff68be9e5673ec73ca37baa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_t_a_c_k.html#ga092319eacc5b3c937665f17389e3931d">cds_stack_iterate</a> (const <a class="el" href="structcds__stack.html">cds_stack</a> *stack, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates through every element in the stack.  <a href="group___c_d_s___s_t_a_c_k.html#ga092319eacc5b3c937665f17389e3931d"></a><br/></td></tr>
 </table>
@@ -136,7 +136,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:16:23 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

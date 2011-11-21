@@ -50,17 +50,17 @@ enum cds_removal_behavoir {
 	CDS_REPLACE_WITH_LAST = 1
 };
 
-/** */
+/** @typedef cds_removal_behavoir */
 typedef enum cds_removal_behavoir cds_removal_behavoir;
 
 /** The default removal behavoir */
 #define CDS_DEFAULT_REMOVAL_BEHAVOIR CDS_SHIFT_DOWN
 
 /** 
- * General purpose structure for a dynamically allocated and growing array.
- * uses void ** pointers to allow usage with any type, including other arrays 
- * (e.g. char *) count is the amount of elements size is the allocated size, 
- * in elements not bytes.
+ * General purpose structure for a dynamically allocated and growable array.
+ * Uses void ** pointers to allow usage with any type, including other arrays 
+ * (e.g. char *). Count is the amount of elements, size is the capacity of the
+ * container itself.
  * @todo support sorting routines
  */
 struct cds_dynamic_array {
@@ -69,7 +69,7 @@ struct cds_dynamic_array {
 	unsigned int size;
 };
 
-/** */
+/** @typedef cds_dynamic_array */
 typedef struct cds_dynamic_array cds_dynamic_array;
 
 /** 

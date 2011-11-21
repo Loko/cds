@@ -13,7 +13,9 @@
   */
 #include "cds_core.h"
 
-/** A typical singly linked list node */
+/**
+ * A typical singly linked list node
+ */
 struct cds_slnode {
 	struct cds_slnode *next;
 	void *data;

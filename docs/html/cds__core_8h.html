@@ -80,14 +80,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#define-members">Defines</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">include/cds_core.h File Reference</div>  </div>
 </div>
 <div class="contents">
 
-<p>A Collection of Base Functions Allocations, Assertions, Error Handling, etc. etc.  
+<p>A Collection of Base Functions for dynamic memory allocations, assertions, error handling, logging, etc.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;stdlib.h&quot;</code><br/>
 <code>#include &quot;stdio.h&quot;</code><br/>
@@ -97,14 +96,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga57e9e7f7b49fe40a91ee1322807fa648">CDS_ASSERTIONS_ENABLED</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gacf4fb69274c45c96f5ba09916a2f5d57">CDS_HALT</a>()&#160;&#160;&#160;asm { int 3 }</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga86f161ba82d53d3e20283f966803fc32">CDS_UNUSED</a>(expr)&#160;&#160;&#160;do { (void)sizeof(expr); } while(0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6d6e0a8725f52f501ac16ccb8493c2b5">CDS_ASSERT</a>(expr)&#160;&#160;&#160;do { CDS_UNUSED(expr); } while(0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga10d72c28279d1cf364b28877344dcf6f">CDS_ASSERT_MSG</a>(expr, msg,...)&#160;&#160;&#160;do { CDS_UNUSED(expr); CDS_UNUSED(msg); } while(0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6d6e0a8725f52f501ac16ccb8493c2b5">CDS_ASSERT</a>(expr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga10d72c28279d1cf364b28877344dcf6f">CDS_ASSERT_MSG</a>(expr, msg,...)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab796262b912382cf632375e696c38fbf">CDS_MAX_ERR_STR_LEN</a>&#160;&#160;&#160;50</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of a cds_result string.  <a href="group___c_d_s.html#gab796262b912382cf632375e696c38fbf"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a> )(const char *, va_list)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function prototype for printf-like logging functions using va_lists.  <a href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a> )(const char *, const char *, int, const char *, va_list)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gad213be52d1e52a0824425624f0c3746b">cds_result</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gad6cd70521253195c115231dfc02c4b1e">cds_alloc_func</a> )(size_t)</td></tr>
@@ -117,6 +119,8 @@ Typedefs</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a compare by value function that takes any type.  <a href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> )(const void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a visiting function (used by iterators)  <a href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga1b434a208f93c6427a74d07afe7684c1">cds_visit_pair_func</a> )(const void *, const void *)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a visiting pair function (use by iterators)  <a href="group___c_d_s.html#ga1b434a208f93c6427a74d07afe7684c1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef unsigned int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga1a7efa0cd579ea2883460f0a104d8176">cds_hash_func</a> )(const void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a hash function of any type.  <a href="group___c_d_s.html#ga1a7efa0cd579ea2883460f0a104d8176"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
@@ -140,16 +144,26 @@ Enumerations</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum for return values describing the success/failure of a function.  <a href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga8bb579ef653bdfcc986af43ea4c50408">cds_default_assertion_failure_reporter</a> (const char *condition, const char *file, int line, const char *message, va_list argp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the default assertion reporting handler  <a href="group___c_d_s.html#ga8bb579ef653bdfcc986af43ea4c50408"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga513051a8cd424b051d759f677e781036">cds_get_log</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the custom log function used by.  <a href="group___c_d_s.html#ga513051a8cd424b051d759f677e781036"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga222beaba3bdf5afe60eac2453ee7cffb">cds_set_log</a> (<a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a> lf)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the custom log function which will be used by cds_log.  <a href="group___c_d_s.html#ga222beaba3bdf5afe60eac2453ee7cffb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gabd790df6aece8e79205e9478e01a6540">cds_log</a> (const char *format,...)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The main logging function used by cds.  <a href="group___c_d_s.html#gabd790df6aece8e79205e9478e01a6540"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab2376f0d3f0b8ac9f6153fa8c954c7a1">cds_get_assertion_reporter</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the assertion reporting function.  <a href="group___c_d_s.html#gab2376f0d3f0b8ac9f6153fa8c954c7a1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga30ecf2a50449322b64238e293a7ce298">cds_set_assertion_reporter</a> (<a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a> reporter_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the assertion reporting function.  <a href="group___c_d_s.html#ga30ecf2a50449322b64238e293a7ce298"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab1dba3152327818688f18df036e0942f">cds_on_assertion_failure</a> (const char *condition, const char *file, int line, const char *message,...)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the macro if the assertion fails.  <a href="group___c_d_s.html#gab1dba3152327818688f18df036e0942f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga384121522ffd84700b4afb4a8f9c9aaa">cds_is_error</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> r)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the result indicates a failed routine.  <a href="group___c_d_s.html#ga384121522ffd84700b4afb4a8f9c9aaa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga0da9532073e2019983535f72fcb47d2c">cds_result_string</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> r, char *str)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts a human readable string for the result into str.  <a href="group___c_d_s.html#ga0da9532073e2019983535f72fcb47d2c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga170d34d014f1c5a51f4cb008b419c8a2">cds_error_check</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> r)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will print the result and returns 1 if it is an error.  <a href="group___c_d_s.html#ga170d34d014f1c5a51f4cb008b419c8a2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gae985562b71c4a23293b219bc528b669a">cds_is_error</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the result indicates a failed routine.  <a href="group___c_d_s.html#gae985562b71c4a23293b219bc528b669a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga1730711f560a86376575758100fa1ce8">cds_result_string</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr, char *str)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts a human readable string for the result into str.  <a href="group___c_d_s.html#ga1730711f560a86376575758100fa1ce8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga7faa738f29cc4e38e6c11cb378c9f196">cds_error_check</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will print the result and return 1 if it is an error.  <a href="group___c_d_s.html#ga7faa738f29cc4e38e6c11cb378c9f196"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga0fc5c1bd3a5d96e7240de2a4ce5f2e54">cds_not_ok_check</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will print the result and return 1 if cr != CDS_OK.  <a href="group___c_d_s.html#ga0fc5c1bd3a5d96e7240de2a4ce5f2e54"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga258f297788f03a5c85231d2478caa9ac">cds_set_alloc</a> (<a class="el" href="group___c_d_s.html#gad6cd70521253195c115231dfc02c4b1e">cds_alloc_func</a> alloc_func)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the allocator.  <a href="group___c_d_s.html#ga258f297788f03a5c85231d2478caa9ac"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga7f7e7339018f67a1fdd455c7082c9db7">cds_set_realloc</a> (<a class="el" href="group___c_d_s.html#gacb90039901bb139f4b5ed9400cd2a4af">cds_realloc_func</a> realloc_func)</td></tr>
@@ -168,13 +182,9 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocation call used by the CDS libraries.  <a href="group___c_d_s.html#gabb9b7087e67f048bf8ff85b51a30ad30"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gace68e9b3ec618f1b99921046c3455f1e">cds_free</a> (void *ptr)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Free call used by the CDS libraries.  <a href="group___c_d_s.html#gace68e9b3ec618f1b99921046c3455f1e"></a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6ebb2cdd0ce3099d227e0ffa461348c8">cds_assertion_reporter</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">mutable assertion reporter function used in the assertion macro  <a href="group___c_d_s.html#ga6ebb2cdd0ce3099d227e0ffa461348c8"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A Collection of Base Functions Allocations, Assertions, Error Handling, etc. etc. </p>
+<div class="textblock"><p>A Collection of Base Functions for dynamic memory allocations, assertions, error handling, logging, etc. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Jeff Lansing </dd></dl>
 </div></div>
 <!-- window showing the filter options -->
@@ -194,7 +204,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:16:22 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

@@ -14,8 +14,8 @@
 #include "cds_core.h"
 
 /**
- * Typical binary node structure with general purpose 
- * void pointer
+ * Typical binary node structure with left node, right 
+ * node and a general purpose void pointer
  */
 struct cds_binary_node {
 	struct cds_binary_node *left;
@@ -23,7 +23,7 @@ struct cds_binary_node {
 	void *data;
 };
 
-/** */
+/** @typedef cds_binary_node */
 typedef struct cds_binary_node cds_binary_node;
 
 /** Creates a binary node with the given data */
@@ -35,8 +35,6 @@ cds_result cds_binary_node_delete(cds_binary_node **node);
 /** Deletes the binary node and its data pointer */
 cds_result cds_binary_node_delete_all(cds_binary_node **node);
 
-/**
- * @}
- */
+/** @} */
 
 #endif

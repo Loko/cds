@@ -34,13 +34,13 @@ struct cds_dlist {
 	/** @todo could potentially put a pointer to the container itself here (added safety) */
 };
 
-/**  */
+/** @typedef cds_dlist Custom typename for the doubly linked list struct */
 typedef struct cds_dlist cds_dlist;
 
 /** Creates the doubly linked list  */
 cds_result cds_dlist_create(cds_dlist **list);
 
-/** Deletes the doubly linked list */
+/** Deletes the doubly linked list and all of it's node, but not it's referenced data */
 cds_result cds_dlist_delete(cds_dlist **list);
 
 /** Deletes the nodes from the list but not the data or the list itself */
@@ -100,7 +100,7 @@ cds_result cds_dlist_find_cmp(const cds_dlist *list, const void *data, cds_dlnod
 /** Safely iterates and visits every element in the list */
 cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func);
 
-/** @todo: reverse function here for doubly linked list */
+/** Reverses the order of elements in the doubly linked list */
 cds_result cds_dlist_reverse(cds_dlist *list);
 
 /** @} */

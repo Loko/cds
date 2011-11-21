@@ -1,7 +1,7 @@
 /**
  * @file cds_queue.h
  * @author Jeff Lansing
- * A first in first out queue represented internally as a singly linked list.
+ * A first in first out queue data structure.
  */
 
 #ifndef _CDS_QUEUE_H_
@@ -15,9 +15,8 @@
 #include "cds_core.h"
 #include "cds_slnode.h"
 
-
 /**
- * Abstract queue data type.  Holds the front, back, and count.
+ * Abstract queue data type.  Holds front and back pointers and the count.
  */
 struct cds_queue {
 	cds_slnode *front;
@@ -37,10 +36,10 @@ cds_result cds_queue_delete(cds_queue **queue);
 /** Deletes the queue and the data element pointers */
 cds_result cds_queue_delete_all(cds_queue **queue);
 
-/** Clears the queue but doesn't delete any pointers */
+/** Clears the queue but doesn't delete any referenced data */
 cds_result cds_queue_clear(cds_queue *queue);
 
-/** Gets the count of the queue */
+/** Gets the number of elements in the queue */
 unsigned int cds_queue_count(const cds_queue *queue);
 
 /** Gets a pointer to the first element in the queue */
@@ -55,10 +54,9 @@ cds_result cds_queue_enqueue(cds_queue *queue, const void *data);
 /** Removes the element at the front of the queue */
 cds_result cds_queue_dequeue(cds_queue *queue);
 
-/** */
-cds_result cds_queue_iterate(const cds_queue *queue, const cds_visit_func visit_func);
+/** Safely iterates through every element in the queue */
+cds_result cds_queue_iterate(const cds_queue *queue, cds_visit_func visit_func);
 
-/**
- * @}
- */
+/** @} */
+
 #endif

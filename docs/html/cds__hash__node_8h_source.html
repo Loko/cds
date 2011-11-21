@@ -83,21 +83,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor">#ifndef _CDS_HASH_NODE_H_</span>
 <a name="l00008"></a>00008 <span class="preprocessor"></span><span class="preprocessor">#define _CDS_HASH_NODE_H_</span>
 <a name="l00009"></a>00009 <span class="preprocessor"></span>
-<a name="l00019"></a><a class="code" href="structcds__hash__node.html">00019</a> <span class="keyword">struct </span><a class="code" href="structcds__hash__node.html">cds_hash_node</a> {
-<a name="l00020"></a><a class="code" href="structcds__hash__node.html#ab5c000aec752f2206131e183daf5efbf">00020</a>         <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#ab5c000aec752f2206131e183daf5efbf">key</a>;
-<a name="l00021"></a><a class="code" href="structcds__hash__node.html#a735984d41155bc1032e09bece8f8d66d">00021</a>         <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#a735984d41155bc1032e09bece8f8d66d">data</a>;
-<a name="l00022"></a><a class="code" href="structcds__hash__node.html#ae3c5d37be58fcdbe9f9fe75113187249">00022</a>         <span class="keyword">struct </span><a class="code" href="structcds__hash__node.html">cds_hash_node</a> *<a class="code" href="structcds__hash__node.html#ae3c5d37be58fcdbe9f9fe75113187249">next</a>;
-<a name="l00023"></a>00023 };
-<a name="l00024"></a>00024 
-<a name="l00026"></a><a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga3c064d72923fa4429e31576aa0eea283">00026</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcds__hash__node.html">cds_hash_node</a> <a class="code" href="structcds__hash__node.html">cds_hash_node</a>;
-<a name="l00027"></a>00027 
-<a name="l00029"></a>00029 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga20396f4206b697b4476889b041e9e892" title="Creates a hashnode with the key/value pair.">cds_hash_node_create</a>(<a class="code" href="structcds__hash__node.html">cds_hash_node</a> **hashnode, <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#ab5c000aec752f2206131e183daf5efbf">key</a>, <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#a735984d41155bc1032e09bece8f8d66d">data</a>);
-<a name="l00030"></a>00030 
-<a name="l00032"></a>00032 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga9d9af1befb7cf9cf3a25850ae19d066f" title="Deletes the hashnode.">cds_hash_node_delete</a>(<a class="code" href="structcds__hash__node.html">cds_hash_node</a> **hashnode);
-<a name="l00033"></a>00033 
-<a name="l00035"></a>00035 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga2b8fdf84e7b304761f9171ac56312593" title="Deletes the hashnode.">cds_hash_node_delete_all</a>(<a class="code" href="structcds__hash__node.html">cds_hash_node</a> **hashnode);
-<a name="l00036"></a>00036 
-<a name="l00038"></a>00038 <span class="preprocessor">#endif</span>
+<a name="l00011"></a><a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">00011</a> <span class="keyword">enum</span> <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> {
+<a name="l00012"></a><a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a7bfe327774bbe4d4dabb5c13351f859b">00012</a>         <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a7bfe327774bbe4d4dabb5c13351f859b">CDS_DELETE_NODE_ONLY</a> = 0,
+<a name="l00013"></a><a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a26910bb265e0228f9cd129b69c52a66a">00013</a>         <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a26910bb265e0228f9cd129b69c52a66a">CDS_DELETE_KEY</a> = 1,
+<a name="l00014"></a><a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09ad1bb27398f59570708d05e8ca2191753">00014</a>         <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09ad1bb27398f59570708d05e8ca2191753">CDS_DELETE_VALUE</a> = 2,
+<a name="l00015"></a><a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a934420cde2c3d70ca5ec2802f3901a89">00015</a>         <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09a934420cde2c3d70ca5ec2802f3901a89">CDS_DELETE_ALL</a> = 3
+<a name="l00016"></a>00016 };
+<a name="l00017"></a>00017 
+<a name="l00019"></a><a class="code" href="cds__hash__node_8h.html#a5c058fd4f1c479da9f16a46e837db2ca">00019</a> <span class="keyword">typedef</span> <span class="keyword">enum</span> <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a>;
+<a name="l00020"></a>00020 
+<a name="l00026"></a>00026 <span class="preprocessor">#include &quot;<a class="code" href="cds__core_8h.html" title="A Collection of Base Functions for dynamic memory allocations, assertions, error handling, logging, etc.">cds_core.h</a>&quot;</span>
+<a name="l00027"></a>00027  
+<a name="l00032"></a><a class="code" href="structcds__hash__node.html">00032</a> <span class="keyword">struct </span><a class="code" href="structcds__hash__node.html" title="Struture for a key/value pair based hash node usable in a.">cds_hash_node</a> {
+<a name="l00033"></a><a class="code" href="structcds__hash__node.html#ab5c000aec752f2206131e183daf5efbf">00033</a>         <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#ab5c000aec752f2206131e183daf5efbf">key</a>;
+<a name="l00034"></a><a class="code" href="structcds__hash__node.html#a0f61d63b009d0880a89c843bd50d8d76">00034</a>         <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#a0f61d63b009d0880a89c843bd50d8d76">value</a>;
+<a name="l00035"></a><a class="code" href="structcds__hash__node.html#ae3c5d37be58fcdbe9f9fe75113187249">00035</a>         <span class="keyword">struct </span><a class="code" href="structcds__hash__node.html" title="Struture for a key/value pair based hash node usable in a.">cds_hash_node</a> *<a class="code" href="structcds__hash__node.html#ae3c5d37be58fcdbe9f9fe75113187249">next</a>;
+<a name="l00036"></a>00036 };
+<a name="l00037"></a>00037 
+<a name="l00039"></a><a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga3c064d72923fa4429e31576aa0eea283">00039</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcds__hash__node.html" title="Struture for a key/value pair based hash node usable in a.">cds_hash_node</a> <a class="code" href="structcds__hash__node.html" title="Struture for a key/value pair based hash node usable in a.">cds_hash_node</a>;
+<a name="l00040"></a>00040 
+<a name="l00042"></a>00042 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1485cdd8bdeb32963d42e4ba773f7d34" title="Creates a hashnode with the key/value pair.">cds_hash_node_create</a>(<a class="code" href="structcds__hash__node.html" title="Struture for a key/value pair based hash node usable in a.">cds_hash_node</a> **hashnode, <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#ab5c000aec752f2206131e183daf5efbf">key</a>, <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code" href="structcds__hash__node.html#a0f61d63b009d0880a89c843bd50d8d76">value</a>);
+<a name="l00043"></a>00043 
+<a name="l00045"></a>00045 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga40beb360272cd141efc676cee8edaed9" title="Deletes the hashnode and key, value, neither, or both depending on given deletion behavoir...">cds_hash_node_delete</a>(<a class="code" href="structcds__hash__node.html" title="Struture for a key/value pair based hash node usable in a.">cds_hash_node</a> **hashnode, <a class="code" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db);
+<a name="l00046"></a>00046 
+<a name="l00048"></a>00048 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga2b8fdf84e7b304761f9171ac56312593" title="Deletes the hashnode, its key, and its value.">cds_hash_node_delete_all</a>(<a class="code" href="structcds__hash__node.html" title="Struture for a key/value pair based hash node usable in a.">cds_hash_node</a> **hashnode);
+<a name="l00049"></a>00049 
+<a name="l00051"></a>00051 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -117,7 +128,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:16:21 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 21 2011 07:08:53 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

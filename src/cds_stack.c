@@ -1,6 +1,6 @@
 #include "cds_stack.h"
 
-//
+/* */
 cds_result cds_stack_create(cds_stack **stack) {
 	*stack = (cds_stack *) cds_alloc(sizeof(cds_stack));
 	if (*stack) {
@@ -12,17 +12,17 @@ cds_result cds_stack_create(cds_stack **stack) {
 	}
 }
 
-//
+/* */
 cds_result cds_stack_delete(cds_stack **stack) {
 	if (stack && *stack) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = (*stack)->top;
 		while (node) {
 			tmp = node->next;
-			r = cds_slnode_delete(&node);
-			if (r != CDS_OK)
-				return r;
+			cr = cds_slnode_delete(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		cds_free(*stack);
@@ -33,15 +33,17 @@ cds_result cds_stack_delete(cds_stack **stack) {
 	}
 }
 
-//
+/* */
 cds_result cds_stack_delete_all(cds_stack **stack) {
 	if (stack && *stack) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = (*stack)->top;
 		while (node) {
 			tmp = node->next;
-			cds_slnode_delete_all(&node);
+			cr = cds_slnode_delete_all(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		cds_free(*stack);
@@ -52,15 +54,17 @@ cds_result cds_stack_delete_all(cds_stack **stack) {
 	}
 }
 
-//
+/* */
 cds_result cds_stack_clear(cds_stack *stack) {
 	if (stack) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = stack->top;
 		while (node) {
 			tmp = node->next;
-			cds_slnode_delete(&node);
+			cr = cds_slnode_delete(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		stack->top = NULL;
@@ -71,7 +75,7 @@ cds_result cds_stack_clear(cds_stack *stack) {
 	}
 }
 
-//
+/* */
 void * cds_stack_top(const cds_stack *stack) {
 	void *topData = NULL;
 	if (stack && stack->top) {
@@ -80,7 +84,7 @@ void * cds_stack_top(const cds_stack *stack) {
 	return topData;
 }
 
-//
+/* */
 unsigned int cds_stack_count(const cds_stack *stack) {
 	unsigned int count = 0;
 	if (stack) {
@@ -89,7 +93,7 @@ unsigned int cds_stack_count(const cds_stack *stack) {
 	return count;
 }
 
-// pushes the given data to the top of the stack
+/* pushes the given data to the top of the stack */
 cds_result cds_stack_push(cds_stack *stack, const void *data) {
 	if (!stack)
 		return CDS_NULL_ARGUMENT;
@@ -108,7 +112,7 @@ cds_result cds_stack_push(cds_stack *stack, const void *data) {
 	return r;
 }
 
-// mimics remove head functionality of a singly linked list
+/* mimics remove head functionality of a singly linked list */
 cds_result cds_stack_pop(cds_stack *stack) {
 	if (stack) {
 		if (stack->count) {
@@ -124,7 +128,7 @@ cds_result cds_stack_pop(cds_stack *stack) {
 	}
 }
 
-//
+/* */
 cds_result cds_stack_iterate(const cds_stack *stack, cds_visit_func visit_func) {
 	if (stack && visit_func) {
 		cds_slnode *cur = stack->top;
@@ -132,6 +136,7 @@ cds_result cds_stack_iterate(const cds_stack *stack, cds_visit_func visit_func) 
 			(*visit_func)(cur->data);
 			cur = cur->next;
 		}
+		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}

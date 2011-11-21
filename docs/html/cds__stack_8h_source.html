@@ -85,31 +85,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00009"></a>00009 <span class="preprocessor"></span>
 <a name="l00015"></a>00015 <span class="preprocessor">#include &quot;<a class="code" href="cds__slnode_8h.html" title="A Collection of Functions For A Singly Linked Node.">cds_slnode.h</a>&quot;</span>
 <a name="l00016"></a>00016 
-<a name="l00020"></a><a class="code" href="structcds__stack.html">00020</a> <span class="keyword">struct </span><a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> {
-<a name="l00021"></a><a class="code" href="structcds__stack.html#a92a2d518070e72c30772144ec35fd6db">00021</a>         <a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> *<a class="code" href="structcds__stack.html#a92a2d518070e72c30772144ec35fd6db">top</a>;
-<a name="l00022"></a><a class="code" href="structcds__stack.html#a16ff2d8e15ade4948398b0aeb80124a8">00022</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structcds__stack.html#a16ff2d8e15ade4948398b0aeb80124a8">count</a>;
-<a name="l00023"></a>00023 };
-<a name="l00024"></a>00024 
-<a name="l00026"></a><a class="code" href="group___c_d_s___s_t_a_c_k.html#ga6c9788b0d45e2ec1b2c01b76760285c2">00026</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a>;
-<a name="l00027"></a>00027 
-<a name="l00029"></a>00029 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#gac9198d8f084fcd8e94846206e361638c" title="Creates the stack.">cds_stack_create</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> **stack);
-<a name="l00030"></a>00030 
-<a name="l00032"></a>00032 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga1d7600b1f0ee7dab3294c872c99701e1" title="Deletes the stack.">cds_stack_delete</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> **stack);
-<a name="l00033"></a>00033 
-<a name="l00035"></a>00035 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga1c09ebc314b5b6b58c0728894c84a04c" title="Deletes the stack and its elements.">cds_stack_delete_all</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> **stack);
-<a name="l00036"></a>00036 
-<a name="l00038"></a>00038 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#gafc67869f56475b7c4238edd0e80d1812" title="Clears the stack, but doesn&#39;t delete it, or its elements.">cds_stack_clear</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
-<a name="l00039"></a>00039 
-<a name="l00041"></a>00041 <span class="keywordtype">void</span> * <a class="code" href="group___c_d_s___s_t_a_c_k.html#gaab58e5481cc0eddeced5fc77add86396" title="Gets the top of the stack.">cds_stack_top</a>(<span class="keyword">const</span> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
-<a name="l00042"></a>00042 
-<a name="l00044"></a>00044 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga1ff37e34c6296d6c3022314944f59ba5" title="Gets the count of elements in the stack.">cds_stack_count</a>(<span class="keyword">const</span> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
-<a name="l00045"></a>00045 
-<a name="l00047"></a>00047 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga616149492371dff9f1ccef2d8c439edb" title="Pushes data onto the top of the stack.">cds_stack_push</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);
-<a name="l00048"></a>00048 
-<a name="l00050"></a>00050 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga5208fb528ff68be9e5673ec73ca37baa" title="Pops the top element off the top of the stack.">cds_stack_pop</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
-<a name="l00051"></a>00051 
-<a name="l00053"></a>00053 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga092319eacc5b3c937665f17389e3931d" title="Iterates through every element in the stack.">cds_stack_iterate</a>(<span class="keyword">const</span> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack, <a class="code" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea" title="Prototype for a visiting function (used by iterators)">cds_visit_func</a> visit_func);
-<a name="l00054"></a>00054 <span class="comment">// contains method?</span>
+<a name="l00021"></a><a class="code" href="structcds__stack.html">00021</a> <span class="keyword">struct </span><a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> {
+<a name="l00022"></a><a class="code" href="structcds__stack.html#a92a2d518070e72c30772144ec35fd6db">00022</a>         <a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> *<a class="code" href="structcds__stack.html#a92a2d518070e72c30772144ec35fd6db">top</a>;
+<a name="l00023"></a><a class="code" href="structcds__stack.html#a16ff2d8e15ade4948398b0aeb80124a8">00023</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="structcds__stack.html#a16ff2d8e15ade4948398b0aeb80124a8">count</a>;
+<a name="l00024"></a>00024 };
+<a name="l00025"></a>00025 
+<a name="l00027"></a><a class="code" href="group___c_d_s___s_t_a_c_k.html#ga6c9788b0d45e2ec1b2c01b76760285c2">00027</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a>;
+<a name="l00028"></a>00028 
+<a name="l00030"></a>00030 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#gac9198d8f084fcd8e94846206e361638c" title="Creates the stack.">cds_stack_create</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> **stack);
+<a name="l00031"></a>00031 
+<a name="l00033"></a>00033 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga1d7600b1f0ee7dab3294c872c99701e1" title="Deletes the stack.">cds_stack_delete</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> **stack);
+<a name="l00034"></a>00034 
+<a name="l00036"></a>00036 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga1c09ebc314b5b6b58c0728894c84a04c" title="Deletes the stack and its elements.">cds_stack_delete_all</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> **stack);
+<a name="l00037"></a>00037 
+<a name="l00039"></a>00039 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#gafc67869f56475b7c4238edd0e80d1812" title="Clears the stack, but doesn&#39;t delete it, or its referenced elements.">cds_stack_clear</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
+<a name="l00040"></a>00040 
+<a name="l00042"></a>00042 <span class="keywordtype">void</span> * <a class="code" href="group___c_d_s___s_t_a_c_k.html#gaab58e5481cc0eddeced5fc77add86396" title="Gets the top of the stack.">cds_stack_top</a>(<span class="keyword">const</span> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
+<a name="l00043"></a>00043 
+<a name="l00045"></a>00045 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga1ff37e34c6296d6c3022314944f59ba5" title="Gets the number of elements in the stack.">cds_stack_count</a>(<span class="keyword">const</span> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
+<a name="l00046"></a>00046 
+<a name="l00048"></a>00048 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga616149492371dff9f1ccef2d8c439edb" title="Pushes data onto the top of the stack.">cds_stack_push</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);
+<a name="l00049"></a>00049 
+<a name="l00051"></a>00051 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga5208fb528ff68be9e5673ec73ca37baa" title="Pops the top element off of the stack.">cds_stack_pop</a>(<a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack);
+<a name="l00052"></a>00052 
+<a name="l00054"></a>00054 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_t_a_c_k.html#ga092319eacc5b3c937665f17389e3931d" title="Iterates through every element in the stack.">cds_stack_iterate</a>(<span class="keyword">const</span> <a class="code" href="structcds__stack.html" title="Abstract queue data type.">cds_stack</a> *stack, <a class="code" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea" title="Prototype for a visiting function (used by iterators)">cds_visit_func</a> visit_func);
 <a name="l00055"></a>00055 
 <a name="l00058"></a>00058 <span class="preprocessor">#endif</span>
 </pre></div></div>
@@ -131,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:16:21 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

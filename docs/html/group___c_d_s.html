@@ -74,8 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#define-members">Defines</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CDS</div>  </div>
 </div>
@@ -83,14 +82,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga57e9e7f7b49fe40a91ee1322807fa648">CDS_ASSERTIONS_ENABLED</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gacf4fb69274c45c96f5ba09916a2f5d57">CDS_HALT</a>()&#160;&#160;&#160;asm { int 3 }</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga86f161ba82d53d3e20283f966803fc32">CDS_UNUSED</a>(expr)&#160;&#160;&#160;do { (void)sizeof(expr); } while(0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6d6e0a8725f52f501ac16ccb8493c2b5">CDS_ASSERT</a>(expr)&#160;&#160;&#160;do { CDS_UNUSED(expr); } while(0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga10d72c28279d1cf364b28877344dcf6f">CDS_ASSERT_MSG</a>(expr, msg,...)&#160;&#160;&#160;do { CDS_UNUSED(expr); CDS_UNUSED(msg); } while(0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6d6e0a8725f52f501ac16ccb8493c2b5">CDS_ASSERT</a>(expr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga10d72c28279d1cf364b28877344dcf6f">CDS_ASSERT_MSG</a>(expr, msg,...)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab796262b912382cf632375e696c38fbf">CDS_MAX_ERR_STR_LEN</a>&#160;&#160;&#160;50</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of a cds_result string.  <a href="#gab796262b912382cf632375e696c38fbf"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a> )(const char *, va_list)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Function prototype for printf-like logging functions using va_lists.  <a href="#ga716e62cf3f5ea923c509f45b677388dc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a> )(const char *, const char *, int, const char *, va_list)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gad213be52d1e52a0824425624f0c3746b">cds_result</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gad6cd70521253195c115231dfc02c4b1e">cds_alloc_func</a> )(size_t)</td></tr>
@@ -103,6 +105,8 @@ Typedefs</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a compare by value function that takes any type.  <a href="#ga8cb892371b07f2f94ae1f71d974fccdb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> )(const void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a visiting function (used by iterators)  <a href="#ga445e46c328c1a2ebd8436b0542ea4fea"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga1b434a208f93c6427a74d07afe7684c1">cds_visit_pair_func</a> )(const void *, const void *)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a visiting pair function (use by iterators)  <a href="#ga1b434a208f93c6427a74d07afe7684c1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef unsigned int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga1a7efa0cd579ea2883460f0a104d8176">cds_hash_func</a> )(const void *)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prototype for a hash function of any type.  <a href="#ga1a7efa0cd579ea2883460f0a104d8176"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
@@ -126,16 +130,26 @@ Enumerations</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum for return values describing the success/failure of a function.  <a href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga8bb579ef653bdfcc986af43ea4c50408">cds_default_assertion_failure_reporter</a> (const char *condition, const char *file, int line, const char *message, va_list argp)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the default assertion reporting handler  <a href="#ga8bb579ef653bdfcc986af43ea4c50408"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga513051a8cd424b051d759f677e781036">cds_get_log</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the custom log function used by.  <a href="#ga513051a8cd424b051d759f677e781036"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga222beaba3bdf5afe60eac2453ee7cffb">cds_set_log</a> (<a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a> lf)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the custom log function which will be used by cds_log.  <a href="#ga222beaba3bdf5afe60eac2453ee7cffb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gabd790df6aece8e79205e9478e01a6540">cds_log</a> (const char *format,...)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The main logging function used by cds.  <a href="#gabd790df6aece8e79205e9478e01a6540"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab2376f0d3f0b8ac9f6153fa8c954c7a1">cds_get_assertion_reporter</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the assertion reporting function.  <a href="#gab2376f0d3f0b8ac9f6153fa8c954c7a1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga30ecf2a50449322b64238e293a7ce298">cds_set_assertion_reporter</a> (<a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a> reporter_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the assertion reporting function.  <a href="#ga30ecf2a50449322b64238e293a7ce298"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab1dba3152327818688f18df036e0942f">cds_on_assertion_failure</a> (const char *condition, const char *file, int line, const char *message,...)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the macro if the assertion fails.  <a href="#gab1dba3152327818688f18df036e0942f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga384121522ffd84700b4afb4a8f9c9aaa">cds_is_error</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> r)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the result indicates a failed routine.  <a href="#ga384121522ffd84700b4afb4a8f9c9aaa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga0da9532073e2019983535f72fcb47d2c">cds_result_string</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> r, char *str)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts a human readable string for the result into str.  <a href="#ga0da9532073e2019983535f72fcb47d2c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga170d34d014f1c5a51f4cb008b419c8a2">cds_error_check</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> r)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will print the result and returns 1 if it is an error.  <a href="#ga170d34d014f1c5a51f4cb008b419c8a2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gae985562b71c4a23293b219bc528b669a">cds_is_error</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the result indicates a failed routine.  <a href="#gae985562b71c4a23293b219bc528b669a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga1730711f560a86376575758100fa1ce8">cds_result_string</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr, char *str)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts a human readable string for the result into str.  <a href="#ga1730711f560a86376575758100fa1ce8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga7faa738f29cc4e38e6c11cb378c9f196">cds_error_check</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will print the result and return 1 if it is an error.  <a href="#ga7faa738f29cc4e38e6c11cb378c9f196"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga0fc5c1bd3a5d96e7240de2a4ce5f2e54">cds_not_ok_check</a> (<a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will print the result and return 1 if cr != CDS_OK.  <a href="#ga0fc5c1bd3a5d96e7240de2a4ce5f2e54"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga258f297788f03a5c85231d2478caa9ac">cds_set_alloc</a> (<a class="el" href="group___c_d_s.html#gad6cd70521253195c115231dfc02c4b1e">cds_alloc_func</a> alloc_func)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the allocator.  <a href="#ga258f297788f03a5c85231d2478caa9ac"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga7f7e7339018f67a1fdd455c7082c9db7">cds_set_realloc</a> (<a class="el" href="group___c_d_s.html#gacb90039901bb139f4b5ed9400cd2a4af">cds_realloc_func</a> realloc_func)</td></tr>
@@ -154,10 +168,6 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocation call used by the CDS libraries.  <a href="#gabb9b7087e67f048bf8ff85b51a30ad30"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gace68e9b3ec618f1b99921046c3455f1e">cds_free</a> (void *ptr)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Free call used by the CDS libraries.  <a href="#gace68e9b3ec618f1b99921046c3455f1e"></a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6ebb2cdd0ce3099d227e0ffa461348c8">cds_assertion_reporter</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">mutable assertion reporter function used in the assertion macro  <a href="#ga6ebb2cdd0ce3099d227e0ffa461348c8"></a><br/></td></tr>
 </table>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="ga6d6e0a8725f52f501ac16ccb8493c2b5"></a><!-- doxytag: member="cds_core.h::CDS_ASSERT" ref="ga6d6e0a8725f52f501ac16ccb8493c2b5" args="(expr)" -->
@@ -169,12 +179,22 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">expr</td><td>)</td>
-          <td>&#160;&#160;&#160;do { CDS_UNUSED(expr); } while(0)</td>
+          <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> \
+                { \
+                        if (!(expr)) \
+                        { \
+                                cds_on_assertion_failure(#expr, \
+                                                                                 __FILE__, \
+                                                                                 __LINE__, \
+                                                                                 (NULL)); \
+                        } \
+                } <span class="keywordflow">while</span> (0)
+</pre></div>
 </div>
 </div>
 <a class="anchor" id="ga10d72c28279d1cf364b28877344dcf6f"></a><!-- doxytag: member="cds_core.h::CDS_ASSERT_MSG" ref="ga10d72c28279d1cf364b28877344dcf6f" args="(expr, msg,...)" -->
@@ -202,7 +222,31 @@ Variables</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;do { CDS_UNUSED(expr); CDS_UNUSED(msg); } while(0)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> \
+                { \
+                        if (!(expr)) \
+                        { \
+                                cds_on_assertion_failure(#expr, \
+                                                                                 __FILE__, \
+                                                                                 __LINE__, \
+                                                                                 (msg), \
+                                                                                 __VA_ARGS__); \
+                        } \
+                } <span class="keywordflow">while</span> (0)
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="ga57e9e7f7b49fe40a91ee1322807fa648"></a><!-- doxytag: member="cds_core.h::CDS_ASSERTIONS_ENABLED" ref="ga57e9e7f7b49fe40a91ee1322807fa648" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_ASSERTIONS_ENABLED</td>
         </tr>
       </table>
 </div>
@@ -333,6 +377,22 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga716e62cf3f5ea923c509f45b677388dc"></a><!-- doxytag: member="cds_core.h::cds_log_func" ref="ga716e62cf3f5ea923c509f45b677388dc" args=")(const char *, va_list)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int(* <a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a>)(const char *, va_list)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Function prototype for printf-like logging functions using va_lists. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>preprocessor macro not to use the standard library?? </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="gacb90039901bb139f4b5ed9400cd2a4af"></a><!-- doxytag: member="cds_core.h::cds_realloc_func" ref="gacb90039901bb139f4b5ed9400cd2a4af" args=")(void *, size_t)" -->
 <div class="memitem">
 <div class="memproto">
@@ -377,6 +437,21 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga1b434a208f93c6427a74d07afe7684c1"></a><!-- doxytag: member="cds_core.h::cds_visit_pair_func" ref="ga1b434a208f93c6427a74d07afe7684c1" args=")(const void *, const void *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* <a class="el" href="group___c_d_s.html#ga1b434a208f93c6427a74d07afe7684c1">cds_visit_pair_func</a>)(const void *, const void *)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Prototype for a visiting pair function (use by iterators) </p>
+
+</div>
+</div>
 <hr/><h2>Enumeration Type Documentation</h2>
 <a class="anchor" id="gac610b2ee7c62fb78c000211f567bbbf6"></a><!-- doxytag: member="cds_core.h::cds_result" ref="gac610b2ee7c62fb78c000211f567bbbf6" args="" -->
 <div class="memitem">
@@ -390,7 +465,7 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>Enum for return values describing the success/failure of a function. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Had an idea the other day that this enum is a bunch of bitfields and ORing them could reveal multiple errors. But this may be difficult to implement, and would conflict with the idea of early returns? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Had an idea the other day that this enum is a bunch of bitfields and ORing them could reveal multiple errors. But this may be difficult to implement, and would conflict with the idea of early returns? Also, consider using the FMOD standards, where ERR is put in the name </dd></dl>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="ggac610b2ee7c62fb78c000211f567bbbf6a17efd856748928a1e4ff01e0be60d105"></a><!-- doxytag: member="CDS_UNIMPLEMENTED" ref="ggac610b2ee7c62fb78c000211f567bbbf6a17efd856748928a1e4ff01e0be60d105" args="" -->CDS_UNIMPLEMENTED</em>&nbsp;</td><td>
 <p>A feature that's not yet supported. </p>
@@ -451,54 +526,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga8bb579ef653bdfcc986af43ea4c50408"></a><!-- doxytag: member="cds_core.h::cds_default_assertion_failure_reporter" ref="ga8bb579ef653bdfcc986af43ea4c50408" args="(const char *condition, const char *file, int line, const char *message, va_list argp)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void cds_default_assertion_failure_reporter </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>condition</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>file</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">va_list&#160;</td>
-          <td class="paramname"><em>argp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>the default assertion reporting handler </p>
-
-</div>
-</div>
-<a class="anchor" id="ga170d34d014f1c5a51f4cb008b419c8a2"></a><!-- doxytag: member="cds_core.h::cds_error_check" ref="ga170d34d014f1c5a51f4cb008b419c8a2" args="(cds_result r)" -->
+<a class="anchor" id="ga7faa738f29cc4e38e6c11cb378c9f196"></a><!-- doxytag: member="cds_core.h::cds_error_check" ref="ga7faa738f29cc4e38e6c11cb378c9f196" args="(cds_result cr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -506,14 +534,14 @@ Variables</h2></td></tr>
           <td class="memname">int cds_error_check </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td>
-          <td class="paramname"><em>r</em></td><td>)</td>
+          <td class="paramname"><em>cr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Will print the result and returns 1 if it is an error. </p>
+<p>Will print the result and return 1 if it is an error. </p>
 
 </div>
 </div>
@@ -554,6 +582,24 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="gab2376f0d3f0b8ac9f6153fa8c954c7a1"></a><!-- doxytag: member="cds_core.h::cds_get_assertion_reporter" ref="gab2376f0d3f0b8ac9f6153fa8c954c7a1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a> cds_get_assertion_reporter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the assertion reporting function. </p>
+
+</div>
+</div>
 <a class="anchor" id="gaa86e8f19697ac0562b3d9ff918bf3d24"></a><!-- doxytag: member="cds_core.h::cds_get_free" ref="gaa86e8f19697ac0562b3d9ff918bf3d24" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -569,6 +615,25 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>Gets the free func. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga513051a8cd424b051d759f677e781036"></a><!-- doxytag: member="cds_core.h::cds_get_log" ref="ga513051a8cd424b051d759f677e781036" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a> cds_get_log </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the custom log function used by. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="group___c_d_s.html#gabd790df6aece8e79205e9478e01a6540" title="The main logging function used by cds.">cds_log</a> </dd></dl>
 
 </div>
 </div>
@@ -590,7 +655,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga384121522ffd84700b4afb4a8f9c9aaa"></a><!-- doxytag: member="cds_core.h::cds_is_error" ref="ga384121522ffd84700b4afb4a8f9c9aaa" args="(cds_result r)" -->
+<a class="anchor" id="gae985562b71c4a23293b219bc528b669a"></a><!-- doxytag: member="cds_core.h::cds_is_error" ref="gae985562b71c4a23293b219bc528b669a" args="(cds_result cr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -598,7 +663,7 @@ Variables</h2></td></tr>
           <td class="memname">int cds_is_error </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td>
-          <td class="paramname"><em>r</em></td><td>)</td>
+          <td class="paramname"><em>cr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -606,7 +671,55 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>Determines if the result indicates a failed routine. </p>
-<p>Everything except CDS_OK and CDS_NOT_FOUND is an illegal operation/error that will likely require code changes. </p>
+<p>Everything except CDS_OK, CDS_NOT_FOUND, and CDS_DUPLICATE_VALUE is an illegal operation/runtime error that will likely require bug fixes through code changes. </p>
+
+</div>
+</div>
+<a class="anchor" id="gabd790df6aece8e79205e9478e01a6540"></a><!-- doxytag: member="cds_core.h::cds_log" ref="gabd790df6aece8e79205e9478e01a6540" args="(const char *format,...)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cds_log </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The main logging function used by cds. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga0fc5c1bd3a5d96e7240de2a4ce5f2e54"></a><!-- doxytag: member="cds_core.h::cds_not_ok_check" ref="ga0fc5c1bd3a5d96e7240de2a4ce5f2e54" args="(cds_result cr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cds_not_ok_check </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td>
+          <td class="paramname"><em>cr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Will print the result and return 1 if cr != CDS_OK. </p>
 
 </div>
 </div>
@@ -687,7 +800,7 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga0da9532073e2019983535f72fcb47d2c"></a><!-- doxytag: member="cds_core.h::cds_result_string" ref="ga0da9532073e2019983535f72fcb47d2c" args="(cds_result r, char *str)" -->
+<a class="anchor" id="ga1730711f560a86376575758100fa1ce8"></a><!-- doxytag: member="cds_core.h::cds_result_string" ref="ga1730711f560a86376575758100fa1ce8" args="(cds_result cr, char *str)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -695,7 +808,7 @@ Variables</h2></td></tr>
           <td class="memname">int cds_result_string </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
+          <td class="paramname"><em>cr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -736,6 +849,25 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga30ecf2a50449322b64238e293a7ce298"></a><!-- doxytag: member="cds_core.h::cds_set_assertion_reporter" ref="ga30ecf2a50449322b64238e293a7ce298" args="(cds_assertion_failure_reporter_func reporter_func)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cds_set_assertion_reporter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a>&#160;</td>
+          <td class="paramname"><em>reporter_func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the assertion reporting function. </p>
+
+</div>
+</div>
 <a class="anchor" id="ga1c2598833e082558414a3955d3335244"></a><!-- doxytag: member="cds_core.h::cds_set_free" ref="ga1c2598833e082558414a3955d3335244" args="(cds_free_func free_func)" -->
 <div class="memitem">
 <div class="memproto">
@@ -752,6 +884,25 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>Sets the free func. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga222beaba3bdf5afe60eac2453ee7cffb"></a><!-- doxytag: member="cds_core.h::cds_set_log" ref="ga222beaba3bdf5afe60eac2453ee7cffb" args="(cds_log_func lf)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cds_set_log </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a>&#160;</td>
+          <td class="paramname"><em>lf</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the custom log function which will be used by cds_log. </p>
 
 </div>
 </div>
@@ -774,22 +925,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<hr/><h2>Variable Documentation</h2>
-<a class="anchor" id="ga6ebb2cdd0ce3099d227e0ffa461348c8"></a><!-- doxytag: member="cds_core.h::cds_assertion_reporter" ref="ga6ebb2cdd0ce3099d227e0ffa461348c8" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#ga030c78b9c6089af95b25da60220c3ce1">cds_assertion_failure_reporter_func</a> <a class="el" href="cds__core_8c.html#a6ebb2cdd0ce3099d227e0ffa461348c8">cds_assertion_reporter</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>mutable assertion reporter function used in the assertion macro </p>
-
-</div>
-</div>
 </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -808,7 +943,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 19 2011 15:16:25 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 21 2011 07:08:56 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 	void *front;
 	while (queue->count >= 5) {
 		front = cds_queue_front(queue);
-		//r = cds_queue_front(queue, &front);
+		/* r = cds_queue_front(queue, &front); */
 		if (front) {
 			printf("Front: %d\n", *((int *) front));
 			r = cds_queue_dequeue(queue);

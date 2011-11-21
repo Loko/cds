@@ -209,43 +209,9 @@ cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, const void *
 		array->count++;
 	}
     return cr;
-    /*
-    if (array->count == array->size) {
-		// first determine the new size, using either the default or the growth func
-		unsigned int nextSize;
-		if (growth_func) {
-			nextSize = (*growth_func)(array->size);
-			if (nextSize <= array->size)
-				return CDS_INVALID_OPERATION;
-		} else {
-			nextSize = (array->size) ? array->size * CDS_DEFAULT_DYNAMIC_ARRAY_GROWTH_MULTIPLIER : CDS_DEFAULT_DYNAMIC_ARRAY_SIZE;
-		}
-		// allocate or reallocate
-		void *tmp;
-		if (array->buffer)
-			tmp = (void *) cds_realloc(array->buffer, nextSize * sizeof(void *));
-		else
-			tmp = (void *) cds_alloc(nextSize * sizeof(void *));
-		// set the new values
-		if (tmp) {
-			array->buffer = tmp;
-			array->size = nextSize;
-		} else {
-			return CDS_BAD_ALLOC;
-		}
-	}
-    
-	// if nothing went wrong with resizing, place at the end of the buffer
-	if (array->buffer) {
-        void *dataCopy = (void *) data;
-		array->buffer[array->count] = dataCopy;
-		array->count++;
-		return CDS_OK;
-	}
-    */
 }
 
-// removes the last element from the array
+/* removes the last element from the array */
 cds_result cds_dynamic_array_pop_back(cds_dynamic_array *array) {
 	if (!array) {
 		return CDS_NULL_ARGUMENT;
@@ -257,8 +223,9 @@ cds_result cds_dynamic_array_pop_back(cds_dynamic_array *array) {
 	}
 }
 
-// removes the last element from the array
-// address of removed item set to data pointer
+/* removes the last element from the array
+ * address of removed item set to data pointer
+ */
 cds_result cds_dynamic_array_pop_back_data(cds_dynamic_array *array, void **data) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
@@ -272,13 +239,14 @@ cds_result cds_dynamic_array_pop_back_data(cds_dynamic_array *array, void **data
 	}
 }
 
-// removes the element from the array using the default removal behavoir
-// returns CDS_OK if it is removed, CDS_NOT_FOUND if it isn't, and CDS_NULL_ARGUMENT if the array hasn't been allocated
+/* removes the element from the array using the default removal behavoir
+ * returns CDS_OK if it is removed, CDS_NOT_FOUND if it isn't, and CDS_NULL_ARGUMENT if the array hasn't been allocated
+ */
 cds_result cds_dynamic_array_remove(cds_dynamic_array *array, const void *data) {
 	return cds_dynamic_array_remove_rb(array, data, CDS_DEFAULT_REMOVAL_BEHAVOIR);
 }
 
-// removes an element from the array using the given behavoir
+/* removes an element from the array using the given behavoir */
 cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, const void *data, cds_removal_behavoir rb) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
@@ -295,9 +263,9 @@ cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, const void *dat
 				}
 			} else if (rb == CDS_REPLACE_WITH_LAST) {
 				array->buffer[i] = array->buffer[array->count - 1];
-			} else {
+			} /*else {
 				CDS_ASSERT_MSG(0, "Unsupported removal behavoir does not return the proper return code!");
-			}
+			}*/
 			array->count--;
 			return CDS_OK;
 		}
@@ -305,12 +273,12 @@ cds_result cds_dynamic_array_remove_rb(cds_dynamic_array *array, const void *dat
 	return CDS_NOT_FOUND;
 }
 
-//
+/* */
 cds_result cds_dynamic_array_remove_cmp(cds_dynamic_array *array, const void *data, cds_cmp_func cmp_func) {
 	return cds_dynamic_array_remove_cmp_rb(array, data, cmp_func, CDS_DEFAULT_REMOVAL_BEHAVOIR);
 }
 
-//
+/* */
 cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, const void *data, cds_cmp_func cmp_func, cds_removal_behavoir rb) {
 	if (!array || !cmp_func)
 		return CDS_NULL_ARGUMENT;
@@ -327,9 +295,9 @@ cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, const void 
 				}
 			} else if (rb == CDS_REPLACE_WITH_LAST) {
 				array->buffer[i] = array->buffer[array->count - 1];
-			} else {
+			} /*else {
 				CDS_ASSERT_MSG(0, "Unsupported removal behavoir does not return the proper return code!");
-			}
+			}*/
 			array->count--;
 			return CDS_OK;
 		}
@@ -337,13 +305,15 @@ cds_result cds_dynamic_array_remove_cmp_rb(cds_dynamic_array *array, const void 
 	return CDS_NOT_FOUND;
 }
 
-// removes the pointer at the given index in the array
+/* removes the pointer at the given index in the array */
 cds_result cds_dynamic_array_remove_at(cds_dynamic_array *array, unsigned int index) {
 	return cds_dynamic_array_remove_at_rb(array, index, CDS_DEFAULT_REMOVAL_BEHAVOIR);
 }
 
-// removes the pointer at the given index in the array
-// if the index is valid, the given removal behavoir is used
+/*
+ * removes the pointer at the given index in the array
+ * if the index is valid, the given removal behavoir is used
+ */
 cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, unsigned int index, cds_removal_behavoir rb) {
 	if (!array)
 		return CDS_NULL_ARGUMENT;
@@ -366,8 +336,9 @@ cds_result cds_dynamic_array_remove_at_rb(cds_dynamic_array *array, unsigned int
 	}
 }
 
-// finds the index of the passed in data pointer and sets its value to index
-// returns CDS_OK if it is found, CDS_NOT_FOUND if it isn't, and CDS_NULL_ARGUMENT if array or index are null pointers
+/* finds the index of the passed in data pointer and sets its value to index
+ * returns CDS_OK if it is found, CDS_NOT_FOUND if it isn't, and CDS_NULL_ARGUMENT if array or index are null pointers
+ */
 cds_result cds_dynamic_array_find(const cds_dynamic_array *array, const void *data, unsigned int *index) {
 	if (!array || !index)
 		return CDS_NULL_ARGUMENT;
@@ -381,6 +352,7 @@ cds_result cds_dynamic_array_find(const cds_dynamic_array *array, const void *da
 	return CDS_NOT_FOUND;
 }
 
+/* */
 cds_result cds_dynamic_array_find_cmp(const cds_dynamic_array *array, const void *data, unsigned int *index, cds_cmp_func cmp_func) {
 	if (!array || !index || !cmp_func)
 		return CDS_NULL_ARGUMENT;
@@ -394,6 +366,7 @@ cds_result cds_dynamic_array_find_cmp(const cds_dynamic_array *array, const void
 	return CDS_NOT_FOUND;
 }
 
+/* */
 cds_result cds_dynamic_array_reverse(cds_dynamic_array *array) {
 	if (array) {
 		/* count should be zero in this case anyways, meaning the loop will terminate instantly
@@ -416,6 +389,7 @@ cds_result cds_dynamic_array_reverse(cds_dynamic_array *array) {
 	}
 }
 
+/* */
 cds_result cds_dynamic_array_iterate(const cds_dynamic_array *array, cds_visit_func visit_func) {
 	if (array && visit_func) {
 		unsigned int i;
