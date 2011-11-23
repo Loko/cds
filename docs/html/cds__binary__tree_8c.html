@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -83,13 +83,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="cds__binary__tree_8h_source.html">cds_binary_tree.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="cds__queue_8h_source.html">cds_queue.h</a>&quot;</code><br/>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gad2082525861197f18fdf21c0e8f8763b">cds_binary_tree_create</a> (<a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> **tree, <a class="el" href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb">cds_cmp_func</a> cmp_func)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the binary tree with the given cmp_func.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gad2082525861197f18fdf21c0e8f8763b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a73f0b3cb565ed79943d34515b4c4ea18">cds_binary_tree_clear_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *root)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a44f7e007651a147a93ab7948c4ba368e">cds_binary_tree_clear_all_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *root)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a5fccb706a465737506f42bcfaca24fe2">cds_binary_tree_clear_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *node)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a4605778673132e3044824d1c49663815">cds_binary_tree_clear_all_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *node)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga568acf1049dce2eed809dd90237927ad">cds_binary_tree_delete</a> (<a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> **tree)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the binary tree.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga568acf1049dce2eed809dd90237927ad"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga1225f0c0208effef34114e9010804fea">cds_binary_tree_clear</a> (<a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
@@ -99,101 +100,40 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gadb37c5b8b63fa8b3d82e16907a7b3c61">cds_binary_tree_root</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the root node of the tree or NULL if the tree is null/empty.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gadb37c5b8b63fa8b3d82e16907a7b3c61"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga93dcde4e30f7a6c3f69f51e5f2c86ae1">cds_binary_tree_count</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of nodes in the tree.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga93dcde4e30f7a6c3f69f51e5f2c86ae1"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of nodes in the tree or 0 if the tree is null/empty.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga93dcde4e30f7a6c3f69f51e5f2c86ae1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb">cds_cmp_func</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga4037fdd7efdba2bbd4bfcbd92f363b03">cds_binary_tree_cmp_func</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the comparison function used by the tree.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga4037fdd7efdba2bbd4bfcbd92f363b03"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga9f052cf556d21a090c4435fc194cb309">cds_binary_tree_max</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum value data element.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga9f052cf556d21a090c4435fc194cb309"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga30f74adba55f5e82a87fa5b4465bf6e7">cds_binary_tree_min</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the minimum value data element.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga30f74adba55f5e82a87fa5b4465bf6e7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a1679947c549f8ca1231d782cd72d1898">cds_binary_tree_depth_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *root)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga47c9db92af9414733944373de7dfef02">cds_binary_tree_min</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the minimum value data element.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga47c9db92af9414733944373de7dfef02"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga459c45ad751e4a95204f9186dcd3b6fc">cds_binary_tree_max</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum value data element.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga459c45ad751e4a95204f9186dcd3b6fc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#ae2cad568a6cad60793391880b763eb9e">cds_binary_tree_height_recursive</a> (const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *node)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gaaf2ab2e5c7edfac4774b6d4daa435ec8">cds_binary_tree_height</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of the tree.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gaaf2ab2e5c7edfac4774b6d4daa435ec8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#ac52ee3be43d1c3bb6d31a8833d33170b">cds_binary_tree_preorder_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *root, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a91a6364974da7001beafd2b8496feac1">cds_binary_tree_preorder_iterative</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *root, unsigned int count, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a2fe1fbb4c9e45205b0f9646b3437fb09">cds_binary_tree_inorder_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *root, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a76ff270f5722d9252be08aac2c3abea3">cds_binary_tree_postorder_recursive</a> (<a class="el" href="structcds__binary__node.html">cds_binary_node</a> *root, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#ace0a3ac909e7d0c52129b896e202ba6e">cds_binary_tree_breadthorder_traversal</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The height/depth of the tree.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gaaf2ab2e5c7edfac4774b6d4daa435ec8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga284e85deb4e7ceb26e6b95cc99ac75d8">cds_binary_tree_insert</a> (<a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree, const void *data)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts the data pointer into a new node of the tree.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga284e85deb4e7ceb26e6b95cc99ac75d8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga161315fc8cf1681d090f73b35936fea7">cds_binary_tree_remove</a> (<a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree, const void *data)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the node with the given data pointer value.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga161315fc8cf1681d090f73b35936fea7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gad6f613723f3e0076342f7b7199ecdd2a">cds_binary_tree_find</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree, const void *data, <a class="el" href="structcds__binary__node.html">cds_binary_node</a> **node)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the node with the given pointer.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gad6f613723f3e0076342f7b7199ecdd2a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga1cccff3d94a18bcebd9131585711fbf3">cds_binary_tree_iterate</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree, <a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga7141f0d2f5e12d1a1c94e74bbfecefa1">cds_binary_tree_traversal_type</a> traversal_type, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely iterates over every element in the tree using the given.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga1cccff3d94a18bcebd9131585711fbf3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a3d645f02cb9e9d9fe8584883b2a39c61">cds_binary_tree_preorder_recursive</a> (const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *node, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#ad2f450086b24451a2ed228c7d2702f1d">cds_binary_tree_inorder_recursive</a> (const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *node, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#ac01bbb97efe38024b469d69b490dfbee">cds_binary_tree_postorder_recursive</a> (const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *node, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gaf795a4007e23eac9c29e6512a97c7093">cds_binary_tree_iterate_node</a> (const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *node, <a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga7141f0d2f5e12d1a1c94e74bbfecefa1">cds_binary_tree_traversal_type</a> traversal_type, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over every element in the node subtree using the given.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#gaf795a4007e23eac9c29e6512a97c7093"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga74b0ef9c3ae47d853112c2a6e0f2b580">cds_binary_tree_iterate</a> (const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *tree, <a class="el" href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga7141f0d2f5e12d1a1c94e74bbfecefa1">cds_binary_tree_traversal_type</a> traversal_type, <a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a> visit_func)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Safely iterates over every element in the tree using the given.  <a href="group___c_d_s___b_i_n_a_r_y___t_r_e_e.html#ga74b0ef9c3ae47d853112c2a6e0f2b580"></a><br/></td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ace0a3ac909e7d0c52129b896e202ba6e"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_breadthorder_traversal" ref="ace0a3ac909e7d0c52129b896e202ba6e" args="(const cds_binary_tree *tree, cds_visit_func visit_func)" -->
+<a class="anchor" id="a4605778673132e3044824d1c49663815"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_clear_all_recursive" ref="a4605778673132e3044824d1c49663815" args="(cds_binary_node *node)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_binary_tree_breadthorder_traversal </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structcds__binary__tree.html">cds_binary_tree</a> *&#160;</td>
-          <td class="paramname"><em>tree</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a>&#160;</td>
-          <td class="paramname"><em>visit_func</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a44f7e007651a147a93ab7948c4ba368e"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_clear_all_recursive" ref="a44f7e007651a147a93ab7948c4ba368e" args="(cds_binary_node *root)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_binary_tree_clear_all_recursive </td>
+          <td class="memname">static <a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_binary_tree_clear_all_recursive </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
-          <td class="paramname"><em>root</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a73f0b3cb565ed79943d34515b4c4ea18"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_clear_recursive" ref="a73f0b3cb565ed79943d34515b4c4ea18" args="(cds_binary_node *root)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_binary_tree_clear_recursive </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
-          <td class="paramname"><em>root</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1679947c549f8ca1231d782cd72d1898"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_depth_recursive" ref="a1679947c549f8ca1231d782cd72d1898" args="(cds_binary_node *root)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static unsigned int cds_binary_tree_depth_recursive </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
-          <td class="paramname"><em>root</em></td><td>)</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
           <td><code> [static]</code></td>
         </tr>
       </table>
@@ -202,26 +142,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2fe1fbb4c9e45205b0f9646b3437fb09"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_inorder_recursive" ref="a2fe1fbb4c9e45205b0f9646b3437fb09" args="(cds_binary_node *root, cds_visit_func visit_func)" -->
+<a class="anchor" id="a5fccb706a465737506f42bcfaca24fe2"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_clear_recursive" ref="a5fccb706a465737506f42bcfaca24fe2" args="(cds_binary_node *node)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static void cds_binary_tree_inorder_recursive </td>
+          <td class="memname">static <a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_binary_tree_clear_recursive </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
-          <td class="paramname"><em>root</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a>&#160;</td>
-          <td class="paramname"><em>visit_func</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [static]</code></td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -229,26 +159,16 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a76ff270f5722d9252be08aac2c3abea3"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_postorder_recursive" ref="a76ff270f5722d9252be08aac2c3abea3" args="(cds_binary_node *root, cds_visit_func visit_func)" -->
+<a class="anchor" id="ae2cad568a6cad60793391880b763eb9e"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_height_recursive" ref="ae2cad568a6cad60793391880b763eb9e" args="(const cds_binary_node *node)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static void cds_binary_tree_postorder_recursive </td>
+          <td class="memname">static unsigned int cds_binary_tree_height_recursive </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
-          <td class="paramname"><em>root</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a>&#160;</td>
-          <td class="paramname"><em>visit_func</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [static]</code></td>
+          <td class="paramtype">const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td><code> [static]</code></td>
         </tr>
       </table>
 </div>
@@ -256,21 +176,15 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a91a6364974da7001beafd2b8496feac1"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_preorder_iterative" ref="a91a6364974da7001beafd2b8496feac1" args="(cds_binary_node *root, unsigned int count, cds_visit_func visit_func)" -->
+<a class="anchor" id="ad2f450086b24451a2ed228c7d2702f1d"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_inorder_recursive" ref="ad2f450086b24451a2ed228c7d2702f1d" args="(const cds_binary_node *node, cds_visit_func visit_func)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_binary_tree_preorder_iterative </td>
+          <td class="memname">void cds_binary_tree_inorder_recursive </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
-          <td class="paramname"><em>root</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>count</em>, </td>
+          <td class="paramtype">const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -289,15 +203,15 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac52ee3be43d1c3bb6d31a8833d33170b"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_preorder_recursive" ref="ac52ee3be43d1c3bb6d31a8833d33170b" args="(cds_binary_node *root, cds_visit_func visit_func)" -->
+<a class="anchor" id="ac01bbb97efe38024b469d69b490dfbee"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_postorder_recursive" ref="ac01bbb97efe38024b469d69b490dfbee" args="(const cds_binary_node *node, cds_visit_func visit_func)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">static void cds_binary_tree_preorder_recursive </td>
+          <td class="memname">void cds_binary_tree_postorder_recursive </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
-          <td class="paramname"><em>root</em>, </td>
+          <td class="paramtype">const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -308,7 +222,34 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td><code> [static]</code></td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3d645f02cb9e9d9fe8584883b2a39c61"></a><!-- doxytag: member="cds_binary_tree.c::cds_binary_tree_preorder_recursive" ref="a3d645f02cb9e9d9fe8584883b2a39c61" args="(const cds_binary_node *node, cds_visit_func visit_func)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cds_binary_tree_preorder_recursive </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcds__binary__node.html">cds_binary_node</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___c_d_s.html#ga445e46c328c1a2ebd8436b0542ea4fea">cds_visit_func</a>&#160;</td>
+          <td class="paramname"><em>visit_func</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -334,7 +275,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:55 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:10 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

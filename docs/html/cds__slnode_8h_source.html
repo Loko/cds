@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -83,22 +83,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 <span class="preprocessor">#ifndef _CDS_SLNODE_H_</span>
 <a name="l00008"></a>00008 <span class="preprocessor"></span><span class="preprocessor">#define _CDS_SLNODE_H_</span>
 <a name="l00009"></a>00009 <span class="preprocessor"></span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;<a class="code" href="cds__core_8h.html" title="A Collection of Base Functions for dynamic memory allocations, assertions, error handling, logging, etc.">cds_core.h</a>&quot;</span>
-<a name="l00015"></a>00015 
-<a name="l00019"></a><a class="code" href="structcds__slnode.html">00019</a> <span class="keyword">struct </span><a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> {
-<a name="l00020"></a><a class="code" href="structcds__slnode.html#aa2a9f0b68ddf57b82eb9fd1305be57db">00020</a>         <span class="keyword">struct </span><a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> *<a class="code" href="structcds__slnode.html#aa2a9f0b68ddf57b82eb9fd1305be57db">next</a>;
-<a name="l00021"></a><a class="code" href="structcds__slnode.html#a735984d41155bc1032e09bece8f8d66d">00021</a>         <span class="keywordtype">void</span> *<a class="code" href="structcds__slnode.html#a735984d41155bc1032e09bece8f8d66d">data</a>;
-<a name="l00022"></a>00022 };
-<a name="l00023"></a>00023 
-<a name="l00025"></a><a class="code" href="group___c_d_s___s_l_i_s_t.html#ga163cf67ce95cf2a7ae1114676ab12f0b">00025</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> <a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a>;
-<a name="l00026"></a>00026 
-<a name="l00028"></a>00028 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_l_i_s_t.html#gaa53e21538ba333a2eac05503dfa675cb" title="Creates the singly linked list node.">cds_slnode_create</a>(<a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> **node, <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code" href="structcds__slnode.html#a735984d41155bc1032e09bece8f8d66d">data</a>);
-<a name="l00029"></a>00029 
-<a name="l00031"></a>00031 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_l_i_s_t.html#ga76c053122e6281e6a6533ed509eebf44" title="Deletes the singly linked list node.">cds_slnode_delete</a>(<a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> **node);
-<a name="l00032"></a>00032 
-<a name="l00034"></a>00034 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_l_i_s_t.html#ga6483e6ec595f5e78977a1808a6637b8f" title="Deletes the singly linked list node and the data it points to.">cds_slnode_delete_all</a>(<a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> **node);
-<a name="l00035"></a>00035 
-<a name="l00038"></a>00038 <span class="preprocessor">#endif</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;<a class="code" href="cds__core_8h.html" title="A Collection of Base Functions for dynamic memory allocations, assertions, error handling, logging, etc.">cds_core.h</a>&quot;</span>
+<a name="l00016"></a>00016 
+<a name="l00020"></a><a class="code" href="structcds__slnode.html">00020</a> <span class="keyword">struct </span><a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> {
+<a name="l00021"></a><a class="code" href="structcds__slnode.html#aa2a9f0b68ddf57b82eb9fd1305be57db">00021</a>         <span class="keyword">struct </span><a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> *<a class="code" href="structcds__slnode.html#aa2a9f0b68ddf57b82eb9fd1305be57db">next</a>;
+<a name="l00022"></a><a class="code" href="structcds__slnode.html#a735984d41155bc1032e09bece8f8d66d">00022</a>         <span class="keywordtype">void</span> *<a class="code" href="structcds__slnode.html#a735984d41155bc1032e09bece8f8d66d">data</a>;
+<a name="l00023"></a>00023 };
+<a name="l00024"></a>00024 
+<a name="l00026"></a><a class="code" href="group___c_d_s___s_l_i_s_t.html#ga163cf67ce95cf2a7ae1114676ab12f0b">00026</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> <a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a>;
+<a name="l00027"></a>00027 
+<a name="l00029"></a>00029 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_l_i_s_t.html#gaa53e21538ba333a2eac05503dfa675cb" title="Creates the singly linked list node.">cds_slnode_create</a>(<a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> **node, <span class="keyword">const</span> <span class="keywordtype">void</span> *<a class="code" href="structcds__slnode.html#a735984d41155bc1032e09bece8f8d66d">data</a>);
+<a name="l00030"></a>00030 
+<a name="l00032"></a>00032 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_l_i_s_t.html#ga76c053122e6281e6a6533ed509eebf44" title="Deletes the singly linked list node.">cds_slnode_delete</a>(<a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> **node);
+<a name="l00033"></a>00033 
+<a name="l00035"></a>00035 <a class="code" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6" title="Enum for return values describing the success/failure of a function.">cds_result</a> <a class="code" href="group___c_d_s___s_l_i_s_t.html#ga6483e6ec595f5e78977a1808a6637b8f" title="Deletes the singly linked list node and the data it points to.">cds_slnode_delete_all</a>(<a class="code" href="structcds__slnode.html" title="A typical singly linked list node.">cds_slnode</a> **node);
+<a name="l00036"></a>00036 
+<a name="l00039"></a>00039 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -118,7 +118,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:08 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

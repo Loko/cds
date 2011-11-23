@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -77,7 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CDS</div>  </div>
-</div>
+<div class="ingroups"><a class="el" href="group___c_d_s___s_l_i_s_t.html">CDS_SLIST</a></div></div>
 <div class="contents">
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="define-members"></a>
@@ -87,8 +87,8 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga86f161ba82d53d3e20283f966803fc32">CDS_UNUSED</a>(expr)&#160;&#160;&#160;do { (void)sizeof(expr); } while(0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6d6e0a8725f52f501ac16ccb8493c2b5">CDS_ASSERT</a>(expr)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga10d72c28279d1cf364b28877344dcf6f">CDS_ASSERT_MSG</a>(expr, msg,...)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab796262b912382cf632375e696c38fbf">CDS_MAX_ERR_STR_LEN</a>&#160;&#160;&#160;50</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of a cds_result string.  <a href="#gab796262b912382cf632375e696c38fbf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gafa0cf8f81f98a9b44b1fe7dce6a17ab2">CDS_RESULT_MAX_STR_LEN</a>&#160;&#160;&#160;50</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of a cds_result string.  <a href="#gafa0cf8f81f98a9b44b1fe7dce6a17ab2"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a> )(const char *, va_list)</td></tr>
@@ -169,6 +169,7 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gace68e9b3ec618f1b99921046c3455f1e">cds_free</a> (void *ptr)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Free call used by the CDS libraries.  <a href="#gace68e9b3ec618f1b99921046c3455f1e"></a><br/></td></tr>
 </table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <hr/><h2>Define Documentation</h2>
 <a class="anchor" id="ga6d6e0a8725f52f501ac16ccb8493c2b5"></a><!-- doxytag: member="cds_core.h::CDS_ASSERT" ref="ga6d6e0a8725f52f501ac16ccb8493c2b5" args="(expr)" -->
 <div class="memitem">
@@ -270,12 +271,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="gab796262b912382cf632375e696c38fbf"></a><!-- doxytag: member="cds_core.h::CDS_MAX_ERR_STR_LEN" ref="gab796262b912382cf632375e696c38fbf" args="" -->
+<a class="anchor" id="gafa0cf8f81f98a9b44b1fe7dce6a17ab2"></a><!-- doxytag: member="cds_core.h::CDS_RESULT_MAX_STR_LEN" ref="gafa0cf8f81f98a9b44b1fe7dce6a17ab2" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define CDS_MAX_ERR_STR_LEN&#160;&#160;&#160;50</td>
+          <td class="memname">#define CDS_RESULT_MAX_STR_LEN&#160;&#160;&#160;50</td>
         </tr>
       </table>
 </div>
@@ -389,7 +390,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Function prototype for printf-like logging functions using va_lists. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>preprocessor macro not to use the standard library?? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>preprocessor macro not to use the standard library?? </dd></dl>
 
 </div>
 </div>
@@ -465,7 +466,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Enum for return values describing the success/failure of a function. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>Had an idea the other day that this enum is a bunch of bitfields and ORing them could reveal multiple errors. But this may be difficult to implement, and would conflict with the idea of early returns? Also, consider using the FMOD standards, where ERR is put in the name </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>Had an idea the other day that this enum is a bunch of bitfields and ORing them could reveal multiple errors. But this may be difficult to implement, and would conflict with the idea of early returns? Also, consider using the FMOD standards, where ERR is put in the name </dd></dl>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="ggac610b2ee7c62fb78c000211f567bbbf6a17efd856748928a1e4ff01e0be60d105"></a><!-- doxytag: member="CDS_UNIMPLEMENTED" ref="ggac610b2ee7c62fb78c000211f567bbbf6a17efd856748928a1e4ff01e0be60d105" args="" -->CDS_UNIMPLEMENTED</em>&nbsp;</td><td>
 <p>A feature that's not yet supported. </p>
@@ -943,7 +944,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:56 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:11 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

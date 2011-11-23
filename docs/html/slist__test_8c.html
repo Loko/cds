@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -86,19 +86,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a27ce8580906d5d52023c6013df077285">intComparison</a> (const void *a, const void *b)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#aeb90bf39381a9a2ec40f2f77a353bcf3">printList</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a906ab3ceacba3657544d2bd92f962597">cmpInt</a> (const void *a, const void *b)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a8b016f240af86eadc33554a342a634b8">printInt</a> (const void *ptr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a9d6cbdc91dc15131f0d90d8fbfe543d4">logList</a> (const <a class="el" href="structcds__slist.html">cds_slist</a> *list, int printSize)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a02d6f9c95ad665e9294669ae908bd662">printLinkedList</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a2bcc875325ae02d9eaad815fb92ee3eb">pickNode</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list, unsigned int index, <a class="el" href="structcds__slnode.html">cds_slnode</a> **node)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a545de3ae53bad66b63a1d9afabac110a">pickNode</a> (const <a class="el" href="structcds__slist.html">cds_slist</a> *list, unsigned int index, <a class="el" href="structcds__slnode.html">cds_slnode</a> **node)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist__test_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="a27ce8580906d5d52023c6013df077285"></a><!-- doxytag: member="slist_test.c::intComparison" ref="a27ce8580906d5d52023c6013df077285" args="(const void *a, const void *b)" -->
+<a class="anchor" id="a906ab3ceacba3657544d2bd92f962597"></a><!-- doxytag: member="slist_test.c::cmpInt" ref="a906ab3ceacba3657544d2bd92f962597" args="(const void *a, const void *b)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int intComparison </td>
+          <td class="memname">int cmpInt </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -108,6 +109,33 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9d6cbdc91dc15131f0d90d8fbfe543d4"></a><!-- doxytag: member="slist_test.c::logList" ref="a9d6cbdc91dc15131f0d90d8fbfe543d4" args="(const cds_slist *list, int printSize)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logList </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcds__slist.html">cds_slist</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>printSize</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -137,14 +165,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2bcc875325ae02d9eaad815fb92ee3eb"></a><!-- doxytag: member="slist_test.c::pickNode" ref="a2bcc875325ae02d9eaad815fb92ee3eb" args="(cds_slist *list, unsigned int index, cds_slnode **node)" -->
+<a class="anchor" id="a545de3ae53bad66b63a1d9afabac110a"></a><!-- doxytag: member="slist_test.c::pickNode" ref="a545de3ae53bad66b63a1d9afabac110a" args="(const cds_slist *list, unsigned int index, cds_slnode **node)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void pickNode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__slist.html">cds_slist</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structcds__slist.html">cds_slist</a> *&#160;</td>
           <td class="paramname"><em>list</em>, </td>
         </tr>
         <tr>
@@ -170,15 +198,15 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a02d6f9c95ad665e9294669ae908bd662"></a><!-- doxytag: member="slist_test.c::printLinkedList" ref="a02d6f9c95ad665e9294669ae908bd662" args="(cds_slist *list)" -->
+<a class="anchor" id="a8b016f240af86eadc33554a342a634b8"></a><!-- doxytag: member="slist_test.c::printInt" ref="a8b016f240af86eadc33554a342a634b8" args="(const void *ptr)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void printLinkedList </td>
+          <td class="memname">void printInt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__slist.html">cds_slist</a> *&#160;</td>
-          <td class="paramname"><em>list</em></td><td>)</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -187,12 +215,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeb90bf39381a9a2ec40f2f77a353bcf3"></a><!-- doxytag: member="slist_test.c::printList" ref="aeb90bf39381a9a2ec40f2f77a353bcf3" args="(cds_slist *list)" -->
+<a class="anchor" id="a02d6f9c95ad665e9294669ae908bd662"></a><!-- doxytag: member="slist_test.c::printLinkedList" ref="a02d6f9c95ad665e9294669ae908bd662" args="(cds_slist *list)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void printList </td>
+          <td class="memname">void printLinkedList </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcds__slist.html">cds_slist</a> *&#160;</td>
           <td class="paramname"><em>list</em></td><td>)</td>
@@ -222,7 +250,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:08 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

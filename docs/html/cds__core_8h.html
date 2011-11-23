@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">include/cds_core.h File Reference</div>  </div>
+<div class="title">include/cds_core.h File Reference<div class="ingroups"><a class="el" href="group___c_d_s___q_u_e_u_e.html">CDS_QUEUE</a></div></div>  </div>
 </div>
 <div class="contents">
 
@@ -101,8 +101,14 @@ Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga86f161ba82d53d3e20283f966803fc32">CDS_UNUSED</a>(expr)&#160;&#160;&#160;do { (void)sizeof(expr); } while(0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga6d6e0a8725f52f501ac16ccb8493c2b5">CDS_ASSERT</a>(expr)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga10d72c28279d1cf364b28877344dcf6f">CDS_ASSERT_MSG</a>(expr, msg,...)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gab796262b912382cf632375e696c38fbf">CDS_MAX_ERR_STR_LEN</a>&#160;&#160;&#160;50</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of a cds_result string.  <a href="group___c_d_s.html#gab796262b912382cf632375e696c38fbf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#gafa0cf8f81f98a9b44b1fe7dce6a17ab2">CDS_RESULT_MAX_STR_LEN</a>&#160;&#160;&#160;50</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum size of a cds_result string.  <a href="group___c_d_s.html#gafa0cf8f81f98a9b44b1fe7dce6a17ab2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a57e9e7f7b49fe40a91ee1322807fa648">CDS_ASSERTIONS_ENABLED</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#acf4fb69274c45c96f5ba09916a2f5d57">CDS_HALT</a>()&#160;&#160;&#160;asm { int 3 }</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a86f161ba82d53d3e20283f966803fc32">CDS_UNUSED</a>(expr)&#160;&#160;&#160;do { (void)sizeof(expr); } while(0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a6d6e0a8725f52f501ac16ccb8493c2b5">CDS_ASSERT</a>(expr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#a10d72c28279d1cf364b28877344dcf6f">CDS_ASSERT_MSG</a>(expr, msg,...)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cds__binary__tree_8c.html#afa0cf8f81f98a9b44b1fe7dce6a17ab2">CDS_RESULT_MAX_STR_LEN</a>&#160;&#160;&#160;50</td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html#ga716e62cf3f5ea923c509f45b677388dc">cds_log_func</a> )(const char *, va_list)</td></tr>
@@ -185,8 +191,139 @@ Functions</h2></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A Collection of Base Functions for dynamic memory allocations, assertions, error handling, logging, etc. </p>
-<dl class="author"><dt><b>Author:</b></dt><dd>Jeff Lansing </dd></dl>
-</div></div>
+<dl class="author"><dt><b>Author:</b></dt><dd>Jeff Lansing</dd></dl>
+</div><hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a6d6e0a8725f52f501ac16ccb8493c2b5"></a><!-- doxytag: member="cds_core.h::CDS_ASSERT" ref="a6d6e0a8725f52f501ac16ccb8493c2b5" args="(expr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_ASSERT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">expr</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> \
+                { \
+                        if (!(expr)) \
+                        { \
+                                cds_on_assertion_failure(#expr, \
+                                                                                 __FILE__, \
+                                                                                 __LINE__, \
+                                                                                 (NULL)); \
+                        } \
+                } <span class="keywordflow">while</span> (0)
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a10d72c28279d1cf364b28877344dcf6f"></a><!-- doxytag: member="cds_core.h::CDS_ASSERT_MSG" ref="a10d72c28279d1cf364b28877344dcf6f" args="(expr, msg,...)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_ASSERT_MSG</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">expr, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">msg, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keywordflow">do</span> \
+                { \
+                        if (!(expr)) \
+                        { \
+                                cds_on_assertion_failure(#expr, \
+                                                                                 __FILE__, \
+                                                                                 __LINE__, \
+                                                                                 (msg), \
+                                                                                 __VA_ARGS__); \
+                        } \
+                } <span class="keywordflow">while</span> (0)
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a57e9e7f7b49fe40a91ee1322807fa648"></a><!-- doxytag: member="cds_core.h::CDS_ASSERTIONS_ENABLED" ref="a57e9e7f7b49fe40a91ee1322807fa648" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_ASSERTIONS_ENABLED</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="acf4fb69274c45c96f5ba09916a2f5d57"></a><!-- doxytag: member="cds_core.h::CDS_HALT" ref="acf4fb69274c45c96f5ba09916a2f5d57" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_HALT</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;asm { int 3 }</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afa0cf8f81f98a9b44b1fe7dce6a17ab2"></a><!-- doxytag: member="cds_core.h::CDS_RESULT_MAX_STR_LEN" ref="afa0cf8f81f98a9b44b1fe7dce6a17ab2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_RESULT_MAX_STR_LEN&#160;&#160;&#160;50</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a86f161ba82d53d3e20283f966803fc32"></a><!-- doxytag: member="cds_core.h::CDS_UNUSED" ref="a86f161ba82d53d3e20283f966803fc32" args="(expr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_UNUSED</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">expr</td><td>)</td>
+          <td>&#160;&#160;&#160;do { (void)sizeof(expr); } while(0)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -204,7 +341,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:09 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

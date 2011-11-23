@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -89,11 +89,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#a94c9bba2137e8d6c5f440c1bb11537db">naiveIntHash</a> (const void *key)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#ab2acb5ca05ec0b91a982ccaeb088f5ee">jenkinsHash</a> (const void *key)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#a906ab3ceacba3657544d2bd92f962597">cmpInt</a> (const void *a, const void *b)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#ae5e065ae02381312fdb8bc449457a537">cmpStr</a> (const void *a, const void *b)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#aba8b92dc0820736a57ae1170575cb8df">compare</a> (const char *s1, const char *s2)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#a8b016f240af86eadc33554a342a634b8">printInt</a> (const void *ptr)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#a74b656489bb9b8852d247493057f9d04">printString</a> (const void *ptr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#a1cd262cb1664236be74a5ee9c67c9f6f">printPair</a> (const void *keyPtr, const void *valPtr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#a13ff0fdea1f9bcc4d4a23cb8ea701f35">logTable</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *htable, int printSize)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table__test_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 </table>
 <hr/><h2>Function Documentation</h2>
@@ -151,21 +153,38 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aba8b92dc0820736a57ae1170575cb8df"></a><!-- doxytag: member="hash_table_test.c::compare" ref="aba8b92dc0820736a57ae1170575cb8df" args="(const char *s1, const char *s2)" -->
+<a class="anchor" id="ab2acb5ca05ec0b91a982ccaeb088f5ee"></a><!-- doxytag: member="hash_table_test.c::jenkinsHash" ref="ab2acb5ca05ec0b91a982ccaeb088f5ee" args="(const void *key)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void compare </td>
+          <td class="memname">unsigned int jenkinsHash </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>s1</em>, </td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a13ff0fdea1f9bcc4d4a23cb8ea701f35"></a><!-- doxytag: member="hash_table_test.c::logTable" ref="a13ff0fdea1f9bcc4d4a23cb8ea701f35" args="(const cds_hash_table *htable, int printSize)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logTable </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *&#160;</td>
+          <td class="paramname"><em>htable</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>s2</em>&#160;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>printSize</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -239,6 +258,33 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1cd262cb1664236be74a5ee9c67c9f6f"></a><!-- doxytag: member="hash_table_test.c::printPair" ref="a1cd262cb1664236be74a5ee9c67c9f6f" args="(const void *keyPtr, const void *valPtr)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printPair </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>keyPtr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>valPtr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a74b656489bb9b8852d247493057f9d04"></a><!-- doxytag: member="hash_table_test.c::printString" ref="a74b656489bb9b8852d247493057f9d04" args="(const void *ptr)" -->
 <div class="memitem">
 <div class="memproto">
@@ -274,7 +320,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:54 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:08 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

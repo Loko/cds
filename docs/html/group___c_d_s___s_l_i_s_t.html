@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -72,11 +72,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#groups">Modules</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">CDS_SLIST</div>  </div>
-</div>
+<div class="ingroups"><a class="el" href="group___c_d_s___q_u_e_u_e.html">CDS_QUEUE</a></div></div>
 <div class="contents">
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
@@ -85,9 +86,13 @@ Data Structures</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Singly Linked List stores the head, tail, and count.  <a href="structcds__slist.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcds__slnode.html">cds_slnode</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A typical singly linked list node.  <a href="structcds__slnode.html#details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="groups"></a>
+Modules</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s.html">CDS</a></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcds__slist.html">cds_slist</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#ga40fb494b383ac0d4a90c2243bd36eebe">cds_slist</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structcds__dlist.html" title="A struct for a double linked list of any type.">cds_dlist</a> Custom typename for the singly linked list struct  <a href="#ga40fb494b383ac0d4a90c2243bd36eebe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcds__slnode.html">cds_slnode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#ga163cf67ce95cf2a7ae1114676ab12f0b">cds_slnode</a></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -111,8 +116,12 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the given data pointer to the end of the list.  <a href="#ga25db33a5d22d5b5b0acc815be2e7954f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#ga985c6e349e1c87f1c0b8bb24cb097927">cds_slist_insert_before</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list, <a class="el" href="structcds__slnode.html">cds_slnode</a> *node, const void *data)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts the data in a new node before the passed in node.  <a href="#ga985c6e349e1c87f1c0b8bb24cb097927"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#ga455c9cd85d3e40d3fe40f1501192038c">cds_slist_insert_before_node</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list, <a class="el" href="structcds__slnode.html">cds_slnode</a> *node, const void *data, <a class="el" href="structcds__slnode.html">cds_slnode</a> **cnode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts the data in a new node before the passed in node and puts the newly created node into cnode.  <a href="#ga455c9cd85d3e40d3fe40f1501192038c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#gaf398516a2d0ae50a97191cdc2d65442e">cds_slist_insert_after</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list, <a class="el" href="structcds__slnode.html">cds_slnode</a> *node, const void *data)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts the data in a new node after the passed in node.  <a href="#gaf398516a2d0ae50a97191cdc2d65442e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#ga3082937749d55a87eedb1b9a888b85ed">cds_slist_insert_after_node</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list, <a class="el" href="structcds__slnode.html">cds_slnode</a> *node, const void *data, <a class="el" href="structcds__slnode.html">cds_slnode</a> **cnode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts after the given node and puts the newly created node into cnode.  <a href="#ga3082937749d55a87eedb1b9a888b85ed"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#gab4e6e9d4dec6cde26fe59414b99c0c5b">cds_slist_remove_head</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the head node from the list.  <a href="#gab4e6e9d4dec6cde26fe59414b99c0c5b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#ga4496528ec83448b79c638575c076db73">cds_slist_remove_tail</a> (<a class="el" href="structcds__slist.html">cds_slist</a> *list)</td></tr>
@@ -142,6 +151,7 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___s_l_i_s_t.html#ga6483e6ec595f5e78977a1808a6637b8f">cds_slnode_delete_all</a> (<a class="el" href="structcds__slnode.html">cds_slnode</a> **node)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the singly linked list node and the data it points to.  <a href="#ga6483e6ec595f5e78977a1808a6637b8f"></a><br/></td></tr>
 </table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <hr/><h2>Typedef Documentation</h2>
 <a class="anchor" id="ga40fb494b383ac0d4a90c2243bd36eebe"></a><!-- doxytag: member="cds_slist.h::cds_slist" ref="ga40fb494b383ac0d4a90c2243bd36eebe" args="" -->
 <div class="memitem">
@@ -153,6 +163,8 @@ Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p><a class="el" href="structcds__dlist.html" title="A struct for a double linked list of any type.">cds_dlist</a> Custom typename for the singly linked list struct </p>
 
 </div>
 </div>
@@ -455,6 +467,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ga3082937749d55a87eedb1b9a888b85ed"></a><!-- doxytag: member="cds_slist.h::cds_slist_insert_after_node" ref="ga3082937749d55a87eedb1b9a888b85ed" args="(cds_slist *list, cds_slnode *node, const void *data, cds_slnode **cnode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_slist_insert_after_node </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcds__slist.html">cds_slist</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcds__slnode.html">cds_slnode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcds__slnode.html">cds_slnode</a> **&#160;</td>
+          <td class="paramname"><em>cnode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Inserts after the given node and puts the newly created node into cnode. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>*cnode = NULL if the alloc failed? </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ga985c6e349e1c87f1c0b8bb24cb097927"></a><!-- doxytag: member="cds_slist.h::cds_slist_insert_before" ref="ga985c6e349e1c87f1c0b8bb24cb097927" args="(cds_slist *list, cds_slnode *node, const void *data)" -->
 <div class="memitem">
 <div class="memproto">
@@ -487,6 +541,47 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Inserts the data in a new node before the passed in node. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga455c9cd85d3e40d3fe40f1501192038c"></a><!-- doxytag: member="cds_slist.h::cds_slist_insert_before_node" ref="ga455c9cd85d3e40d3fe40f1501192038c" args="(cds_slist *list, cds_slnode *node, const void *data, cds_slnode **cnode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_slist_insert_before_node </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcds__slist.html">cds_slist</a> *&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcds__slnode.html">cds_slnode</a> *&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structcds__slnode.html">cds_slnode</a> **&#160;</td>
+          <td class="paramname"><em>cnode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Inserts the data in a new node before the passed in node and puts the newly created node into cnode. </p>
 
 </div>
 </div>
@@ -832,7 +927,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:57 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:12 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>

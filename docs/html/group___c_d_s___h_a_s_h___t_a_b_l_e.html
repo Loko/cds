@@ -27,7 +27,7 @@
   
   <td style="padding-left: 0.5em;">
    <div id="projectname">C Data Structures
-   &#160;<span id="projectnumber">0.01</span>
+   &#160;<span id="projectnumber">0.02</span>
    </div>
    <div id="projectbrief">CDS</div>
   </td>
@@ -72,6 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Defines</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -85,6 +86,12 @@ Data Structures</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Struture for a key/value pair based hash node usable in a.  <a href="structcds__hash__node.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcds__hash__table.html">cds_hash_table</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct container for hash table using linear probing.  <a href="structcds__hash__table.html#details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="define-members"></a>
+Defines</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gafa5f3d547dd0dd9ace160f50176bfdde">CDS_DEFAULT_HASH_TABLE_SIZE</a>&#160;&#160;&#160;8</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default reccomended start size.  <a href="#gafa5f3d547dd0dd9ace160f50176bfdde"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gab9e78f765a317d45f44a39b5faf33620">CDS_DEFAULT_HASH_TABLE_GROWTH_MULTIPLIER</a>&#160;&#160;&#160;2</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default growth rate when a hash table reaches its capacity.  <a href="#gab9e78f765a317d45f44a39b5faf33620"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structcds__hash__node.html">cds_hash_node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga3c064d72923fa4429e31576aa0eea283">cds_hash_node</a></td></tr>
@@ -99,12 +106,12 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the hashnode, its key, and its value.  <a href="#ga2b8fdf84e7b304761f9171ac56312593"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gae87e816542d61f78e7dda9915bbe1537">cds_hash_table_create</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table, unsigned int size, <a class="el" href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb">cds_cmp_func</a> key_cmp, <a class="el" href="group___c_d_s.html#ga8cb892371b07f2f94ae1f71d974fccdb">cds_cmp_func</a> val_cmp, <a class="el" href="group___c_d_s.html#ga1a7efa0cd579ea2883460f0a104d8176">cds_hash_func</a> hash_func)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the table.  <a href="#gae87e816542d61f78e7dda9915bbe1537"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga50bbaab5a78f8b96c28be042d411a726">cds_hash_table_delete</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the table.  <a href="#ga50bbaab5a78f8b96c28be042d411a726"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gae16f8dc87c758bcdaed229127871c09f">cds_hash_table_delete</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the table.  <a href="#gae16f8dc87c758bcdaed229127871c09f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga204cc4d82173b55c9778fb1f992e2b49">cds_hash_table_clear</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the table.  <a href="#ga204cc4d82173b55c9778fb1f992e2b49"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gaf9a2418f39639a56a2f4292a54279aa0">cds_hash_table_delete_all</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table, <a class="el" href="cds__hash__node_8h.html#aff56c712ca0d593c71c21564b7873c09">cds_hash_node_deletion_behavoir</a> db)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the table, the keys, and the values.  <a href="#gaf9a2418f39639a56a2f4292a54279aa0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga1d08ec64ea59d89a74634511bd0b77f9">cds_hash_table_delete_all</a> (<a class="el" href="structcds__hash__table.html">cds_hash_table</a> **table)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the table, the keys, and the values.  <a href="#ga1d08ec64ea59d89a74634511bd0b77f9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gadff9705713a870051fd69b9ea6f9f56c">cds_hash_table_count</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of elements in the table.  <a href="#gadff9705713a870051fd69b9ea6f9f56c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#gaf6d0b678af8a4a449e68d2ecc1363ac4">cds_hash_table_size</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table)</td></tr>
@@ -130,6 +137,37 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___c_d_s___h_a_s_h___t_a_b_l_e.html#ga8a9f402a3002351f51ab6094286f3e1d">cds_hash_table_iterate</a> (const <a class="el" href="structcds__hash__table.html">cds_hash_table</a> *table, <a class="el" href="group___c_d_s.html#ga1b434a208f93c6427a74d07afe7684c1">cds_visit_pair_func</a> visit_pair_func)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates through every key/value pair in the collection.  <a href="#ga8a9f402a3002351f51ab6094286f3e1d"></a><br/></td></tr>
 </table>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="gab9e78f765a317d45f44a39b5faf33620"></a><!-- doxytag: member="cds_hash_table.h::CDS_DEFAULT_HASH_TABLE_GROWTH_MULTIPLIER" ref="gab9e78f765a317d45f44a39b5faf33620" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_DEFAULT_HASH_TABLE_GROWTH_MULTIPLIER&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Default growth rate when a hash table reaches its capacity. </p>
+
+</div>
+</div>
+<a class="anchor" id="gafa5f3d547dd0dd9ace160f50176bfdde"></a><!-- doxytag: member="cds_hash_table.h::CDS_DEFAULT_HASH_TABLE_SIZE" ref="gafa5f3d547dd0dd9ace160f50176bfdde" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CDS_DEFAULT_HASH_TABLE_SIZE&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Default reccomended start size. </p>
+
+</div>
+</div>
 <hr/><h2>Typedef Documentation</h2>
 <a class="anchor" id="ga3c064d72923fa4429e31576aa0eea283"></a><!-- doxytag: member="cds_hash_node.h::cds_hash_node" ref="ga3c064d72923fa4429e31576aa0eea283" args="" -->
 <div class="memitem">
@@ -371,31 +409,12 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga50bbaab5a78f8b96c28be042d411a726"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_delete" ref="ga50bbaab5a78f8b96c28be042d411a726" args="(cds_hash_table **table)" -->
+<a class="anchor" id="gae16f8dc87c758bcdaed229127871c09f"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_delete" ref="gae16f8dc87c758bcdaed229127871c09f" args="(cds_hash_table **table, cds_hash_node_deletion_behavoir db)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_delete </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structcds__hash__table.html">cds_hash_table</a> **&#160;</td>
-          <td class="paramname"><em>table</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Deletes the table. </p>
-
-</div>
-</div>
-<a class="anchor" id="gaf9a2418f39639a56a2f4292a54279aa0"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_delete_all" ref="gaf9a2418f39639a56a2f4292a54279aa0" args="(cds_hash_table **table, cds_hash_node_deletion_behavoir db)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_delete_all </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structcds__hash__table.html">cds_hash_table</a> **&#160;</td>
           <td class="paramname"><em>table</em>, </td>
@@ -410,6 +429,25 @@ Functions</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Deletes the table. </p>
+
+</div>
+</div>
+<a class="anchor" id="ga1d08ec64ea59d89a74634511bd0b77f9"></a><!-- doxytag: member="cds_hash_table.h::cds_hash_table_delete_all" ref="ga1d08ec64ea59d89a74634511bd0b77f9" args="(cds_hash_table **table)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___c_d_s.html#gac610b2ee7c62fb78c000211f567bbbf6">cds_result</a> cds_hash_table_delete_all </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcds__hash__table.html">cds_hash_table</a> **&#160;</td>
+          <td class="paramname"><em>table</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -451,7 +489,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Gets the data given the key and puts it into value. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>pass in size to the hash function? </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>pass in size to the hash function? </dd></dl>
 
 </div>
 </div>
@@ -706,7 +744,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 21 2011 07:08:57 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 23 2011 02:13:12 for C Data Structures by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
