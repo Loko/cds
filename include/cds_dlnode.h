@@ -15,14 +15,16 @@
 #include "cds_core.h"
 
 /**
- * Typical doubly linked list node structure
+ * Typical doubly linked list node structure.  Stores a void 
+ * data pointer and links to the next and prev nodes. 
  */
 struct cds_dlnode {
 	struct cds_dlnode *next;
 	struct cds_dlnode *prev;
 	void *data;
-	//cds_dlist *list; could add this in the future
+	/* cds_dlist *list; could add a reference to the list in the future */
 };
+/** @typedef cds_dlnode */
 typedef struct cds_dlnode cds_dlnode;
 
 /** Creates the double linked list node with the given data pointer  */

@@ -7,10 +7,11 @@
 #ifndef _CDS_SLNODE_H_
 #define _CDS_SLNODE_H_
 
- /** 
-  * @addtogroup CDS_SLIST
-  * @{
-  */
+/** 
+ * @addtogroup CDS_SLIST
+ * @{
+ */
+
 #include "cds_core.h"
 
 /**

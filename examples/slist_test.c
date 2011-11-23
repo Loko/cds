@@ -1,11 +1,10 @@
 #include "cds_slist.h"
 
-int intComparison(const void *a, const void *b) {
+int cmpInt(const void *a, const void *b) {
 	if (a) {
 		if (b) {
 			int *pA = (int *)a;
 			int *pB = (int *)b;
-			printf("Comparing: %d with %d\n", *pA, *pB);
 			if (*pA < *pB) {
 				return -1;
 			} else if (*pA > *pB) {
@@ -24,18 +23,27 @@ int intComparison(const void *a, const void *b) {
 	}
 }
 
-void printList(cds_slist *list) {
+void printInt(const void *ptr) {
+	if (ptr) {
+		cds_log("%d ", *((int *)ptr));
+	} else {
+		cds_log("NULL");
+	}
+}
+
+void logList(const cds_slist *list, int printSize) {
 	if (list) {
-		printf("\n----------\n");
-		printf("Count: %d\n", list->count);		
+		if (printSize)
+			cds_log("Count: %d\n", list->count);
+		cds_log("NULL");
 		cds_slnode *cur = list->head;
-		int *curData;
 		while(cur) {
-			curData = (int *) cur->data;
-			printf("%d\n", *curData);
+			cds_log("<-%d->", *((int *)cur->data));
 			cur = cur->next;
 		}
-		printf("----------\n");
+		if (list->count)
+			cds_log("NULL");
+		cds_log("\n");
 	}
 }
 
@@ -51,7 +59,7 @@ void printLinkedList(cds_slist *list) {
     printf("NULL\n");
 }
 
-void pickNode(cds_slist *list, unsigned int index, cds_slnode **node) {
+void pickNode(const cds_slist *list, unsigned int index, cds_slnode **node) {
 	if (list) {
 		*node = list->head;
 		unsigned int counter = 0;
@@ -64,81 +72,118 @@ void pickNode(cds_slist *list, unsigned int index, cds_slnode **node) {
 }
 
 int main(void) {
-	printf("Running the singly linked list test...\n");
-	cds_slist *list;
-	cds_result cr; 
+	cds_log("Running the slist test...\n");
 	
+	/* first allocate space for the list */
+	cds_slist *list = NULL;
+	cds_result cr;
 	cr = cds_slist_create(&list);
-	if (cds_error_check(cr)) return 1;
+	if (cds_error_check(cr))
+		return 1;
 	
+	/* add the 10 values to the slist */
 	int values[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	unsigned int n = 10;
 	unsigned int i;
 	for (i = 0; i < n; ++i) {
 		cr = cds_slist_add_last(list, values + i);
-		cds_error_check(cr);
+		if (cds_error_check(cr))
+			return 1;
 	}
 	
-	int *tmp;
-	printf("Count: %d\n", list->count);
-	tmp = list->head->data;
-	printf("Head: %d\n", *tmp);
-	tmp = list->tail->data;
-	printf("Tail: %d\n", *tmp);
+	/* print the list */
+	logList(list, 1);
 	
-	printList(list);
+	/* functions are given to retrieve the head and tail node */
+	cds_slnode *headNode = cds_slist_head(list);
+	if (headNode)
+		cds_log("Head Data: %d\n", *((int *)headNode->data));
+	cds_slnode *tailNode = cds_slist_tail(list);
+	if (tailNode)
+		cds_log("Tail Data: %d\n", *((int *)tailNode->data));
 	
-	/*
-	cds_dlnode *node;
-	pickNode(list, 3, &node);
-	cr = cds_dlist_insert_before(list, node, values + 9);
-	cds_error_check(cr);
-	*/
+	/* calls are given to remove the head/tail */
+	cds_log("Remove the head and tail...\n");
+	cr = cds_slist_remove_head(list);
+	if (cds_error_check(cr))
+		return 1;
+	cr = cds_slist_remove_tail(list);
+	if (cds_error_check(cr))
+		return 1;
 	
-	void *headData;
-	cr = cds_slist_remove_head_data(list, &headData);
-	cds_error_check(cr);
-	printf("Head Data: %d", (*(int *)headData));
 	
-	printList(list);
+	logList(list, 1);
 	
-	void *tailData;
-	cr = cds_slist_remove_tail_data(list, &tailData);
-	cds_error_check(cr);
-	printf("Tail Data: %d\n", (*(int *)tailData));
+	cds_log("Trying the insert after/before functions...\n");
+	unsigned int count = cds_slist_count(list);
+	cds_slnode *midNode = NULL;
+	/* this unofficial function simply picks a node for us to use for insertions */
+	pickNode(list, count / 2, &midNode);
 	
-	cr = cds_slist_remove_cmp(list, values + 5, &intComparison);
-	if (cds_error_check(cr)) return 1;
+	/* inserting after is fast in a singly linked list */
+	cds_log("Inserting Node with Value: 0 after the middle node...\n");
+	cr = cds_slist_insert_after(list, midNode, &values[0]);
+	if (cds_error_check(cr))
+		return 1;
+	logList(list, 0);
+	cds_log("Inserting Node with Value: 9 after the middle node...\n");
+	cds_slnode *nextNode = NULL;
+	/* you can get back the new node when adding/inserting using the _node calls */
+	cr = cds_slist_insert_after_node(list, midNode, &values[9], &nextNode);
+	if (cds_error_check(cr))
+		return 1;
+	logList(list, 0);
+	cds_log("Inserting a Node with Value: 3 after the last node that was inserted...\n");
+	/* no searching needed, this is efficient */
+	cr = cds_slist_insert_after(list, nextNode, &values[3]);
+	if (cds_error_check(cr))
+		return 1;
+	logList(list, 0);
 	
-	printList(list);
+	cds_log("Attempting removal functions...\n");
+	/* like with the other containers we can remove by address */
+	cr = cds_slist_remove(list, &values[2]);
 	
-	cds_slnode *searchNode;
-	cr = cds_slist_find_cmp(list, values + 8, &searchNode, &intComparison);
-	if (cds_error_check(cr)) return 1;
+	int searchVal = 7;
+	cds_log("Attempting remove by value with 7\n");
+	/* and we can remove by value */
+	cr = cds_slist_remove_cmp(list, &searchVal, &cmpInt);
 	
-	if (cr == CDS_OK) {
-		cr = cds_slist_insert_after(list, searchNode, values + 9);
-		if (cds_error_check(cr)) return 1;
-	} else {
-		printf("Not found!\n");
-	}
+	logList(list, 0);
 	
-	printList(list);
-	
-    printLinkedList(list);
-	printf("Reversing the list...\n");
+	/* reverse the list */
+	cds_log("For good measure let's reverse the singly linked list too...\n");
 	cds_slist_reverse(list);
-	printLinkedList(list);
-    
+	
+	/* use the iterate function */
+	cds_log("Printing the reversed list using the iterate function...\n");
+	cds_slist_iterate(list, &printInt);
+	cds_log("\n");
+	
+	headNode = cds_slist_head(list);
+	cds_log("Head: %d\n", *((int *) headNode->data));
+	tailNode = cds_slist_tail(list);
+	cds_log("Tail: %d\n", *((int *) tailNode->data));
+	
+	/* reverse the list */
+	cds_log("Let's reverse the singly linked list again...\n");
+	cds_slist_reverse(list);
+	
+	/* use the iterate function */
+	cds_log("Printing the reversed list using the iterate function...\n");
+	cds_slist_iterate(list, &printInt);
+	cds_log("\n");
+	
+	headNode = cds_slist_head(list);
+	cds_log("Head: %d\n", *((int *) headNode->data));
+	tailNode = cds_slist_tail(list);
+	cds_log("Tail: %d\n", *((int *) tailNode->data));
+	
+	/* delete the list */
+	cds_log("Deleting the list...\n");
 	cr = cds_slist_delete(&list);
-	if (cds_error_check(cr)) return 1;
-	
-	/*
-	printf("\nAttempt to print values:\n");
-	for (i = 0; i < n; ++i) {
-		printf("%d\n", values[i]);
-	}
-	*/
-	
+	if (cds_error_check(cr)) 
+		return 1;
+	cds_log("Deletion successful...\n");
 	return 0;
 }

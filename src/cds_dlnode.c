@@ -1,9 +1,9 @@
 #include "cds_dlnode.h"
 
-// allocates the node with the given data pointer
+/* allocates the node with the given data pointer */
 cds_result cds_dlnode_create(cds_dlnode **node, const void *data) {
-	//if (!node)
-	//	return CDS_INVALID_ARGUMENT;
+	/*if (!node)
+	 *	return CDS_INVALID_ARGUMENT; */
 	*node = (cds_dlnode *) cds_alloc(sizeof(cds_dlnode));
 	if (*node) {
         void *dataCopy = (void *) data;
@@ -16,7 +16,7 @@ cds_result cds_dlnode_create(cds_dlnode **node, const void *data) {
 	}
 }
 
-// frees the node
+/* frees the node */
 cds_result cds_dlnode_delete(cds_dlnode **node) {
 	if (*node) {
 		cds_free(*node);
@@ -27,7 +27,7 @@ cds_result cds_dlnode_delete(cds_dlnode **node) {
 	}
 }
 
-// frees the node AND its data pointer
+/* frees the node AND its data pointer */
 cds_result cds_dlnode_delete_all(cds_dlnode **node) {
 	if (*node) {
 		cds_free((*node)->data);

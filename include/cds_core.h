@@ -123,7 +123,7 @@ typedef enum cds_result cds_result;
 int cds_is_error(cds_result cr);
 
 /** Maximum size of a cds_result string */
-#define CDS_MAX_ERR_STR_LEN 50
+#define CDS_RESULT_MAX_STR_LEN 50
 
 /**
  * Puts a human readable string for the result into str

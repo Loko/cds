@@ -108,8 +108,8 @@ cds_slnode* cds_slist_tail(const cds_slist *list) {
 cds_result cds_slist_add_first(cds_slist *list, const void *data) {
 	if (list) {
 		cds_slnode *node;
-		cds_result cr = cds_slnode_create(&node, data);
-		if (cr == CDS_OK) {
+		cds_result r = cds_slnode_create(&node, data);
+		if (r == CDS_OK) {
 			if (list->head) {
 				node->next = list->head;
 				list->head = node;
@@ -119,7 +119,7 @@ cds_result cds_slist_add_first(cds_slist *list, const void *data) {
 			}
 			list->count++;
 		}
-		return cr;
+		return r;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
@@ -536,7 +536,6 @@ cds_result cds_slist_reverse(cds_slist *list) {
 	if (list) {
 		cds_slnode *newHead = NULL;
 		cds_slnode *head = list->head;
-		cds_slnode *newTail = head;
 		while (head) {
 			cds_slnode *next = head->next;
 			head->next = newHead;
@@ -544,7 +543,6 @@ cds_result cds_slist_reverse(cds_slist *list) {
 			head = next;
 		}
 		list->head = newHead;
-		list->tail = newTail;
 		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;

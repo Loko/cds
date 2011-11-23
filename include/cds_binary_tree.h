@@ -15,17 +15,17 @@
  */
  
 #include "cds_binary_node.h"
-#include "cds_stack.h" /* used for breadth first search */
+/* #include "cds_stack.h" used for breadth first search */
 
 /**
  * @enum cds_binary_tree_traversal_type
  * tree traversal types (in order, pre order, post order)
  */
 enum cds_binary_tree_traversal_type {
-	CDS_PRE_ORDER = 0,
-	CDS_IN_ORDER = 1,
-	CDS_POST_ORDER = 2,
-	CDS_LEVEL_ORDER = 3
+	CDS_PRE_ORDER = 0, 	/**< Pre Order Traversal */
+	CDS_IN_ORDER = 1,  	/**< In Order Traversal */
+	CDS_POST_ORDER = 2,	/**< Post Order Traversal */
+	CDS_LEVEL_ORDER = 3 /**< Level Order aka Breadth First */
 };
 
 /**
@@ -45,9 +45,10 @@ typedef enum cds_binary_tree_traversal_type cds_binary_tree_traversal_type;
 struct cds_binary_tree {
 	cds_binary_node *root;
 	unsigned int count;
-	cds_cmp_func cmp_func;
+	cds_cmp_func cmp_func; /** @todo make constant? */
 };
 
+/** Type for the binary tree structure */
 typedef struct cds_binary_tree cds_binary_tree;
 
 /** 
@@ -70,7 +71,7 @@ cds_result cds_binary_tree_delete_all(cds_binary_tree **tree);
 /** Gets the root node of the tree or NULL if the tree is null/empty */
 cds_binary_node * cds_binary_tree_root(const cds_binary_tree *tree);
 
-/** Gets the number of nodes in the tree */
+/** Gets the number of nodes in the tree or 0 if the tree is null/empty */
 unsigned int cds_binary_tree_count(const cds_binary_tree *tree);
 
 /** Gets the comparison function used by the tree */
@@ -80,16 +81,16 @@ cds_cmp_func cds_binary_tree_cmp_func(const cds_binary_tree *tree);
  * Gets the minimum value data element
  * @return The min element data pointer, or NULL if the tree is empty
  */
-void * cds_binary_tree_min(const cds_binary_tree *tree);
+const void * cds_binary_tree_min(const cds_binary_tree *tree);
 
 /** 
  * Gets the maximum value data element 
  * @return The max element data pointer, or NULL if the tree is empty
  */
-void * cds_binary_tree_max(const cds_binary_tree *tree);
+const void * cds_binary_tree_max(const cds_binary_tree *tree);
 
-/** 
- * The height of the tree 
+/**
+ * The height/depth of the tree.  Will return the max of the left/right subtree.
  * @return The height of the tree, a single root node has a height of zero
  */
 unsigned int cds_binary_tree_height(const cds_binary_tree *tree);
@@ -103,8 +104,11 @@ cds_result cds_binary_tree_remove(cds_binary_tree *tree, const void *data);
 /** Finds the node with the given pointer */
 cds_result cds_binary_tree_find(const cds_binary_tree *tree, const void *data, cds_binary_node **node);
 
-/** Safely iterates over every element in the tree using the given @see cds_binary_tree_traversal_type */
-cds_result cds_binary_tree_iterate(const cds_binary_tree *tree, cds_binary_tree_traversal_type traversal_type, const cds_visit_func visit_func);
+/** Iterates over every element in the node subtree using the given @see cds_binary_tree_traversal_type and @see cds_visit_func */
+cds_result cds_binary_tree_iterate_node(const cds_binary_node *node, cds_binary_tree_traversal_type traversal_type, cds_visit_func visit_func);
+
+/** Safely iterates over every element in the tree using the given @see cds_binary_tree_traversal_type and @see cds_visit_func */
+cds_result cds_binary_tree_iterate(const cds_binary_tree *tree, cds_binary_tree_traversal_type traversal_type, cds_visit_func visit_func);
 
 /** @} */
 

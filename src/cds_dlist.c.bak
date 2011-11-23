@@ -120,7 +120,6 @@ cds_result cds_dlist_add_first(cds_dlist *list, const void *data) {
 			}
 			list->count++;
 		}
-		return cr;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
@@ -140,10 +139,42 @@ cds_result cds_dlist_add_last(cds_dlist *list, const void *data) {
 			} else {
 				list->head = node;
 				list->tail = node;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 			}
 			list->count++;
+	
+	
 		}
-		return cr;
+		return r;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	} 
@@ -151,156 +182,147 @@ cds_result cds_dlist_add_last(cds_dlist *list, const void *data) {
 
 /* */
 cds_result cds_dlist_insert_before(cds_dlist *list, cds_dlnode *node, const void *data) {
-	if (list && node) {
-		if (node == list->head) {
-			return cds_dlist_add_first(list, data);
-		} else {
-			cds_dlnode *newnode;
-			cds_result cr = cds_dlnode_create(&newnode, data);
-			/** @todo Force node search defines need to be here */
-			if (cr == CDS_OK) {
-				newnode->prev = node->prev;
-				node->prev->next = newnode;
-				newnode->next = node;
-				node->prev = newnode;
-				list->count++;
-			}
-			return cr;
-		}
-	} else {
+	if (!list || !node)
 		return CDS_NULL_ARGUMENT;
+	if (node == list->head) {
+		return cds_dlist_add_first(list, data);
+	} else {
+		cds_dlnode *newnode;
+		cds_result r = cds_dlnode_create(&newnode, data);
+		/** @todo Force node search defines need to be here */
+        if (r == CDS_OK) {
+			newnode->prev = node->prev;
+			node->prev->next = newnode;
+			newnode->next = node;
+			node->prev = newnode;
+			list->count++;
+		} else {
+			return r;
+		}
 	}
+	return CDS_OK;
 }
 
 /* */
 cds_result cds_dlist_insert_after(cds_dlist *list, cds_dlnode *node, const void *data) {
-	if (list && node) {
-		if (node == list->tail) {
-			return cds_dlist_add_last(list, data);
-		} else {
-			cds_dlnode *newnode;
-			cds_result cr = cds_dlnode_create(&newnode, data);
-			/** @todo Force node search defines need to be here */
-			if (cr == CDS_OK) {
-				newnode->prev = node;
-				node->next->prev = newnode;
-				newnode->next = node->next;
-				node->next = newnode;
-				list->count++;
-			}
-			return cr;
-		}
-	} else {
+	if (!list || !node)
 		return CDS_NULL_ARGUMENT;
+	if (node == list->tail) {
+		return cds_dlist_add_last(list, data);
+	} else {
+		cds_dlnode *newnode;
+		cds_result r = cds_dlnode_create(&newnode, data);
+		/** @todo Force node search defines need to be here */
+		if (r == CDS_OK) {
+			newnode->prev = node;
+			node->next->prev = newnode;
+			newnode->next = node->next;
+			node->next = newnode;
+			list->count++;
+		} else {
+			return r;
+		}
 	}
+	return CDS_OK;
 }
 
 /* */
 cds_result cds_dlist_remove_head(cds_dlist *list) {
-	if (list) {
-		if (list->count) {
-			cds_dlnode *tmp = list->head;
-			list->head = list->head->next;
-			if (list->head) {
-				list->head->prev = NULL;
-				if (list->head->next)
-					list->head->next->prev = list->head;
-				else
-					list->tail = list->head;
-			} else {
-				list->tail = NULL;
-			}
-			cds_result cr = cds_dlnode_delete(&tmp);
-			/** @todo decrement count if delete failed? */
-			list->count--;
-			return cr;
-		} else {
-			return CDS_UNDERFLOW;
-		}
-	} else {
+	if (!list)
 		return CDS_NULL_ARGUMENT;
+	if (list->count) {
+		cds_dlnode *tmp = list->head;
+		list->head = list->head->next;
+		if (list->head) {
+			list->head->prev = NULL;
+			if (list->head->next)
+				list->head->next->prev = list->head;
+			else
+				list->tail = list->head;
+		} else {
+			list->tail = NULL;
+		}
+		cds_dlnode_delete(&tmp);
+		list->count--;
+		return CDS_OK;
+	} else {
+		return CDS_UNDERFLOW;
 	}
 }
 
 /* */
 cds_result cds_dlist_remove_tail(cds_dlist *list) {
-	if (list) {
-		if (list->count) {
-			cds_dlnode *tmp = list->tail;
-			list->tail = list->tail->prev;
-			if (list->tail) {
-				list->tail->next = NULL;
-				if (list->tail->prev)
-					list->tail->prev->next = list->tail;
-				else
-					list->head = list->tail;
-			} else {
-				list->head = NULL;
-			}
-			cds_result cr = cds_dlnode_delete(&tmp);
-			list->count--;
-			return cr;
-		} else {
-			return CDS_UNDERFLOW;
-		}
-	} else {
+	if (!list)
 		return CDS_NULL_ARGUMENT;
+	if (list->count) {
+		cds_dlnode *tmp = list->tail;
+		list->tail = list->tail->prev;
+		if (list->tail) {
+			list->tail->next = NULL;
+			if (list->tail->prev)
+				list->tail->prev->next = list->tail;
+			else
+				list->head = list->tail;
+		} else {
+			list->head = NULL;
+		}
+		cds_dlnode_delete(&tmp);
+		list->count--;
+		return CDS_OK;
+	} else {
+		return CDS_UNDERFLOW;
 	}
 }
 
 /* */
 cds_result cds_dlist_remove_head_data(cds_dlist *list, void **data) {
-	if (list) {
-		if (list->count) {
-			cds_dlnode *tmp = list->head;
-			list->head = list->head->next;
-			if (list->head) {
-				list->head->prev = NULL;
-				if (list->head->next)
-					list->head->next->prev = list->head;
-				else
-					list->tail = list->head;
-			} else {
-				list->tail = NULL;
-			}
-			*data = tmp->data;
-			cds_dlnode_delete(&tmp);
-			list->count--;
-			return CDS_OK;
-		} else {
-			data = NULL;
-			return CDS_UNDERFLOW;
-		}
-	} else {
+	if (!list)
 		return CDS_NULL_ARGUMENT;
+	if (list->count) {
+		cds_dlnode *tmp = list->head;
+		list->head = list->head->next;
+		if (list->head) {
+			list->head->prev = NULL;
+			if (list->head->next)
+				list->head->next->prev = list->head;
+			else
+				list->tail = list->head;
+		} else {
+			list->tail = NULL;
+		}
+		*data = tmp->data;
+		cds_dlnode_delete(&tmp);
+		list->count--;
+		return CDS_OK;
+	} else {
+		data = NULL;
+		return CDS_UNDERFLOW;
 	}
 }
 
 /* */
 cds_result cds_dlist_remove_tail_data(cds_dlist *list, void **data) {
-	if (list) {
-		if (list->count) {
-			cds_dlnode *tmp = list->tail;
-			list->tail = list->tail->prev;
-			if (list->tail) {
-				list->tail->next = NULL;
-				if (list->tail->prev)
-					list->tail->prev->next = list->tail;
-				else
-					list->head = list->tail;
-			} else {
-				list->head = NULL;
-			}
-			*data = tmp->data;
-			cds_result cr = cds_dlnode_delete(&tmp);
-			list->count--;
-			return cr;
-		} else {
-			data = NULL;
-			return CDS_UNDERFLOW;
-		}
-	} else {
+	if (!list)
 		return CDS_NULL_ARGUMENT;
+	if (list->count) {
+		cds_dlnode *tmp = list->tail;
+		list->tail = list->tail->prev;
+		if (list->tail) {
+			list->tail->next = NULL;
+			if (list->tail->prev)
+				list->tail->prev->next = list->tail;
+			else
+				list->head = list->tail;
+		} else {
+			list->head = NULL;
+		}
+		*data = tmp->data;
+		cds_dlnode_delete(&tmp);
+		list->count--;
+		return CDS_OK;
+	} else {
+		data = NULL;
+		return CDS_UNDERFLOW;
 	}
 }
 
@@ -332,6 +354,7 @@ cds_result cds_dlist_remove(cds_dlist *list, const void *data) {
 
 /* */
 cds_result cds_dlist_remove_node(cds_dlist *list, cds_dlnode *node) {
+	/*printf("CDS_DLIST_FORCE_NODE_SEARCH = %d\n", CDS_DLIST_FORCE_NODE_SEARCH);*/
     if (!list || !node) {
 		return CDS_NULL_ARGUMENT;
 	} else if (node == list->head) {
@@ -381,9 +404,9 @@ cds_result cds_dlist_remove_cmp(cds_dlist *list, const void *data, const cds_cmp
 				node->prev->next = node->next;
 				node->next->prev = node->prev;
 				/* this should always return CDS_OK as a result of previous checks */
-				cds_result cr = cds_dlnode_delete(&node);
+				cds_dlnode_delete(&node);
 				list->count--;
-				return cr;
+				return CDS_OK;
 			}
 			node = node->next;
 		}
@@ -446,20 +469,13 @@ cds_result cds_dlist_find_cmp(const cds_dlist *list, const void *data, cds_dlnod
 }
 
 /* */
-cds_result cds_dlist_reverse(cds_dlist *list) {
-	if (list) {
+cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func) {
+	if (list && visit_func) {
 		cds_dlnode *cur = list->head;
-		cds_dlnode *tmp = NULL;
-		cds_dlnode *tail = list->head;
 		while (cur) {
-			tmp = cur->prev;
-			cur->prev = cur->next;
-			cur->next = tmp;
-			cur = cur->prev;
+			(*visit_func)(cur->data);
+			cur = cur->next;
 		}
-		if (tmp)
-			list->head = tmp->prev;
-		list->tail = tail;
 		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;
@@ -467,12 +483,16 @@ cds_result cds_dlist_reverse(cds_dlist *list) {
 }
 
 /* */
-cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func) {
-	if (list && visit_func) {
+cds_result cds_dlist_reverse(cds_dlist *list) {
+	if (list) {
 		cds_dlnode *cur = list->head;
+		cds_dlnode *tmp;
 		while (cur) {
-			(*visit_func)(cur->data);
-			cur = cur->next;
+			tmp = cur->next;
+			cur->next = cur->prev;
+			cur->prev = tmp;
+			list->head = cur;
+			cur = tmp;
 		}
 		return CDS_OK;
 	} else {

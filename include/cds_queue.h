@@ -12,9 +12,9 @@
  * @{
  */
 
-#include "cds_core.h"
 #include "cds_slnode.h"
 
+ 
 /**
  * Abstract queue data type.  Holds front and back pointers and the count.
  */

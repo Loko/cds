@@ -16,14 +16,14 @@ cds_result cds_queue_create(cds_queue **queue) {
 /* */
 cds_result cds_queue_delete(cds_queue **queue) {
 	if (queue && *queue) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = (*queue)->front;
 		while (node) {
 			tmp = node->next;
-			r = cds_slnode_delete(&node);
-			if (r != CDS_OK)
-				return r;
+			cr = cds_slnode_delete(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		cds_free(*queue);
@@ -37,14 +37,14 @@ cds_result cds_queue_delete(cds_queue **queue) {
 /* */
 cds_result cds_queue_delete_all(cds_queue **queue) {
 	if (queue && *queue) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = (*queue)->front;
 		while (node) {
 			tmp = node->next;
-			r = cds_slnode_delete_all(&node);
-			if (r != CDS_OK)
-				return r;
+			cr = cds_slnode_delete_all(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		cds_free(*queue);
@@ -58,14 +58,14 @@ cds_result cds_queue_delete_all(cds_queue **queue) {
 /* */
 cds_result cds_queue_clear(cds_queue *queue) {
 	if (queue) {
-		cds_result r;
+		cds_result cr;
 		cds_slnode *node, *tmp;
 		node = queue->front;
 		while (node) {
 			tmp = node->next;
-			r = cds_slnode_delete(&node);
-			if (r != CDS_OK)
-				return r;
+			cr = cds_slnode_delete(&node);
+			if (cr != CDS_OK)
+				return cr;
 			node = tmp;
 		}
 		queue->front = NULL;
@@ -79,41 +79,45 @@ cds_result cds_queue_clear(cds_queue *queue) {
 
 /* */
 cds_result cds_queue_enqueue(cds_queue *queue, const void *data) {
-	if (!queue)
-		return CDS_NULL_ARGUMENT;
-	cds_slnode *node;
-	cds_result r = cds_slnode_create(&node, data);
-	if (r == CDS_OK) {
-		if (queue->back) {
-			queue->back->next = node;
-			queue->back = node;
-		} else {
-			queue->front = node;
-			queue->back = node;
+	if (queue) {
+		cds_slnode *node;
+		cds_result cr = cds_slnode_create(&node, data);
+		if (cr == CDS_OK) {
+			if (queue->back) {
+				queue->back->next = node;
+				queue->back = node;
+			} else {
+				queue->front = node;
+				queue->back = node;
+			}
+			queue->count++;
 		}
-		queue->count++;
+		return cr;
+	} else {
+		return CDS_NULL_ARGUMENT;
 	}
-	return r;
 }
 
 /* */
 cds_result cds_queue_dequeue(cds_queue *queue) {
-	if (!queue)
-		return CDS_NULL_ARGUMENT;
-	if (queue->count) {
-		cds_slnode *tmp = queue->front;
-		queue->front = queue->front->next;
+	if (queue) {
 		if (queue->front) {
-			if (!queue->front->next)
-				queue->back = queue->front;
+			cds_slnode *tmp = queue->front;
+			queue->front = queue->front->next;
+			if (queue->front) {
+				if (!queue->front->next)
+					queue->back = queue->front;
+			} else {
+				queue->back = NULL;
+			}
+			cds_slnode_delete(&tmp);
+			queue->count--;
+			return CDS_OK;
 		} else {
-			queue->back = NULL;
+			return CDS_UNDERFLOW;
 		}
-		cds_slnode_delete(&tmp);
-		queue->count--;
-		return CDS_OK;
 	} else {
-		return CDS_UNDERFLOW;
+		return CDS_NULL_ARGUMENT;
 	}
 }
 

@@ -11,7 +11,8 @@
  * @addtogroup CDS_DLIST
  * @{
  */
-
+#include "cds_core.h"
+#include "cds_dlnode.h"
 
 #ifndef CDS_DLIST_FORCE_NODE_SEARCH
 /** 
@@ -20,9 +21,6 @@
  */
 #define CDS_DLIST_FORCE_NODE_SEARCH 0
 #endif
-
-#include "cds_core.h"
-#include "cds_dlnode.h"
 
 /**
  * A struct for a double linked list of any type
@@ -67,6 +65,9 @@ cds_result cds_dlist_add_last(cds_dlist *list, const void *data);
 /** Inserts a new node with the given data before the passed in node */
 cds_result cds_dlist_insert_before(cds_dlist *list, cds_dlnode *node, const void *data);
 
+/** Inserts a new node with the given data before the passed in node and puts the newly created node into cnode */
+cds_result cds_dlist_insert_before_node(cds_dlist *list, cds_dlnode *node, const void *data, cds_dlnode **cnode);
+
 /** Inserts a new node with the given data after the passed in node */
 cds_result cds_dlist_insert_after(cds_dlist *list, cds_dlnode *node, const void *data);
 
@@ -97,11 +98,11 @@ cds_result cds_dlist_find(const cds_dlist *list, const void *data, cds_dlnode **
 /** Finds the node in the list with the given value */
 cds_result cds_dlist_find_cmp(const cds_dlist *list, const void *data, cds_dlnode **node, cds_cmp_func cmp_func);
 
-/** Safely iterates and visits every element in the list */
-cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func);
-
 /** Reverses the order of elements in the doubly linked list */
 cds_result cds_dlist_reverse(cds_dlist *list);
+
+/** Safely iterates and visits every element in the list */
+cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func);
 
 /** @} */
 #endif

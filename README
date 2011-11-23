@@ -2,6 +2,7 @@
 C Data Structures Library
 Author: Jeff Lansing
 Email: jlansing3 AT gmail DOT com
+Updated: 11/23/2011
 Disclaimer: Can be used for personal use.  If for commercial use, please ask for my permission.  
 			Please credit my source code before redistributing it elsewhere.  I am not responsible 
 			for any damages brought about by the use of this code.  Use it at your own risk.
@@ -30,12 +31,14 @@ CDS tries to use consistent practices amongst the entire code base
   Therefore, to push_back an element onto a dynamic array you would call cds_dynamic_array_push_back();
   This tends to make function calls and type names long, but is good practice, keeps things consistent, 
   and avoids polluting the namespace
-- Every data structure function returns a cds_result enum.  Every error code that could be thrown in any 
-  of the provided functions is a cds_result.  This keeps results more informative, consistent, and performance friendly.
-  Rather than returning -1 or NULL when an error occurs, it returns more specific information (e.g. CDS_BAD_ALLOC).  This 
-  is better practice because a number of things can potentially go wrong with a given operation, and this tries to ease the amount of 
-  time spent guessing.
-- Assertions are given but not fully apparent in all of the code.  They can be compiled out of runtime code since they use optional macros
+- Most data structure functions returns a cds_result enum.  Every error code that could be thrown in any 
+  of the provided functions is a cds_result.  This keeps results more informative, consistent, and performance 
+  friendly.  Rather than returning -1 or NULL when an error occurs, it returns more specific information 
+  (e.g. CDS_BAD_ALLOC).  This is better practice because a number of things can potentially go wrong with a given 
+  operation, and this tries to ease the amount of time spent guessing.
+- Assertions are given but not fully apparent in all of the code.  They can be compiled out of runtime code since 
+  they use optional macros.  I'm currently reconsidering the place of assertions in the codebase, and if they mix 
+  well with status return codes.
 - Common operations include:
 	create: allocates the given structure
 	clear: removes the elements from the given structure
@@ -48,11 +51,15 @@ CDS tries to use consistent practices amongst the entire code base
 - Support for custom memory allocators and log functions that can be interchanged easily at runtime
 - Support for custom growth behavoirs, type specific comparisons, and more through function pointers, enums, and macros
 
-Please see the example test cases in the /examples directory.  Each can be compiled with the included makefile
+Please see the example test cases in the /examples directory.  Each can be compiled with the included makefile.  The targets 
+are the name of the data structure in use (e.g. to compile the cds_slist example program compile using "make slist" then 
+run "bin\slist_test")
 
 Caveats:
-	Compiler support: only tested with gcc, more testing is pending
-	C++: not yet supported, but will be able to compile in C++ with some simple changes
-	Thread Safety: would be implemented later down the road
-	Const Correctness: needs work
-	ANSI C: Not compatible for a variety of reasons but something I'd like to support in the future
+	Compiler support: Only tested with gcc, more testing is pending
+	Thread Safety: Would be implemented later down the road...
+	Const Correctness: Now fixed.
+	ANSI C: Now fully compatible with C90.
+
+Everything can compile with -Wall -Wpadded and -ansi without any warnings or errors.  At the time being you'll have to 
+adjust the provided makefile for custom builds.

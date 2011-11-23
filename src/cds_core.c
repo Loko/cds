@@ -54,7 +54,6 @@ void cds_set_assertion_reporter(cds_assertion_failure_reporter_func reporter_fun
 }
 
 void cds_on_assertion_failure(const char *condition, const char *file, int line, const char *message, ...) {
-	/* how do we pass an arg list?? */
 	if (cds_assertion_reporter) {
 		va_list argp;
 		va_start( argp, message);
@@ -114,7 +113,7 @@ int cds_result_string(cds_result cr, char *str) {
 int cds_error_check(cds_result cr) {
 	int isError = cds_is_error(cr);
 	if (isError) {
-		char errorStr[CDS_MAX_ERR_STR_LEN];
+		char errorStr[CDS_RESULT_MAX_STR_LEN];
 		cds_result_string(cr, errorStr);
 		printf("CDS Error: %s\n", errorStr);
 	}
@@ -124,7 +123,7 @@ int cds_error_check(cds_result cr) {
 int cds_not_ok_check(cds_result cr) {
 	int isNotOkay = cr != CDS_OK;
 	if (!isNotOkay) {
-		char errorStr[CDS_MAX_ERR_STR_LEN];
+		char errorStr[CDS_RESULT_MAX_STR_LEN];
 		cds_result_string(cr, errorStr);
 		printf("CDS Error: %s\n", errorStr);
 	}
@@ -149,7 +148,6 @@ int cds_not_ok_check(cds_result cr) {
 cds_alloc_func cds_allocator = &CDS_DEFAULT_ALLOCATOR;
 cds_realloc_func cds_reallocator = &CDS_DEFAULT_REALLOCATOR;
 cds_free_func cds_freer = &CDS_DEFAULT_FREER;
-
 
 void cds_set_alloc(cds_alloc_func alloc_func) {
 	cds_allocator = alloc_func;

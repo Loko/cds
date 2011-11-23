@@ -7,7 +7,7 @@
 #ifndef _CDS_BINARY_NODE_H_
 #define _CDS_BINARY_NODE_H_
 
- /** 
+ /**
   * @addtogroup CDS_BINARY_TREE
   * @{
   */

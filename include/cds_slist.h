@@ -12,8 +12,9 @@
  * @{
  */
 
+#include "cds_core.h"
 #include "cds_slnode.h"
-
+ 
 /**
  * Singly Linked List stores the head, tail, and count
  */
@@ -23,7 +24,7 @@ struct cds_slist {
 	unsigned int count;
 };
 
-/**  */
+/** cds_dlist Custom typename for the singly linked list struct */
 typedef struct cds_slist cds_slist;
 
 /** Creates the singly linked list */
@@ -56,8 +57,14 @@ cds_result cds_slist_add_last(cds_slist *list, const void *data);
 /** Inserts the data in a new node before the passed in node */
 cds_result cds_slist_insert_before(cds_slist *list, cds_slnode *node, const void *data);
 
+/** Inserts the data in a new node before the passed in node and puts the newly created node into cnode */
+cds_result cds_slist_insert_before_node(cds_slist *list, cds_slnode *node, const void *data, cds_slnode **cnode);
+
 /** Inserts the data in a new node after the passed in node */
 cds_result cds_slist_insert_after(cds_slist *list, cds_slnode *node, const void *data);
+
+/** Inserts after the given node and puts the newly created node into cnode */
+cds_result cds_slist_insert_after_node(cds_slist *list, cds_slnode *node, const void *data, cds_slnode **cnode);
 
 /** Removes the head node from the list */
 cds_result cds_slist_remove_head(cds_slist *list);

@@ -95,27 +95,29 @@ unsigned int cds_stack_count(const cds_stack *stack) {
 
 /* pushes the given data to the top of the stack */
 cds_result cds_stack_push(cds_stack *stack, const void *data) {
-	if (!stack)
-		return CDS_NULL_ARGUMENT;
-	cds_slnode *node;
-	cds_result r = cds_slnode_create(&node, data);
-	if (r == CDS_OK) {
-		if (stack->top) {
-			node->next = stack->top;
-			stack->top = node;
-		} else {
-			stack->top = node;
-			stack->top->next = NULL;
+	if (stack) {
+		cds_slnode *node;
+		cds_result cr = cds_slnode_create(&node, data);
+		if (cr == CDS_OK) {
+			if (stack->top) {
+				node->next = stack->top;
+				stack->top = node;
+			} else {
+				stack->top = node;
+				stack->top->next = NULL;
+			}
+			stack->count++;
 		}
-		stack->count++;
+		return cr;
+	} else {
+		return CDS_NULL_ARGUMENT;
 	}
-	return r;
 }
 
 /* mimics remove head functionality of a singly linked list */
 cds_result cds_stack_pop(cds_stack *stack) {
 	if (stack) {
-		if (stack->count) {
+		if (stack->top) {
 			cds_slnode *tmp = stack->top;
 			stack->top = stack->top->next;
 			stack->count--;

@@ -13,6 +13,12 @@
  */
 #include "cds_hash_node.h"
 
+/** Default reccomended start size */
+#define CDS_DEFAULT_HASH_TABLE_SIZE 8
+
+/** Default growth rate when a hash table reaches its capacity */
+#define CDS_DEFAULT_HASH_TABLE_GROWTH_MULTIPLIER 2
+
 /**
  * @struct cds_hash_table cds_hash_table.h
  * A struct container for hash table using linear probing.  Stores a 
@@ -35,13 +41,13 @@ typedef struct cds_hash_table cds_hash_table;
 cds_result cds_hash_table_create(cds_hash_table **table, unsigned int size, cds_cmp_func key_cmp, cds_cmp_func val_cmp, cds_hash_func hash_func);
 
 /** Deletes the table */
-cds_result cds_hash_table_delete(cds_hash_table **table);
+cds_result cds_hash_table_delete(cds_hash_table **table, cds_hash_node_deletion_behavoir db);
 
 /** Clears the table */
 cds_result cds_hash_table_clear(cds_hash_table *table, cds_hash_node_deletion_behavoir db);
 
 /** Deletes the table, the keys, and the values */
-cds_result cds_hash_table_delete_all(cds_hash_table **table, cds_hash_node_deletion_behavoir db);
+cds_result cds_hash_table_delete_all(cds_hash_table **table);
 
 /** Gets the number of elements in the table */
 unsigned int cds_hash_table_count(const cds_hash_table *table);

@@ -1,5 +1,6 @@
 #include "cds_hash_table.h"
 
+/* */
 cds_result cds_hash_table_create(cds_hash_table **table, unsigned int size, cds_cmp_func key_cmp, cds_cmp_func val_cmp, cds_hash_func hash_func) {
 	if (table && key_cmp && val_cmp && hash_func) {
 		if (size) {
@@ -33,60 +34,51 @@ cds_result cds_hash_table_create(cds_hash_table **table, unsigned int size, cds_
 	}
 }
 
-cds_result cds_hash_table_delete(cds_hash_table **table) {
+/* */
+cds_result cds_hash_table_delete(cds_hash_table **table, cds_hash_node_deletion_behavoir db) {
 	if (table && *table) {
-		cds_free((*table)->buckets);
-		cds_free(*table);
-		*table = NULL;
-		return CDS_OK;
+		cds_result cr = cds_hash_table_clear(*table, db);
+		if (cr == CDS_OK) {
+			cds_free((*table)->buckets);
+			cds_free(*table);
+			*table = NULL;
+		}
+		return cr;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
 }
 
+/* */
 cds_result cds_hash_table_clear(cds_hash_table *table, cds_hash_node_deletion_behavoir db) {
 	if (table) {
-		unsigned int i;
-		cds_hash_node *cur;
+		unsigned int i, numDeleted = 0;
+		cds_hash_node *cur, *next;
 		cds_result cr;
-		for (i = 0; i < table->size; ++i) {
+		for (i = 0; i < table->size && numDeleted < table->count; ++i) {
 			cur = table->buckets[i];
 			while (cur) {
+				next = cur->next;
 				cr = cds_hash_node_delete(&cur, db);
 				if (cr != CDS_OK)
 					return cr;
-				cur = cur->next;
+				++numDeleted;
+				cur = next;
 			}
 		}
+		table->count = 0;
 		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
 }
 
-cds_result cds_hash_table_delete_all(cds_hash_table **table, cds_hash_node_deletion_behavoir db) {
-	if (table && *table) {
-		unsigned int i;
-		unsigned int size = (*table)->size;
-		for (i = 0; i < size; ++i) {
-			cds_hash_node *cur = (*table)->buckets[i];
-			cds_result r;
-			while (cur) {
-				r = cds_hash_node_delete(&cur, db);
-				if (r != CDS_OK)
-					return r;
-				cur = cur->next;
-			}
-		}
-		cds_free((*table)->buckets);
-		cds_free(*table);
-		*table = NULL;
-		return CDS_OK;
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
+/* */
+cds_result cds_hash_table_delete_all(cds_hash_table **table) {
+	return cds_hash_table_delete(table, CDS_DELETE_ALL);
 }
 
+/* */
 unsigned int cds_hash_table_count(const cds_hash_table *table) {
 	unsigned int count = 0;
 	if (table) {
@@ -95,6 +87,7 @@ unsigned int cds_hash_table_count(const cds_hash_table *table) {
 	return count;
 }
 
+/* */
 unsigned int cds_hash_table_size(const cds_hash_table *table) {
 	unsigned int size = 0;
 	if (table) {
@@ -103,6 +96,7 @@ unsigned int cds_hash_table_size(const cds_hash_table *table) {
 	return size;
 }
 
+/* */
 cds_cmp_func cds_hash_table_key_cmp_func(const cds_hash_table *table) {
 	cds_cmp_func keyCmp = NULL;
 	if (table) {
@@ -111,6 +105,7 @@ cds_cmp_func cds_hash_table_key_cmp_func(const cds_hash_table *table) {
 	return keyCmp;
 }
 
+/* */
 cds_cmp_func cds_hash_table_value_cmp_func(const cds_hash_table *table) {
 	cds_cmp_func valCmp = NULL;
 	if (table) {
@@ -119,6 +114,7 @@ cds_cmp_func cds_hash_table_value_cmp_func(const cds_hash_table *table) {
 	return valCmp;
 }
 
+/* */
 float cds_hash_table_load_factor(const cds_hash_table *table) {
 	float lf = 0.0f;
 	if (table && table->size) {
@@ -127,6 +123,7 @@ float cds_hash_table_load_factor(const cds_hash_table *table) {
 	return lf;
 }
 
+/* */
 cds_result cds_hash_table_get(const cds_hash_table *table, const void *key, void **value) {
 	if (table && key && value) {
 		/** @todo pass in size to the hash function? */
@@ -146,6 +143,7 @@ cds_result cds_hash_table_get(const cds_hash_table *table, const void *key, void
 	}
 }
 
+/* */
 cds_result cds_hash_table_set(cds_hash_table *table, const void *key, const void* value) {
 	if (table && key && value) {
 		unsigned int bucketIndex = table->hash_func(key) % table->size;
@@ -163,6 +161,7 @@ cds_result cds_hash_table_set(cds_hash_table *table, const void *key, const void
 	}
 }
 
+/* */
 static cds_result cds_hash_table_add_internal(cds_hash_node **buckets, unsigned int size, cds_cmp_func key_cmp, cds_hash_func hash_func, void *key, void *value) {
 	if (buckets && key && value) {
 		unsigned int bucketIndex = hash_func(key) % size;
@@ -210,12 +209,11 @@ static cds_result cds_hash_table_add_internal(cds_hash_node **buckets, unsigned 
 	}
 }
 
+/* */
 static cds_result cds_hash_table_resize(cds_hash_table *table) {
 	/** @todo custom growth rates for hash tables */
-	unsigned int nsize = table->size * 2;
-	unsigned int i;
+	unsigned int nsize = (table->size) ? table->size * CDS_DEFAULT_HASH_TABLE_GROWTH_MULTIPLIER : CDS_DEFAULT_HASH_TABLE_SIZE;
 	cds_hash_node **buckets = cds_alloc(nsize * sizeof(cds_hash_node));
-
 	if (buckets) {
 		unsigned int i;
 		for (i = 0; i < nsize; ++i) {
@@ -239,6 +237,7 @@ static cds_result cds_hash_table_resize(cds_hash_table *table) {
 	}
 }
 
+/* */
 cds_result cds_hash_table_add(cds_hash_table *table, const void *key, const void *value) {
 	if (table && key && value) {
 		/* if full, handle resizing by inserting everything again */
@@ -282,7 +281,7 @@ cds_result cds_hash_table_add(cds_hash_table *table, const void *key, const void
 			prev->next = nnode;
 			return CDS_OK;
 		} else {
-			/* otwerwise just set the head of bucket to be the new node */
+			/* otherwise just set the head of bucket to be the new node */
 			cr = cds_hash_node_create(&nnode, key, value);
 			if (cr == CDS_OK) {
 				table->buckets[bucketIndex] = nnode;
@@ -296,10 +295,10 @@ cds_result cds_hash_table_add(cds_hash_table *table, const void *key, const void
 }
 
 
-//
+/* */
 cds_result cds_hash_table_remove(cds_hash_table *table, const void *key, cds_hash_node_deletion_behavoir db) {
 	if (table && key) {
-		unsigned int bucketIndex = table->hash_func(key) % table->count;
+		unsigned int bucketIndex = table->hash_func(key) % table->size;
 		cds_hash_node *cur = table->buckets[bucketIndex];
 		cds_hash_node *prev = NULL;
 		int cmpResult;
@@ -307,8 +306,7 @@ cds_result cds_hash_table_remove(cds_hash_table *table, const void *key, cds_has
 		while (cur != NULL) {
 			cmpResult = table->key_cmp_func(key, cur->key);
 			if (cmpResult < 0) {
-				/* passed the point of possibly finding a key */
-				break;
+				break; /* passed the point of possibly finding a key */
 			} else if (cmpResult == 0) {
 				if (prev) {
 					prev->next = cur->next;
@@ -330,6 +328,7 @@ cds_result cds_hash_table_remove(cds_hash_table *table, const void *key, cds_has
 	}
 }
 
+/* */
 cds_result cds_hash_table_iterate_keys(const cds_hash_table *table, cds_visit_func visit_func) {
 	if (table && visit_func) {
 		unsigned int i;
@@ -341,11 +340,13 @@ cds_result cds_hash_table_iterate_keys(const cds_hash_table *table, cds_visit_fu
 				cur = cur->next;
 			}
 		}
+		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
 }
 
+/* */
 cds_result cds_hash_table_iterate_values(const cds_hash_table *table, cds_visit_func visit_func) {
 	if (table && visit_func) {
 		unsigned int i;
@@ -357,51 +358,27 @@ cds_result cds_hash_table_iterate_values(const cds_hash_table *table, cds_visit_
 				cur = cur->next;
 			}
 		}
+		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
 }
 
+/* */
 cds_result cds_hash_table_iterate(const cds_hash_table *table, cds_visit_pair_func visit_pair_func) {
 	if (table && visit_pair_func) {
-		unsigned int i;
-		cds_hash_node *cur;
-		for (i = 0; i < table->size; ++i) {
+		unsigned int numVisited = 0, i;
+		cds_hash_node *cur = NULL;
+		for (i = 0; i < table->size && numVisited < table->count; ++i) {
 			cur = table->buckets[i];
 			while (cur) {
 				(*visit_pair_func)(cur->key, cur->value);
+				++numVisited;
 				cur = cur->next;
 			}
 		}
+		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;
 	}
 }
-
-#if 0
-//
-cds_result cds_hash_table_find(cds_hash_table *table, void *key, cds_hash_node **node) {
-	if (node) {
-		if (table && data) {
-			cds_hash_node *cur;
-			unsigned int bucketIndex = table->hash_func(data) % table->size;
-			for (cur = table->buckets[bucketIndex]; cur != NULL; cur = cur->next) {
-				int cmpResult = table->cmp_func(cur->data, data);
-				if (result == 0) {
-					*node = cur;
-					return CDS_OK;
-				} else if (result > 0) {
-					break;
-				}
-			}
-			*node = NULL;
-			return CDS_NOT_FOUND;
-		} else {
-			*node = NULL;
-			return CDS_NULL_ARGUMENT;
-		}
-	} else {
-		return CDS_NULL_ARGUMENT;
-	}
-}
-#endif

@@ -8,6 +8,27 @@ unsigned int naiveIntHash(const void *key) {
 	return (unsigned int)(*ikey);
 }
 
+/* http://en.wikipedia.org/wiki/Jenkins_hash_function */
+unsigned int jenkinsHash(const void *key) {
+	
+	char *str = (char *) key;
+	char *c = str;
+	unsigned int len = 0;
+	while (*c++)
+		++len;
+	
+	unsigned int hash, i;
+	for(hash = i = 0; i < len; ++i) {
+        hash += str[i];
+        hash += (hash << 10);
+        hash ^= (hash >> 6);
+    }
+    hash += (hash << 3);
+    hash ^= (hash >> 11);
+    hash += (hash << 15);
+    return hash;
+}
+
 int cmpInt(const void *a, const void *b) {
 	if (a) {
 		if (b) {
@@ -50,120 +71,93 @@ int cmpStr(const void *a, const void *b) {
 		return v;
 }
 
-void compare(const char *s1, const char *s2) {
-	int c = strcmp(s1, s2);
-	printf("STDLIB Comparison between \'%s\' and \'%s\' is: %d\n", s1, s2, c);
-	c = cmpStr(s1, s2);
-	printf("MYFUNC Comparison between \'%s\' and \'%s\' is: %d\n", s1, s2, c);
-}
-
 void printInt(const void *ptr) {
 	int *ptrVal = (int *)ptr;
 	if (ptrVal)
-		printf("%d", *ptrVal);
+		cds_log("%d", *ptrVal);
 	else
-		printf("NULL");
+		cds_log("NULL");
 }
 
 void printString(const void *ptr) {
-	char *str = (char *)ptr;
-	printf("%s", str);
+	char *ptrStr = (char *)ptr;
+	if (ptrStr) {
+		cds_log("%s", ptrStr);
+	} else {
+		cds_log("NULL");
+	}
+
+}
+
+void printPair(const void *keyPtr, const void *valPtr) {
+	cds_log("<k: ");
+	printInt(keyPtr);
+	cds_log(" v: ");
+	printString(valPtr);
+	cds_log(">\n");
+}
+
+void logTable(const cds_hash_table *htable, int printSize) {
+	if (htable) {
+		if (printSize) {
+			cds_log("Count: %u\nSize: %u\nLoad: %f\n", cds_hash_table_count(htable), cds_hash_table_size(htable), cds_hash_table_load_factor(htable));
+		}
+		cds_hash_table_iterate(htable, &printPair);
+	}
 }
 
 int main(int argc, char *argv[]) {
-	cds_hash_table *htable;
+	/* Create the hash table */
+	cds_hash_table *htable = NULL;
 	cds_result cr;
 	cr = cds_hash_table_create(&htable, 8, &cmpInt, &cmpStr, &naiveIntHash);
-	if (cds_error_check(cr))
-		return 1;
-	float lf = cds_hash_table_load_factor(htable);
+	if (cds_error_check(cr)) return 1;
 	
-	/*
-	cds_hash_node *testNode;
-	int k = 5;
-	int v = 7;
-	cr = cds_hash_node_create(&testNode, &k, &v);
-	int *vk = (int *) testNode->key;
-	int *vv = (int *) testNode->value;
-	printf("<k: %d v: %d>\n", *vk, *vv);
-	*/
-	/*
-	char name[] = "Jeff";
-	char longname[] = "Jeff Lansing";
-	char empty[] = "";
-	char name2[] = "Tim";
-	char lname2[] = "McDerpisten";
-	*/
-	
-	char * nameList[] = {"Jeff", "Jeff Lansing", "", "Tim", "McDerpisten"};
+	/* Add pairs of keys: ints and values: strings */
+	cds_log("Adding keys as ints, strings as values...\n");
+	int keys[] = {0, 1, 2, 3, 4};
+	char * namesList[] = {"Jeff", "Jeff Lansing", "Hughes", "Tim", "McDerpisten"};
 	int numNames = 5, i;
 	for (i = 0; i < numNames; ++i) {
-		int *tmp = (int *) cds_alloc(sizeof(int));
-		*tmp = i;
-		cr = cds_hash_table_add(htable, tmp, nameList[i]);
-		if (cds_error_check(cr))
-			return 1;
+		cr = cds_hash_table_add(htable, keys + i, namesList[i]);
+		if (cds_error_check(cr)) return 1;
 	}
 	
-	void *value;
-	for (i = 0; i < numNames; ++i) {
-		cr = cds_hash_table_get(htable, &i, &value);
-		//printf("CR: %d\n", cr);
-		if (cds_error_check(cr))
-			return 1;
-		cds_log("<k: ");
-		cds_log("%d v: ", i);
-		printString(value);
-		printf(">\n");
-	}
+	logTable(htable, 1);
 	
-	int k = 0;
-	cr = cds_hash_table_remove(htable, &k, CDS_DELETE_KEY);
+	/* Demonstrate using get/set functions */
+	cds_log("Trying to put in and take out data...\n");
+	char newName[] = "Mario";
+	void *oldName = NULL;
+	cr = cds_hash_table_get(htable, keys  + 2, &oldName);
+	if (cds_error_check(cr)) return 1;
+	cds_log("Old name at Key: %d is: %s\n", keys[2], (char *)oldName);
+	cds_log("Trying to set it to: %s\n", newName);
+	void *name = NULL;
+	cr = cds_hash_table_set(htable, keys + 2, newName);
+	if (cds_error_check(cr)) return 1;
+	cr = cds_hash_table_get(htable, keys + 2, &name);
+	if (cds_error_check(cr)) return 1;
+	cds_log("The newly set name at that key is: %s\n", (char *) name);
+	cds_log("Confirming Equality (strcmp): %d\n", cmpStr(newName, (char *) name));
 	
-	k = 2;
-	cr = cds_hash_table_remove(htable, &k, CDS_DELETE_KEY);
+	/* remove some values by key into the table
+	 * if the key or value was dynamically allocated, you would need to pass in 
+	 * CDS_DELETE_KEY or CDS_DELETE_VALUE or CDS_DELETE_ALL
+	 * These can be OR'd together if you want
+	 * In this instance, the referenced values are garbage at the end of the func anyways so it's not necessary
+	 */
+	cds_log("Attempting to remove some entries from the table...\n");
+	cr = cds_hash_table_remove(htable, &keys[1], CDS_DELETE_NODE_ONLY);
+	if (cds_error_check(cr)) return 1;
+	cr = cds_hash_table_remove(htable, &keys[4], CDS_DELETE_NODE_ONLY);
+	if (cds_error_check(cr)) return 1;
 	
-	printf("\nPrinting the contents after removal...\n");
-	for (i = 0; i < numNames; ++i) {
-		cr = cds_hash_table_get(htable, &i, &value);
-		//printf("CR: %d\n", cr);
-		if (cds_error_check(cr))
-			return 1;
-		if (cr != CDS_NOT_FOUND) {
-			printf("<k: ");
-			printf("%d v: ", i);
-			printString(value);
-			printf(">\n");
-		}
-	}
-	/*
-	printf("Setting all values to:");
-	for (i = 0; i < numNames; ++i) {
-		//int *tmp = (int *) cds_alloc(sizeof(int));
-		//*tmp = i;
-		//void *vtmp = (void *) tmp;
-		cr = cds_hash_table_get(htable, &i, &value);
-		//printf("CR: %d\n", cr);
-		if (cds_error_check(cr))
-			return 1;
-		printString(value);
-		printf("\n");
-	}
-	*/
+	logTable(htable, 1);
 	
-	/*
-	cr = cds_hash_table_delete(&htable);
-	if (cds_error_check(cr))
-		return 1;
-	*/
-	/*
-	compare(name, longname);
-	compare(longname, name);
-	compare(name, name);
-	compare(longname, name);
-	compare('\0', name);
-	compare(name, empty);
-	compare(empty, name);
-	*/
+	/* delete the hash table */
+	cr = cds_hash_table_delete(&htable, CDS_DELETE_NODE_ONLY);
+	if (cds_error_check(cr)) return 1;
+	
 	return 0;
 }
