@@ -1,4 +1,4 @@
-------- CDS --------
+--------- CDS ------------
 C Data Structures Library
 Author: Jeff Lansing
 Email: jlansing3 AT gmail DOT com
@@ -60,6 +60,9 @@ Caveats:
 	Thread Safety: Would be implemented later down the road...
 	Const Correctness: Now fixed.
 	ANSI C: Now fully compatible with C90.
+	Documentation: CDS now uses the Doxygen documentation system.  Browse to docs/html to view the reference.
+	Bugs: They exist, I haven't hammered down every case.  In particular, the  binary tree and the hash table 
+		  are less mature than the rest of the code base.  I'm working on handling this when I can.
 
 Everything can compile with -Wall -Wpadded and -ansi without any warnings or errors.  At the time being you'll have to 
 adjust the provided makefile for custom builds.
