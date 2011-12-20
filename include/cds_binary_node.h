@@ -23,7 +23,7 @@ struct cds_binary_node {
 	void *data;
 };
 
-/** @typedef cds_binary_node */
+/** @typedef cds_binary_node type */
 typedef struct cds_binary_node cds_binary_node;
 
 /** Creates a binary node with the given data */

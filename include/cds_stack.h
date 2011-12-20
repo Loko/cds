@@ -23,7 +23,7 @@ struct cds_stack {
 	unsigned int count;
 };
 
-/** */
+/** @typedef cds_stack type */
 typedef struct cds_stack cds_stack;
 
 /** Creates the stack */

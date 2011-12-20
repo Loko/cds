@@ -24,7 +24,7 @@ struct cds_slist {
 	unsigned int count;
 };
 
-/** cds_dlist Custom typename for the singly linked list struct */
+/** @typedef cds_slist type */
 typedef struct cds_slist cds_slist;
 
 /** Creates the singly linked list */

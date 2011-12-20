@@ -41,7 +41,7 @@ cds_result cds_dynamic_array_delete(cds_dynamic_array **array) {
 	}
 }
 
-/* */
+/* Deletes the array and its internal elements */
 cds_result cds_dynamic_array_delete_all(cds_dynamic_array **array) {
 	if (*array) {
 		/* free all the pointers first */

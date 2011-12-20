@@ -34,7 +34,7 @@ struct cds_hash_table {
 	cds_hash_func hash_func;
 };
 
-/** @typedef cds_hash_table struct type definition */
+/** @typedef cds_hash_table type */
 typedef struct cds_hash_table cds_hash_table;
 
 /** Creates the table */
@@ -86,4 +86,5 @@ cds_result cds_hash_table_iterate_values(const cds_hash_table *table, cds_visit_
 cds_result cds_hash_table_iterate(const cds_hash_table *table, cds_visit_pair_func visit_pair_func);
 
 /** @} */
+
 #endif

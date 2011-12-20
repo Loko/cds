@@ -179,4 +179,5 @@ typedef void (*cds_visit_pair_func)(const void *, const void *);
 typedef unsigned int (*cds_hash_func)(const void *);
 
 /** @} */
+
 #endif

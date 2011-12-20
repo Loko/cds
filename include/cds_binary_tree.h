@@ -48,7 +48,7 @@ struct cds_binary_tree {
 	cds_cmp_func cmp_func; /** @todo make constant? */
 };
 
-/** Type for the binary tree structure */
+/** cds_binary_tree type */
 typedef struct cds_binary_tree cds_binary_tree;
 
 /** 

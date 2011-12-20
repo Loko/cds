@@ -69,7 +69,7 @@ struct cds_dynamic_array {
 	unsigned int size;
 };
 
-/** @typedef cds_dynamic_array */
+/** @typedef cds_dynamic_array type */
 typedef struct cds_dynamic_array cds_dynamic_array;
 
 /** 
@@ -145,4 +145,5 @@ cds_result cds_dynamic_array_reverse(cds_dynamic_array *array);
 cds_result cds_dynamic_array_iterate(const cds_dynamic_array *array, cds_visit_func visit_func);
 
 /** @} */
+
 #endif

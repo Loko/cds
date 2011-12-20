@@ -24,7 +24,7 @@ struct cds_queue {
 	unsigned int count;
 };
 
-/** */
+/** @typedef cds_queue type */
 typedef struct cds_queue cds_queue;
 
 /** Create the queue */

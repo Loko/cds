@@ -24,7 +24,7 @@ struct cds_dlnode {
 	void *data;
 	/* cds_dlist *list; could add a reference to the list in the future */
 };
-/** @typedef cds_dlnode */
+/** @typedef cds_dlnode type */
 typedef struct cds_dlnode cds_dlnode;
 
 /** Creates the double linked list node with the given data pointer  */

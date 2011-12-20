@@ -105,4 +105,5 @@ cds_result cds_dlist_reverse(cds_dlist *list);
 cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func);
 
 /** @} */
+
 #endif
