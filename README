@@ -2,7 +2,7 @@
 C Data Structures Library
 Author: Jeff Lansing
 Email: jlansing3 AT gmail DOT com
-Updated: 11/23/2011
+Updated: 1/11/2011
 Disclaimer: Can be used for personal use.  If for commercial use, please ask for my permission.  
 			Please credit my source code before redistributing it elsewhere.  I am not responsible 
 			for any damages brought about by the use of this code.  Use it at your own risk.
@@ -31,7 +31,7 @@ CDS tries to use consistent practices amongst the entire code base
   Therefore, to push_back an element onto a dynamic array you would call cds_dynamic_array_push_back();
   This tends to make function calls and type names long, but is good practice, keeps things consistent, 
   and avoids polluting the namespace
-- Most data structure functions returns a cds_result enum.  Every error code that could be thrown in any 
+- Most data structure functions return a cds_result enum.  Every error code that could be thrown in any 
   of the provided functions is a cds_result.  This keeps results more informative, consistent, and performance 
   friendly.  Rather than returning -1 or NULL when an error occurs, it returns more specific information 
   (e.g. CDS_BAD_ALLOC).  This is better practice because a number of things can potentially go wrong with a given 
@@ -56,10 +56,11 @@ are the name of the data structure in use (e.g. to compile the cds_slist example
 run "bin\slist_test")
 
 Caveats:
-	Compiler support: Only tested with gcc, more testing is pending
+	Compiler support: Only tested with gcc and msvc. But more testing is pending...
 	Thread Safety: Would be implemented later down the road...
 	Const Correctness: Now fixed.
 	ANSI C: Now fully compatible with C90.
+	C++: Now "supported" with extern "C" and with stricter casting
 	Documentation: CDS now uses the Doxygen documentation system.  Browse to docs/html to view the reference.
 	Bugs: They exist, I haven't hammered down every case.  In particular, the  binary tree and the hash table 
 		  are less mature than the rest of the code base.  I'm working on handling this when I can.
