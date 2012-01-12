@@ -6,10 +6,13 @@
  * behavoirs and growth rates. Optimized for insertions and removals 
  * from the end of the container thru push_back and pop_back.
  */
- 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef _CDS_DYNAMIC_ARRAY_H_
 #define _CDS_DYNAMIC_ARRAY_H_
- 
+
 /** 
  * @addtogroup CDS_DYNAMIC_ARRAY
  * @{
@@ -145,5 +148,8 @@ cds_result cds_dynamic_array_reverse(cds_dynamic_array *array);
 cds_result cds_dynamic_array_iterate(const cds_dynamic_array *array, cds_visit_func visit_func);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

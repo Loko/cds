@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * A first in first out queue data structure.
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_QUEUE_H_
 #define _CDS_QUEUE_H_
@@ -58,5 +61,8 @@ cds_result cds_queue_dequeue(cds_queue *queue);
 cds_result cds_queue_iterate(const cds_queue *queue, cds_visit_func visit_func);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

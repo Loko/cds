@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * @brief A Collection of Functions For A Hash Table
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_HASH_TABLE_H_
 #define _CDS_HASH_TABLE_H_
@@ -86,5 +89,8 @@ cds_result cds_hash_table_iterate_values(const cds_hash_table *table, cds_visit_
 cds_result cds_hash_table_iterate(const cds_hash_table *table, cds_visit_pair_func visit_pair_func);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

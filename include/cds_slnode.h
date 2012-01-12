@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * @brief A Collection of Functions For A Singly Linked Node
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_SLNODE_H_
 #define _CDS_SLNODE_H_
@@ -22,7 +25,7 @@ struct cds_slnode {
 	void *data;
 };
 
-/**  */
+/** cds_slnode type */
 typedef struct cds_slnode cds_slnode;
 
 /** Creates the singly linked list node */
@@ -35,5 +38,8 @@ cds_result cds_slnode_delete(cds_slnode **node);
 cds_result cds_slnode_delete_all(cds_slnode **node);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

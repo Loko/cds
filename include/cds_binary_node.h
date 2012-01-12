@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * @brief A Collection of Functions For A Binary Node
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_BINARY_NODE_H_
 #define _CDS_BINARY_NODE_H_
@@ -36,5 +39,8 @@ cds_result cds_binary_node_delete(cds_binary_node **node);
 cds_result cds_binary_node_delete_all(cds_binary_node **node);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

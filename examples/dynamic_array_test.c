@@ -66,7 +66,7 @@ int main(void) {
 	if (cds_error_check(cr)) return 1;
 	
 	/* add the strings to the container */
-	char * presidents[] = {"washington", "jefferson", "roosevelt", "reagan", "clinton", "obama"};
+	const char * presidents[] = {"washington", "jefferson", "roosevelt", "reagan", "clinton", "obama"};
 	unsigned int numPresidents = 6;
 	unsigned int i;
 	for (i = 0; i < numPresidents; ++i) {
@@ -81,7 +81,7 @@ int main(void) {
 	/* try adding past the current size of the array */
 	void *curValue;
 	cds_log("Adding some more strings to the container...\n");
-	char *otherPresidents[] = {"adams", "bush", "coolidge", "kennedy"};
+	const char *otherPresidents[] = {"adams", "bush", "coolidge", "kennedy"};
 	unsigned int numOtherPresidents = 4;
 	/* since the default size is 4, we've grown once, 4 * 1.5 = 6 */
 	/* therefore, on the next insertion, the array will need to grow */

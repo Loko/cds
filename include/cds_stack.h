@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * A last in first out stack represented internally as a singly linked list.
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_STACK_H_
 #define _CDS_STACK_H_
@@ -54,5 +57,9 @@ cds_result cds_stack_pop(cds_stack *stack);
 cds_result cds_stack_iterate(const cds_stack *stack, cds_visit_func visit_func);
 
 /** @} */
-
 #endif
+
+#ifdef __cplusplus
+}
+#endif 
+

@@ -8,7 +8,7 @@ cds_result cds_dynamic_array_create(cds_dynamic_array **array, unsigned int size
 	*array = (cds_dynamic_array *) cds_alloc(sizeof(cds_dynamic_array));
 	if (*array) {
 		if (size > 0) {
-			(*array)->buffer = (void *) cds_alloc(size * sizeof(void *));
+			(*array)->buffer = (void **) cds_alloc(size * sizeof(void **));
 			if ((*array)->buffer) {
 				(*array)->size = size;
 			} else {
@@ -63,7 +63,7 @@ cds_result cds_dynamic_array_delete_all(cds_dynamic_array **array) {
 /* resizes the dynamic array to the given size */
 cds_result cds_dynamic_array_resize(cds_dynamic_array **array, unsigned int size) {
 	if (*array) {
-		(*array)->buffer = (void *) cds_realloc((*array)->buffer, size);
+		(*array)->buffer = (void **) cds_realloc((*array)->buffer, size);
 		if ((*array)->buffer) {
 			(*array)->size = size;
 			if ((*array)->size < (*array)->count) {
@@ -148,7 +148,7 @@ cds_result cds_dynamic_array_push_back(cds_dynamic_array *array, const void *dat
 		/* resize if we are at capacity */
 		if (array->count == array->size) {
 			unsigned int nsize = (array->buffer) ? array->size * CDS_DEFAULT_DYNAMIC_ARRAY_GROWTH_MULTIPLIER : CDS_DEFAULT_DYNAMIC_ARRAY_SIZE;
-			void *tmp = (void *) cds_realloc(array->buffer, nsize * sizeof(void *));
+			void **tmp = (void **) cds_realloc(array->buffer, nsize * sizeof(void **));
 			if (tmp) {
 				array->buffer = tmp;
 				array->size = nsize;
@@ -188,7 +188,7 @@ cds_result cds_dynamic_array_push_back_gf(cds_dynamic_array *array, const void *
 				nsize = (array->buffer) ? array->size * CDS_DEFAULT_DYNAMIC_ARRAY_GROWTH_MULTIPLIER : CDS_DEFAULT_DYNAMIC_ARRAY_SIZE;
 			}
 			/* reallocate */
-			void *tmp = (void *) cds_realloc(array->buffer, nsize * sizeof(void *));
+			void **tmp = (void **) cds_realloc(array->buffer, nsize * sizeof(void **));
 			if (tmp) {
 				array->buffer = tmp;
 				array->size = nsize;

@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
 	/* dequeue until empty */
 	int *front = NULL;
 	while (cds_queue_count(queue)) {
-		front = cds_queue_front(queue);
+		front = (int *) cds_queue_front(queue);
 		cds_log("Dequeue: %d\n", *front); /* assuming no null entries */
 		cr = cds_queue_dequeue(queue);
 		if (cds_error_check(cr))

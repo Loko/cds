@@ -5,6 +5,10 @@
  * allocations, assertions, error handling, logging, etc.
  */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+ 
 #ifndef _CDS_CORE_H_
 #define _CDS_CORE_H_
 
@@ -111,7 +115,7 @@ enum cds_result {
 	CDS_OK = 1                  /**< Function completed successfully */
 };
 
-/** @typedef Custom yype for the enum of the same name */
+/** @typedef Custom type for the enum of the same name */
 typedef enum cds_result cds_result;
 
 /**
@@ -131,7 +135,8 @@ int cds_is_error(cds_result cr);
  */
 int cds_result_string(cds_result cr, char *str);
 
-/** Will print the result and return 1 if it is an error */
+/** Will print the result and return 1 if it is an error 
+ (everything but CDS_OK and CDS_NOT_FOUND is an error) */
 int cds_error_check(cds_result cr);
 
 /** Will print the result and return 1 if cr != CDS_OK */
@@ -179,5 +184,8 @@ typedef void (*cds_visit_pair_func)(const void *, const void *);
 typedef unsigned int (*cds_hash_func)(const void *);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

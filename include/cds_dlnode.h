@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * @brief A Collection of Functions For A Doubly Linked Node
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_DLNODE_H_
 #define _CDS_DLNODE_H_
@@ -37,5 +40,8 @@ cds_result cds_dlnode_delete(cds_dlnode **node);
 cds_result cds_dlnode_delete_all(cds_dlnode **node);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

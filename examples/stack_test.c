@@ -53,8 +53,8 @@ int main(int argc, char *argv[]) {
 	int *top = NULL;
 	/* if you want to allow null values in your stack 
 	 * use cds_stack_count() instead */
-	while ((top = cds_stack_top(stack)) != NULL) {
-		cds_log("Pop: %d\n", *(int *)top);
+	while ((top = (int *) cds_stack_top(stack)) != NULL) {
+		cds_log("Pop: %d\n", *top);
 		cr = cds_stack_pop(stack);
 		if (cds_error_check(cr))
 			return 1;

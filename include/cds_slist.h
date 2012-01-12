@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * @brief A Collection of Functions For A Singly Linked List
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_SLIST_H_
 #define _CDS_SLIST_H_
@@ -100,5 +103,8 @@ cds_result cds_slist_reverse(cds_slist *list);
 cds_result cds_slist_iterate(const cds_slist *list, cds_visit_func visit_func);
 
 /** @} */
-
 #endif
+
+#ifdef __cplusplus
+}
+#endif 

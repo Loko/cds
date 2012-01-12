@@ -1,4 +1,5 @@
 #include "cds_binary_tree.h"
+#include "cds_queue.h"
 
 /* */ 
 cds_result cds_binary_tree_create(cds_binary_tree **tree, cds_cmp_func cmp_func) {
@@ -354,7 +355,7 @@ void cds_binary_tree_postorder_recursive(const cds_binary_node *node, cds_visit_
   * a better solution would do this using an array as if it was a queue, or define my own struct inside the function
   */
 cds_result cds_binary_tree_levelorder_iterative(const cds_binary_node *node, cds_visit_func visit_func) {
-	#include "cds_queue.h"
+	
 	/* using a queue for level order traversal */
 	cds_queue *nodeQueue = NULL;
 	cds_result cr = cds_queue_create(&nodeQueue);
@@ -370,7 +371,7 @@ cds_result cds_binary_tree_levelorder_iterative(const cds_binary_node *node, cds
 	 * dequeue and visit the node at the front of the queue
 	 * queue left if not null, queue right if not null
 	 */
-	while ((curNode = cds_queue_front(nodeQueue)) != NULL) {
+	while ((curNode = (cds_binary_node *) cds_queue_front(nodeQueue)) != NULL) {
 		cr = cds_queue_dequeue(nodeQueue);
 		if (cr != CDS_OK) return cr;
 		(*visit_func)(curNode->data);
@@ -394,16 +395,17 @@ cds_result cds_binary_tree_levelorder_iterative(const cds_binary_node *node, cds
 
 cds_result cds_binary_tree_iterate_node(const cds_binary_node *node, cds_binary_tree_traversal_type traversal_type, cds_visit_func visit_func) {
 	if (visit_func) {
-		if (traversal_type == CDS_PRE_ORDER)
+		if (traversal_type == CDS_PRE_ORDER) {
 			cds_binary_tree_preorder_recursive(node, visit_func);
-		else if (traversal_type == CDS_IN_ORDER)
+		} else if (traversal_type == CDS_IN_ORDER) {
 			cds_binary_tree_inorder_recursive(node, visit_func);
-		else if (traversal_type == CDS_POST_ORDER)
+		} else if (traversal_type == CDS_POST_ORDER) {
 			cds_binary_tree_postorder_recursive(node, visit_func);
-		else if (traversal_type == CDS_LEVEL_ORDER)
+		} else if (traversal_type == CDS_LEVEL_ORDER) {
 			return cds_binary_tree_levelorder_iterative(node, visit_func);
-		else
+		} else {
 			return CDS_INVALID_ARGUMENT;
+		}
 		return CDS_OK;
 	} else {
 		return CDS_NULL_ARGUMENT;

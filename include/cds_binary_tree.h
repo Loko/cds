@@ -5,6 +5,9 @@
  * No repeat values are allowed left < x < right
  * A @see cds_cmp_func is stored in the tree struct itself
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_BINARY_TREE_H_
 #define _CDS_BINARY_TREE_H_
@@ -111,5 +114,8 @@ cds_result cds_binary_tree_iterate_node(const cds_binary_node *node, cds_binary_
 cds_result cds_binary_tree_iterate(const cds_binary_tree *tree, cds_binary_tree_traversal_type traversal_type, cds_visit_func visit_func);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif

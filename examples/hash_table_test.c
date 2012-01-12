@@ -2,6 +2,7 @@
 #include "stdio.h"
 #include "string.h"
 
+/* really, really worthless hash function for testing only */
 unsigned int naiveIntHash(const void *key) {
 	int *ikey = (int *) key;
 	*ikey = (*ikey) < 0 ? -(*ikey) : *ikey;
@@ -116,7 +117,7 @@ int main(int argc, char *argv[]) {
 	/* Add pairs of keys: ints and values: strings */
 	cds_log("Adding keys as ints, strings as values...\n");
 	int keys[] = {0, 1, 2, 3, 4};
-	char * namesList[] = {"Jeff", "Jeff Lansing", "Hughes", "Tim", "McDerpisten"};
+	const char * namesList[] = {"Jeff", "Jeff Lansing", "Hughes", "Tim", "McDerpisten"};
 	int numNames = 5, i;
 	for (i = 0; i < numNames; ++i) {
 		cr = cds_hash_table_add(htable, keys + i, namesList[i]);

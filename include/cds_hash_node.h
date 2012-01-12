@@ -3,19 +3,21 @@
  * @author Jeff Lansing
  * @brief A Collection of Functions for Hash Nodes
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_HASH_NODE_H_
 #define _CDS_HASH_NODE_H_
 
-/** */
+/** node deletion handling */
 enum cds_hash_node_deletion_behavoir {
 	CDS_DELETE_NODE_ONLY = 0,
 	CDS_DELETE_KEY = 1,
 	CDS_DELETE_VALUE = 2,
 	CDS_DELETE_ALL = 3
 };
-
-/** */
+/** cds_hash_node_deletion_behavoir type */
 typedef enum cds_hash_node_deletion_behavoir cds_hash_node_deletion_behavoir;
 
 /** 
@@ -35,7 +37,7 @@ struct cds_hash_node {
 	struct cds_hash_node *next;
 };
 
-/** */
+/** cds_hash_node type */
 typedef struct cds_hash_node cds_hash_node;
 
 /** Creates a hashnode with the key/value pair */
@@ -48,4 +50,8 @@ cds_result cds_hash_node_delete(cds_hash_node **hashnode, cds_hash_node_deletion
 cds_result cds_hash_node_delete_all(cds_hash_node **hashnode);
 
 /** @} */
+#endif
+
+#ifdef __cplusplus
+}
 #endif

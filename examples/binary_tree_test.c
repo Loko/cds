@@ -86,8 +86,8 @@ int main(int argc, char *argv[]) {
 	/* Getting the min and max values */
 	cds_log("Getting the min and max values...\n");
 	const int *min, *max;  /* const to indicate they shouldn't be changed */
-	min = cds_binary_tree_min(tree);
-	max = cds_binary_tree_max(tree);
+	min = (const int *) cds_binary_tree_min(tree);
+	max = (const int *) cds_binary_tree_max(tree);
 	cds_log("Min: %d\n", *min);
 	cds_log("Max: %d\n", *max);
 	

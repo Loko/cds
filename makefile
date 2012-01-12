@@ -1,4 +1,5 @@
-#replace with your own GCC path instead if necessary
+# replace with your own GCC path instead if necessary
+# now supports g++ too!
 CC = gcc
 
 all: dynamic_array dlist dlist stack queue binary_tree hash_table

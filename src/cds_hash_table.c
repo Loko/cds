@@ -6,7 +6,7 @@ cds_result cds_hash_table_create(cds_hash_table **table, unsigned int size, cds_
 		if (size) {
 			*table = (cds_hash_table *) cds_alloc(sizeof(cds_hash_table));
 			if (*table) {
-				(*table)->buckets = cds_alloc(size * sizeof(cds_hash_node *));
+				(*table)->buckets = (cds_hash_node **) cds_alloc(size * sizeof(cds_hash_node **));
 				if ((*table)->buckets) {
 					unsigned int i;
 					for (i = 0; i < size; ++i) {
@@ -213,7 +213,7 @@ static cds_result cds_hash_table_add_internal(cds_hash_node **buckets, unsigned 
 static cds_result cds_hash_table_resize(cds_hash_table *table) {
 	/** @todo custom growth rates for hash tables */
 	unsigned int nsize = (table->size) ? table->size * CDS_DEFAULT_HASH_TABLE_GROWTH_MULTIPLIER : CDS_DEFAULT_HASH_TABLE_SIZE;
-	cds_hash_node **buckets = cds_alloc(nsize * sizeof(cds_hash_node));
+	cds_hash_node **buckets = (cds_hash_node **) cds_alloc(nsize * sizeof(cds_hash_node **));
 	if (buckets) {
 		unsigned int i;
 		for (i = 0; i < nsize; ++i) {
