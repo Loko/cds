@@ -3,6 +3,9 @@
  * @author Jeff Lansing
  * @brief A Collection of Functions For A Doubly Linked List
  */
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef _CDS_DLIST_H_
 #define _CDS_DLIST_H_
@@ -105,5 +108,8 @@ cds_result cds_dlist_reverse(cds_dlist *list);
 cds_result cds_dlist_iterate(const cds_dlist *list, cds_visit_func visit_func);
 
 /** @} */
+#endif
 
+#ifdef __cplusplus
+}
 #endif
